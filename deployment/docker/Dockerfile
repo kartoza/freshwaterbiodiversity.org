@@ -10,14 +10,13 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 # Pandoc needed to generate rst dumps, uic compressor needed for django-pipeline
 RUN apt-get update -y; apt-get -y --force-yes install yui-compressor
 
-RUN apt-get install -y python3-pip
-RUN apt-get install -y python-gdal
-RUN apt-get install -y python-geoip
-RUN apt-get install -y npm
-RUN apt-get install -y nodejs
-RUN apt-get install -y rpl
-RUN apt-get -y  --force-yes install yui-compressor
-RUN apt-get install -y python3-setuptools
+RUN apt-get install -y python3-pip \
+    python-gdal \
+    python-geoip \
+    npm \
+    nodejs \
+    rpl \
+    python3-setuptools
 
 ADD REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
