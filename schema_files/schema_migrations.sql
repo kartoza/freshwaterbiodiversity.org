@@ -1,6 +1,6 @@
 --
 --
--- Drop columns for site table
+-- Dropping unwanted columns for the site table
 --
 --
 
@@ -153,7 +153,7 @@ ALTER TABLE site DROP COLUMN mapprojection;
 
 --
 --
--- Drop columns for sitevisit table
+-- Dropping unwanted columns for the sitevisit table
 --
 
 
@@ -276,7 +276,7 @@ ALTER TABLE sitevisit DROP COLUMN channeltypeid;
 
 --
 --
--- Drop tables
+-- Dropping unwanted tables
 --
 --
 
