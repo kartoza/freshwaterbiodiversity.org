@@ -7,15 +7,11 @@ RUN export DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 RUN dpkg-divert --local --rename --add /sbin/initctl
 
-# Pandoc needed to generate rst dumps, uic compressor needed for django-pipeline
-RUN apt-get update -y; apt-get -y --force-yes install yui-compressor
+RUN apt-get update -y
 
 RUN apt-get install -y python3-pip \
     python-gdal \
     python-geoip \
-    npm \
-    nodejs \
-    rpl \
     python3-setuptools
 
 ADD REQUIREMENTS.txt /REQUIREMENTS.txt
