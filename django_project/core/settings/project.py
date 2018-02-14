@@ -12,9 +12,9 @@ from .utils import absolute_path
 from .contrib import *  # noqa
 
 # Project apps
-INSTALLED_APPS += (
+INSTALLED_APPS += [
     'base',
-)
+]
 
 # Set debug to false for production
 DEBUG = TEMPLATE_DEBUG = False
