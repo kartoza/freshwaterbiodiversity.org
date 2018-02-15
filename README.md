@@ -1,11 +1,10 @@
 # HealthyRivers
 
-[![HealthyRivers Screenshot](![screen shot 2018-02-15 at 14 32 10](https://user-images.githubusercontent.com/178003/36256821-3b6512b2-125d-11e8-8726-da143f0cf1fa.png)](http://healthyrivers.kartoza.com)
-
+[![HealthyRivers Screenshot](https://user-images.githubusercontent.com/178003/36256821-3b6512b2-125d-11e8-8726-da143f0cf1fa.png)](http://healthyrivers.kartoza.com))
 
 A django app for monitoring rivers and river health.
 
-View a running instance at [http://healthyrivers.kartoza.com](http://healthrivers.kartoza.com)
+View a running instance at [http://healthyrivers.kartoza.com](http://healthyrivers.kartoza.com)
 
 Note that HealthyRivers is under development and not yet feature complete.
 
@@ -26,7 +25,7 @@ The latest source code is available at
 
 Story queue on Waffle:
 
-* [![Stories in Ready](https://badge.waffle.io/kartoza/healthyrivers.svg?label=ready&title=Ready)](http://waffle.io/kartoza/heathyrivers)
+* [![Stories in Ready](https://badge.waffle.io/kartoza/healthyrivers.svg?label=ready&title=Ready)](http://waffle.io/kartoza/healthyrivers)
 * [![Stories in In Progress](https://badge.waffle.io/kartoza/healthyrivers.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/kartoza/healthyrivers)
 
 [![Throughput Graph](https://graphs.waffle.io/kartoza/healthyrivers/throughput.svg)](https://waffle.io/kartoza/healthyrivers/metrics)
