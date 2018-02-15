@@ -134,7 +134,7 @@ and community members using the link below.
 
 ## Credits
 
-HealthyRivers was funded by  and developed by [Kartoza.com](http://kartoza.com), [Freshwater Research Center](http://frcsa.org.za) and individual contributors.
+HealthyRivers was funded by [JRS](http://jrsbiodiversity.org/) and developed by [Kartoza.com](http://kartoza.com), [Freshwater Research Center](http://frcsa.org.za) and individual contributors.
 
 ## License
 
