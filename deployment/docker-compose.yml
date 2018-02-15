@@ -21,7 +21,7 @@ smtp:
 db:
   # Note you cannot scale if you use container_name
   container_name: freshwater-db
-  image: kartoza/postgis:9.4-2.1
+  image: kartoza/postgis:9.6-2.4
   volumes:
     #- ./pg/postgres_data:/var/lib/postgresql
     - ./backups:/backups
@@ -128,6 +128,6 @@ devweb:
     - db:db
   ports:
     # for django test server
-    - "65202:8080"
+    - "65302:8080"
     # for ssh
-    - "65203:22"
+    - "65303:22"
