@@ -1,4 +1,4 @@
-PROJECT_ID := freshwater
+PROJECT_ID := healthyrivers
 
 SHELL := /bin/bash
 
