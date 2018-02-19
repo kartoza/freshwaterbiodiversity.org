@@ -1,18 +1,18 @@
 # HealthyRivers
 
-[![HealthyRivers Screenshot](https://cloud.githubusercontent.com/assets/178003/12607822/8cdb225c-c4e0-11e5-8ab0-ba51bb6f4e93.png)](http://changelog.kartoza.com)
-
+[![HealthyRivers Screenshot](https://user-images.githubusercontent.com/178003/36256821-3b6512b2-125d-11e8-8726-da143f0cf1fa.png)](http://healthyrivers.kartoza.com))
 
 A django app for monitoring rivers and river health.
 
-View a running instance at [http://healthyrivers.kartoza.com](http://healthrivers.kartoza.com)
+View a running instance at [http://healthyrivers.kartoza.com](http://healthyrivers.kartoza.com)
 
 Note that HealthyRivers is under development and not yet feature complete.
 
-The latest source code is available at 
+The latest source code is available at
 [https://github.com/kartoza/healthyrivers](https://github.com/kartoza/healthyrivers).
 
 * **Developers:** See our [developer guide](README-dev.md)
+* **Designers:** See our [Moqups Project](https://app.moqups.com/tim@kartoza.com/47tU30vEA3/edit/page/aa9df7b72) for design moqups.
 * **For production:** See our [deployment guide](README-docker.md)
 
 
@@ -25,7 +25,7 @@ The latest source code is available at
 
 Story queue on Waffle:
 
-* [![Stories in Ready](https://badge.waffle.io/kartoza/healthyrivers.svg?label=ready&title=Ready)](http://waffle.io/kartoza/heathyrivers) 
+* [![Stories in Ready](https://badge.waffle.io/kartoza/healthyrivers.svg?label=ready&title=Ready)](http://waffle.io/kartoza/healthyrivers)
 * [![Stories in In Progress](https://badge.waffle.io/kartoza/healthyrivers.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/kartoza/healthyrivers)
 
 [![Throughput Graph](https://graphs.waffle.io/kartoza/healthyrivers/throughput.svg)](https://waffle.io/kartoza/healthyrivers/metrics)
@@ -41,7 +41,7 @@ Story queue on Waffle:
 
 ## Quick Installation Guide
 
-For deployment we use [docker](http://docker.com) so you need to have docker 
+For deployment we use [docker](http://docker.com) so you need to have docker
 running on the host. HealthyRivers is a django app so it will help if you have
 some knowledge of running a django site.
 
@@ -58,7 +58,7 @@ make migrate
 make collectstatic
 ```
 
-If you need backups, put btsync keys in these files. If you don't need backups, 
+If you need backups, put btsync keys in these files. If you don't need backups,
 you can let the default content.
 
 So as to create your admin account:
@@ -82,7 +82,7 @@ Create and oath2 credential with these options:
 
 Authorized redirect URIs
 
-http://changelog.qgis.org<your domain>/en/complete/google-oauth2/
+http://healthyrivers.kartoza.com<your domain>/en/complete/google-oauth2/
 
 Use the HealthyRivers admin panel to set up the google account with your id and
 secret
@@ -103,8 +103,8 @@ Set the key and secret from the github key page.
 
 **Backups**
 
-If you wish to sync backups, you need to establish a read / write btsync 
-key on your production server and run one or more btsync clients 
+If you wish to sync backups, you need to establish a read / write btsync
+key on your production server and run one or more btsync clients
 with a read only key.
 
 ```
@@ -113,14 +113,14 @@ cp btsync-media.env.EXAMPLE btsync-media.env
 cp btsync-db.env.EXAMPLE btsync-db.env
 ```
 
-Now edit the ``btsync-media.env`` and ``btsync-db.env`` files, including 
+Now edit the ``btsync-media.env`` and ``btsync-db.env`` files, including
 relevant SECRET and DEVICE settings.
 
 ## Participation
 
 
 We work under the philosophy that stakeholders should have access to the
-development and source code, and be able to participate in every level of the 
+development and source code, and be able to participate in every level of the
 project - we invite comments, suggestions and contributions.  See
 [our milestones list](https://github.com/kartoza/healthyrivers/milestones) and
 [our open issues list](https://github.com/kartoza/healthyrivers/issues?page=1&state=open)
@@ -133,7 +133,7 @@ and community members using the link below.
 
 ## Credits
 
-HealthyRivers was funded by  and developed by [Kartoza.com](http://kartoza.com), [Freshwater Research Center](http://frcsa.org.za) and individual contributors.
+HealthyRivers was funded by [JRS](http://jrsbiodiversity.org/) and developed by [Kartoza.com](http://kartoza.com), [Freshwater Research Center](http://frcsa.org.za) and individual contributors.
 
 ## License
 
