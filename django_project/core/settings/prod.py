@@ -13,6 +13,20 @@ ALLOWED_HOSTS = [
     'localhost:9000',
 ]
 
+INSTALLED_APPS += (  # noqa : F405
+    'pipeline',
+)
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_FINDERS += (  # noqa : F405
+    'pipeline.finders.PipelineFinder',
+)
+
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+}
+
 # Comment if you are not running behind proxy
 USE_X_FORWARDED_HOST = True
 
