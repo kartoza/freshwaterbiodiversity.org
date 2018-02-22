@@ -13,6 +13,7 @@ from .contrib import *  # noqa
 # Project apps
 INSTALLED_APPS += (  # noqa : F405
     'base',
+    'roles'
 )
 
 # Set debug to false for production
@@ -24,5 +25,5 @@ LANGUAGES = (
 )
 
 VALID_DOMAIN = [
-            '0.0.0.0',
-        ]
+    '0.0.0.0',
+]
