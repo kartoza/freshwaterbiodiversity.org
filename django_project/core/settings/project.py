@@ -8,13 +8,12 @@ repository!
 
 import os  # noqa
 from django.utils.translation import ugettext_lazy as _
-from .utils import absolute_path
 from .contrib import *  # noqa
 
 # Project apps
-INSTALLED_APPS += [
+INSTALLED_APPS += (  # noqa : F405
     'base',
-]
+)
 
 # Set debug to false for production
 DEBUG = TEMPLATE_DEBUG = False
