@@ -79,7 +79,7 @@ STATICFILES_FINDERS = (
 # noinspection PyUnresolvedReferences
 from .secret import SECRET_KEY  # noqa
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     # Django apps
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -92,7 +92,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
-]
+)
 
 TEMPLATES = [
     {
