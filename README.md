@@ -1,6 +1,6 @@
 # HealthyRivers
 
-[![HealthyRivers Screenshot](https://user-images.githubusercontent.com/178003/36256821-3b6512b2-125d-11e8-8726-da143f0cf1fa.png)](http://healthyrivers.kartoza.com))
+[![HealthyRivers Screenshot](https://user-images.githubusercontent.com/178003/36256821-3b6512b2-125d-11e8-8726-da143f0cf1fa.png)](http://healthyrivers.kartoza.com)
 
 A django app for monitoring rivers and river health.
 
@@ -163,4 +163,5 @@ Thank you to the individual contributors who have helped to build HealthyRivers:
 * Christian Christelis (Lead developer): christian@kartoza.com
 * Tim Sutton (Lead developer): tim@kartoza.com
 * Dimas Ciptura: dimas@kartoza.com
-
+* Irwan Fathurrahman: irwan@kartoza.com
+* Anita Hapsari: anita@kartoza.com
