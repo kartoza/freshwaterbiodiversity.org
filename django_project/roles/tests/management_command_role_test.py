@@ -3,10 +3,8 @@ __author__ = 'Irwan Fathurrahman <irwan@kartoza.com>'
 __date__ = '21/02/18'
 
 from django.test import TestCase
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.test.utils import override_settings
 
 
 class ManagementCommandRoleTests(TestCase):
