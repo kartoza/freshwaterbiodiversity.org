@@ -14,3 +14,7 @@ pytz
 # support special characters
 
 django-allauth==0.35.0
+
+# Django Easy Audit
+# https://github.com/soynatan/django-easy-audit
+django-easy-audit==1.0
