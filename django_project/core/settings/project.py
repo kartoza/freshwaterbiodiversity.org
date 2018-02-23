@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from .contrib import *  # noqa
 
 # Project apps
-INSTALLED_APPS += (  # noqa : F405
+INSTALLED_APPS += (
     'base',
     'roles'
 )

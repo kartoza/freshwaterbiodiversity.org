@@ -1,15 +1,14 @@
-
 from .project import *  # noqa
 
 # http://hustoknow.blogspot.com/2011/02/setting-up-django-nose-on-hudson.html
-INSTALLED_APPS += (  # noqa : F405
+INSTALLED_APPS += (
     'django_nose',  # don't remove this comma
     'pipeline',
 )
 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
-STATICFILES_FINDERS += (  # noqa : F405
+STATICFILES_FINDERS += (
     'pipeline.finders.PipelineFinder',
 )
 
@@ -30,11 +29,9 @@ NOSE_ARGS = (
     '--nologcapture'
 )
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # change this to a proper location
 EMAIL_FILE_PATH = '/tmp/'
-
 
 LOGGING = {
     # internal dictConfig version - DON'T CHANGE
@@ -51,3 +48,5 @@ LOGGING = {
         'handlers': ['nullhandler'],
     }
 }
+
+ROLEPERMISSIONS_MODULE = 'roles.settings.roles_test'

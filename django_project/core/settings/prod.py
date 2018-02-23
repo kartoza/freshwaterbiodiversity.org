@@ -13,13 +13,13 @@ ALLOWED_HOSTS = [
     'localhost:9000',
 ]
 
-INSTALLED_APPS += (  # noqa : F405
+INSTALLED_APPS += (
     'pipeline',
 )
 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
-STATICFILES_FINDERS += (  # noqa : F405
+STATICFILES_FINDERS += (
     'pipeline.finders.PipelineFinder',
 )
 
