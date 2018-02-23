@@ -24,7 +24,23 @@ INSTALLED_APPS += (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
+    'easyaudit',
 )
+
+MIDDLEWARE += (
+    'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
+)
+
+# Defines whether to log model related events,
+# such as when an object is created, updated, or deleted
+DJANGO_EASY_AUDIT_WATCH_MODEL_EVENTS = True
+
+# Defines whether to log user authentication events,
+# such as logins, logouts and failed logins.
+DJANGO_EASY_AUDIT_WATCH_AUTH_EVENTS = True
+
+# Defines whether to log URL requests made to the project
+DJANGO_EASY_AUDIT_WATCH_REQUEST_EVENTS = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
