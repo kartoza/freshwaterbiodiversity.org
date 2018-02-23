@@ -25,6 +25,7 @@ INSTALLED_APPS += (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     'easyaudit',
+    'rolepermissions',
 )
 
 MIDDLEWARE += (
@@ -54,3 +55,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_SIGNUP_FORM_CLASS = 'base.forms.SignupForm'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 LOGIN_REDIRECT_URL = "/"
+
+ROLEPERMISSIONS_MODULE = 'roles.settings.roles'
+ROLEPERMISSIONS_REGISTER_ADMIN = True

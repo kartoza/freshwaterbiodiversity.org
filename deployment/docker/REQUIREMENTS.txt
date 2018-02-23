@@ -3,6 +3,7 @@ Django>=2.0.2
 django-braces==1.9.0
 django-model-utils==1.4.0
 django-pipeline==1.6.14
+django-role-permissions
 markdown==2.3.1
 
 # Raven pinned to 3.3.7 - see
