@@ -17,5 +17,10 @@ class LocationSite(models.Model):
     )
     geometry = models.PointField()
 
+    # noinspection PyClassicStyleClass
+    class Meta:
+        """Meta class for project."""
+        app_label = 'base'
+
     def __unicode__(self):
         return u'%s' % self.location_type.name

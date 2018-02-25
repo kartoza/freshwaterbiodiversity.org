@@ -19,5 +19,11 @@ class LocationType(models.Model):
         null=True,
     )
 
+    # noinspection PyClassicStyleClass
+    class Meta:
+        """Meta class for project."""
+        app_label = 'base'
+        ordering = ['name']
+
     def __unicode__(self):
         return u'%s' % self.name
