@@ -3,20 +3,20 @@ __author__ = 'Irwan Fathurrahman <irwan@kartoza.com>'
 __date__ = '21/02/18'
 
 import json
-from django import forms
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.gis import admin
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+from base.models.user import User
 from rolepermissions.admin import RolePermissionsUserAdminMixin
 from rolepermissions.roles import RolesManager
 
-admin.site.unregister(User)
 admin.site.unregister(Group)
 
 
-class RolePermissionsUserForm(forms.ModelForm):
+class RolePermissionsUserForm(UserChangeForm):
     class Media:
         css = {
             'all': ('/static/css/role-admin-form.css',)

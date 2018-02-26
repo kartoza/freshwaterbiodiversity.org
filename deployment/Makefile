@@ -77,6 +77,7 @@ migrate:
 	@# but we want to continue anyway.
 	@#We need to migrate accounts first as it has a reference to user model
 	-@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py migrate auth
+	@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py migrate easyaudit
 	@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py migrate
 
 update-migrations:
@@ -197,6 +198,17 @@ dbrestore:
 	-@docker exec -t -i $(PROJECT_ID)-db su - postgres -c "dropdb gis"
 	@docker exec -t -i $(PROJECT_ID)-db su - postgres -c "createdb -O docker -T template_postgis gis"
 	@docker exec -t -i $(PROJECT_ID)-db pg_restore /backups/latest.dmp | docker exec -i $(PROJECT_ID)-db su - postgres -c "psql gis"
+
+db-fresh-restore:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Restore dump from backups/latest.dmp in production mode"
+	@echo "------------------------------------------------------------------"
+	-@docker exec -t -i $(PROJECT_ID)-db su - postgres -c "dropdb gis"
+	@docker exec -t -i $(PROJECT_ID)-db su - postgres -c "createdb -O docker -T template_postgis gis"
+	@docker exec -t -i $(PROJECT_ID)-db su - postgres -c "psql gis -f /sql/healthyrivers-old.sql"
+	@docker exec -t -i $(PROJECT_ID)-db su - postgres -c "psql gis -f /sql/migration.sql"
+
 
 dbbackup:
 	@echo

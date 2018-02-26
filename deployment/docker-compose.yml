@@ -25,6 +25,7 @@ db:
   volumes:
     #- ./pg/postgres_data:/var/lib/postgresql
     - ./backups:/backups
+    - ./sql:/sql
   environment:
     - USERNAME=docker
     - PASS=docker
