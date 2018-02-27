@@ -1,2 +1,2 @@
-from .location_type import *
-from .location_site import *
+from base.models.location_type import *  # noqa
+from base.models.location_site import *  # noqa

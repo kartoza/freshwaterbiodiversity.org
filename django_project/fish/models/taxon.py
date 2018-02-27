@@ -30,3 +30,8 @@ class Taxon(models.Model):
         blank=True,
         default='',
     )
+
+    # noinspection PyClassicStyleClass
+    class Meta:
+        """Meta class for project."""
+        app_label = 'fish'

@@ -67,3 +67,8 @@ class FishCollectionRecord(models.Model):
         models.SET_NULL,
         null=True,
     )
+
+    # noinspection PyClassicStyleClass
+    class Meta:
+        """Meta class for project."""
+        app_label = 'fish'

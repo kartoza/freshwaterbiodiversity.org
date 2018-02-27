@@ -20,3 +20,8 @@ class IucnStatus(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.name
+
+    # noinspection PyClassicStyleClass
+    class Meta:
+        """Meta class for project."""
+        app_label = 'fish'
