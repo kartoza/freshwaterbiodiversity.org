@@ -10,10 +10,6 @@ from fish.models.iucn_status import IucnStatus
 class Taxon(models.Model):
     """Taxon model."""
 
-    gbif_id = models.IntegerField(
-        blank=True,
-        null=True,
-    )
     iucn_status = models.ForeignKey(
         IucnStatus,
         models.SET_NULL,

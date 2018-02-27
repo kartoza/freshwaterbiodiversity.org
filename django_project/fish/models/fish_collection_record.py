@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 from base.models.location_site import LocationSite
+from fish.models.taxon import Taxon
 
 
 class FishCollectionRecord(models.Model):
@@ -18,19 +19,14 @@ class FishCollectionRecord(models.Model):
     )
     CATEGORY_CHOICES = (
         ('alien', 'Alien'),
-        ('indigenouse', 'Indigenous'),
+        ('indigenous', 'Indigenous'),
         ('translocated', 'Translocated')
     )
-
     site = models.ForeignKey(
         LocationSite,
         models.CASCADE,
     )
-    locality_id = models.IntegerField(
-        blank=True,
-        null=True,
-    )
-    species = models.CharField(
+    original_species_name = models.CharField(
         max_length=100,
         blank=True,
         default='',
@@ -65,4 +61,9 @@ class FishCollectionRecord(models.Model):
     notes = models.TextField(
         blank=True,
         default='',
+    )
+    taxon_gbif_id = models.ForeignKey(
+        Taxon,
+        models.SET_NULL,
+        null=True,
     )
