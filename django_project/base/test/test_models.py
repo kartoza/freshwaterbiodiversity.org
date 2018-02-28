@@ -91,7 +91,7 @@ class TestLocationSiteCRUD(TestCase):
         self.assertTrue(model.location_type is not None)
 
         # check if geometry exists
-        self.assertTrue(model.geometry is not None)
+        self.assertTrue(model.geometry_point is not None)
 
     def test_LocationSite_read(self):
         """
