@@ -6,5 +6,12 @@ from base.models import (
     LocationSite,
 )
 
-admin.site.register(LocationSite)
+
+class LocationSiteAdmin(admin.GeoModelAdmin):
+    default_zoom = 5
+    default_lat = -30
+    default_lon = 25
+
+
+admin.site.register(LocationSite, LocationSiteAdmin)
 admin.site.register(LocationType)

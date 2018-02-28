@@ -18,7 +18,7 @@ class IucnStatus(models.Model):
         default=False
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.name
 
     # noinspection PyClassicStyleClass

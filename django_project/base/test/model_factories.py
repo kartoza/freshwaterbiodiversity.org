@@ -24,7 +24,7 @@ class LocationSiteF(factory.django.DjangoModelFactory):
         model = LocationSite
 
     location_type = factory.SubFactory(LocationTypeF)
-    geometry = Point(
+    geometry_point = Point(
         random.uniform(-180.0, 180.0),
         random.uniform(-90.0, 90.0)
     )

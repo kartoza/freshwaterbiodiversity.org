@@ -25,5 +25,5 @@ class LocationType(models.Model):
         app_label = 'base'
         ordering = ['name']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.name
