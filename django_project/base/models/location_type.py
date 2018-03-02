@@ -6,8 +6,8 @@
 from django.db import models
 
 
-class LocationTypeAllowedGeometry(models.Model):
-    """Location type allowed geometry model."""
+class LocationType(models.Model):
+    """Location type model."""
 
     GEOMETRY_CHOICES = (
         ('POINT', 'Point'),
@@ -15,18 +15,6 @@ class LocationTypeAllowedGeometry(models.Model):
         ('POLYGON', 'Polygon'),
         ('MULTIPOLYGON', 'Multipolygon'),
     )
-    allowed_geometry = models.CharField(
-        max_length=20,
-        choices=GEOMETRY_CHOICES,
-        unique=True
-    )
-
-    def __str__(self):
-        return self.allowed_geometry
-
-
-class LocationType(models.Model):
-    """Location type model."""
 
     name = models.CharField(
         max_length=100,
@@ -38,7 +26,10 @@ class LocationType(models.Model):
         null=True,
     )
 
-    allowed_geometry = models.ManyToManyField(LocationTypeAllowedGeometry)
+    allowed_geometry = models.CharField(
+        max_length=20,
+        choices=GEOMETRY_CHOICES,
+    )
 
     # noinspection PyClassicStyleClass
     class Meta:
