@@ -37,6 +37,33 @@ class LocationSite(models.Model):
         blank=True,
     )
 
+    def get_geometry(self):
+        """Function to get geometry."""
+        geometry = None
+        validation_error = ValidationError('Only one geometry allowed.')
+
+        if self.geometry_point:
+            if geometry:
+                raise validation_error
+            geometry = self.geometry_point
+
+        if self.geometry_polygon:
+            if geometry:
+                raise validation_error
+            geometry = self.geometry_polygon
+
+        if self.geometry_multipolygon:
+            if geometry:
+                raise validation_error
+            geometry = self.geometry_multipolygon
+
+        if self.geometry_line:
+            if geometry:
+                raise validation_error
+            geometry = self.geometry_line
+
+        return geometry
+
     # noinspection PyClassicStyleClass
     class Meta:
         """Meta class for project."""
@@ -49,6 +76,11 @@ class LocationSite(models.Model):
         """Check if one of geometry is not null."""
         if self.geometry_point or self.geometry_line or \
                 self.geometry_polygon or self.geometry_multipolygon:
-            super(LocationSite, self).save(*args, **kwargs)
+            # Check if geometry is allowed
+            if isinstance(self.get_geometry(),
+                          self.location_type.get_allowed_geometry_class()):
+                super(LocationSite, self).save(*args, **kwargs)
+            else:
+                raise ValidationError('Geometry is not allowed.')
         else:
             raise ValidationError('At least one geometry need to be filled.')

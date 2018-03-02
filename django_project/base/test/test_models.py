@@ -1,6 +1,8 @@
 # coding=utf-8
 """Tests for models."""
 from django.test import TestCase
+from django.contrib.gis.geos import LineString
+from django.core.exceptions import ValidationError
 from base.test.model_factories import LocationTypeF, LocationSiteF
 
 
@@ -133,3 +135,18 @@ class TestLocationSiteCRUD(TestCase):
 
         # check if deleted
         self.assertTrue(model.pk is None)
+
+    def test_LocationSite_update_not_in_allowed_geometry(self):
+        """
+        Tests location site model update if geometry is not in allowed
+        geometry
+        """
+        location_site = LocationSiteF.create()
+        new_data = {
+            'geometry_point': None,
+            'geometry_line': LineString((1, 1), (2, 2)),
+        }
+        location_site.__dict__.update(new_data)
+
+        # check if validation error raised
+        self.assertRaises(ValidationError, location_site.save)

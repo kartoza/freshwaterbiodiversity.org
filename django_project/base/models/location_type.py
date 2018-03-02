@@ -4,6 +4,12 @@
 """
 
 from django.db import models
+from django.contrib.gis.geos import (
+    Point,
+    Polygon,
+    MultiPolygon,
+    LineString,
+)
 
 
 class LocationType(models.Model):
@@ -15,6 +21,13 @@ class LocationType(models.Model):
         ('POLYGON', 'Polygon'),
         ('MULTIPOLYGON', 'Multipolygon'),
     )
+
+    ALLOWED_GEOMETRY = {
+        'POINT': Point,
+        'LINE': LineString,
+        'POLYGON': Polygon,
+        'MULTIPOLYGON': MultiPolygon,
+    }
 
     name = models.CharField(
         max_length=100,
@@ -30,6 +43,10 @@ class LocationType(models.Model):
         max_length=20,
         choices=GEOMETRY_CHOICES,
     )
+
+    def get_allowed_geometry_class(self):
+        """Return allowed geometry class, e.g. Point"""
+        return self.ALLOWED_GEOMETRY[self.allowed_geometry]
 
     # noinspection PyClassicStyleClass
     class Meta:

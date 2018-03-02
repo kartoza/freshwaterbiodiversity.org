@@ -14,6 +14,7 @@ class LocationTypeF(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: 'Test location type %s' % n)
     description = u'Only for testing'
+    allowed_geometry = 'POINT'
 
 
 class LocationSiteF(factory.django.DjangoModelFactory):
