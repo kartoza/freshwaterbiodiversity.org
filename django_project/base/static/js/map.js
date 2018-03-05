@@ -23,3 +23,10 @@ var map = new ol.Map({
         zoom: 7
     })
 });
+
+
+$('.close-panel').click(function () {
+    $( ".right-panel" ).toggle( "slide", {
+        direction: 'right'
+    });
+});
