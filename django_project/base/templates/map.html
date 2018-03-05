@@ -1,0 +1,26 @@
+{% extends 'main_base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block head %}
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/landing_page.css" %}" rel="stylesheet">
+
+    <script type="text/javascript">
+        var bingMapKey = '{{ bing_map_key }}';
+    </script>
+{% endblock %}
+
+{% block body_content %}
+    <div id="map" class="map"></div>
+{% endblock %}
+
+{% block foot %}
+
+    <script src="{% static "js/map.js" %}"></script>
+
+{% endblock %}

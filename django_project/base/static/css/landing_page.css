@@ -158,3 +158,10 @@ header.masthead p {
 .text-primary {
   color: #526B43 !important;
 }
+
+
+html, body, .map {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
