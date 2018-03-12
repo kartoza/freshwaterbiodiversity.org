@@ -8,7 +8,7 @@ from django.db import models
 from django.dispatch import receiver
 
 
-class CsvDocument(models.Model):
+class CSVDocument(models.Model):
     """Csv document model
     """
     csv_file = models.FileField(upload_to='csv/')
@@ -17,9 +17,11 @@ class CsvDocument(models.Model):
     class Meta:
         """Meta class for project."""
         app_label = 'fish'
+        verbose_name_plural = 'CSV Documents'
+        verbose_name = 'CSV Document'
 
 
-@receiver(models.signals.post_delete, sender=CsvDocument)
+@receiver(models.signals.post_delete, sender=CSVDocument)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
     """
     Deletes file from filesystem

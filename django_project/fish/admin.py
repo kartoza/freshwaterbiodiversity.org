@@ -3,12 +3,21 @@
 from django.contrib import admin
 from fish.models import (
     FishCollectionRecord,
-    IucnStatus,
+    IUCNStatus,
     Taxon,
-    CsvDocument
+    CSVDocument
 )
 
+
+class IUCNStatusAdmin(admin.ModelAdmin):
+    list_display = ('name', 'sensitive')
+
+
+class TaxonAdmin(admin.ModelAdmin):
+    list_display = ('common_name', 'author', 'iucn_status')
+
+
 admin.site.register(FishCollectionRecord)
-admin.site.register(IucnStatus)
-admin.site.register(Taxon)
-admin.site.register(CsvDocument)
+admin.site.register(IUCNStatus, IUCNStatusAdmin)
+admin.site.register(Taxon, TaxonAdmin)
+admin.site.register(CSVDocument)

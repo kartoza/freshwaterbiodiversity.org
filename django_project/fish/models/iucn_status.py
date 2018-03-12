@@ -6,7 +6,7 @@
 from django.db import models
 
 
-class IucnStatus(models.Model):
+class IUCNStatus(models.Model):
     """IUCN status model."""
 
     name = models.CharField(
@@ -25,3 +25,5 @@ class IucnStatus(models.Model):
     class Meta:
         """Meta class for project."""
         app_label = 'fish'
+        verbose_name_plural = 'IUCN Status'
+        verbose_name = 'IUCN Status'

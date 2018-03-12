@@ -4,14 +4,14 @@
 """
 
 from django.db import models
-from fish.models.iucn_status import IucnStatus
+from fish.models.iucn_status import IUCNStatus
 
 
 class Taxon(models.Model):
     """Taxon model."""
 
     iucn_status = models.ForeignKey(
-        IucnStatus,
+        IUCNStatus,
         models.SET_NULL,
         null=True,
     )
@@ -35,3 +35,5 @@ class Taxon(models.Model):
     class Meta:
         """Meta class for project."""
         app_label = 'fish'
+        verbose_name_plural = 'Taxa'
+        verbose_name = 'Taxon'

@@ -4,19 +4,19 @@ from django.utils import timezone
 
 from fish.models import (
     FishCollectionRecord,
-    IucnStatus,
+    IUCNStatus,
     Taxon,
 )
 from base.test.model_factories import LocationSiteF
 from core.test.model_factories import UserF
 
 
-class IucnStatusF(factory.django.DjangoModelFactory):
+class IUCNStatusF(factory.django.DjangoModelFactory):
     """
     Iucn status factory
     """
     class Meta:
-        model = IucnStatus
+        model = IUCNStatus
 
     name = factory.Sequence(lambda n: u'Test name %s' % n)
     sensitive = False
@@ -29,7 +29,7 @@ class TaxonF(factory.django.DjangoModelFactory):
     class Meta:
         model = Taxon
 
-    iucn_status = factory.SubFactory(IucnStatusF)
+    iucn_status = factory.SubFactory(IUCNStatusF)
     common_name = factory.Sequence(lambda n: u'Test common name %s' % n)
     scientific_name = factory.Sequence(
             lambda n: u'Test scientific name %s' % n)

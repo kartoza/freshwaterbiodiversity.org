@@ -3,11 +3,11 @@
 """
 
 from django import forms
-from fish.models.csv_document import CsvDocument
+from fish.models.csv_document import CSVDocument
 
 
 class CsvUploadForm(forms.ModelForm):
     """Csv upload form"""
     class Meta:
-        model = CsvDocument
+        model = CSVDocument
         fields = '__all__'

@@ -4,11 +4,11 @@ from django.test import TestCase
 from fish.test.model_factories import (
     FishCollectionRecordF,
     TaxonF,
-    IucnStatusF,
+    IUCNStatusF,
 )
 
 
-class TestIucnStatusCRUD(TestCase):
+class TestIUCNStatusCRUD(TestCase):
     """
        Tests iucn status.
     """
@@ -19,11 +19,11 @@ class TestIucnStatusCRUD(TestCase):
         """
         pass
 
-    def test_IucnStatus_create(self):
+    def test_IUCNStatus_create(self):
         """
         Tests iucn status creation
         """
-        model = IucnStatusF.create()
+        model = IUCNStatusF.create()
 
         # check if pk exists
         self.assertTrue(model.pk is not None)
@@ -31,11 +31,11 @@ class TestIucnStatusCRUD(TestCase):
         # check if name exists
         self.assertTrue(model.name is not None)
 
-    def test_IucnStatus_read(self):
+    def test_IUCNStatus_read(self):
         """
         Tests iucn status model read
         """
-        model = IucnStatusF.create(
+        model = IUCNStatusF.create(
             name=u'custom iucn status',
             sensitive=True,
         )
@@ -43,11 +43,11 @@ class TestIucnStatusCRUD(TestCase):
         self.assertTrue(model.name == 'custom iucn status')
         self.assertTrue(model.sensitive)
 
-    def test_IucnStatus_update(self):
+    def test_IUCNStatus_update(self):
         """
         Tests iucn status model update
         """
-        model = IucnStatusF.create()
+        model = IUCNStatusF.create()
         new_data = {
             'name': u'new name',
             'sensitive': True,
@@ -59,11 +59,11 @@ class TestIucnStatusCRUD(TestCase):
         for key, val in new_data.items():
             self.assertEqual(model.__dict__.get(key), val)
 
-    def test_IucnStatus_delete(self):
+    def test_IUCNStatus_delete(self):
         """
         Tests iucn status model delete
         """
-        model = IucnStatusF.create()
+        model = IUCNStatusF.create()
         model.delete()
 
         # check if deleted
@@ -100,7 +100,7 @@ class TestTaxonCRUD(TestCase):
         """
         Tests taxon model read
         """
-        iucn_status = IucnStatusF.create(
+        iucn_status = IUCNStatusF.create(
             name=u'custom iucn status',
             sensitive=True,
         )
@@ -121,7 +121,7 @@ class TestTaxonCRUD(TestCase):
         Tests taxon model update
         """
         model = TaxonF.create()
-        iucn_status = IucnStatusF.create(
+        iucn_status = IUCNStatusF.create(
             name=u'custom iucn status',
             sensitive=True,
         )
