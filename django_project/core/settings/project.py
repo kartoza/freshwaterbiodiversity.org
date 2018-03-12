@@ -15,6 +15,7 @@ INSTALLED_APPS += (
     'base',
     'base_user',
     'roles',
+    'fish',
 )
 
 # Set debug to false for production
