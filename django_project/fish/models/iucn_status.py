@@ -14,6 +14,9 @@ class IUCNStatus(models.Model):
         blank=True,
         default='',
     )
+    narrative = models.TextField(
+        blank=True,
+    )
     sensitive = models.BooleanField(
         default=False
     )

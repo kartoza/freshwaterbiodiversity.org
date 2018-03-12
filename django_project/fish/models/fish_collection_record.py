@@ -66,6 +66,7 @@ class FishCollectionRecord(models.Model):
         Taxon,
         models.SET_NULL,
         null=True,
+        verbose_name='Taxon GBIF ',
     )
 
     # noinspection PyClassicStyleClass

@@ -10,6 +10,11 @@ from fish.models.iucn_status import IUCNStatus
 class Taxon(models.Model):
     """Taxon model."""
 
+    gbif_id = models.IntegerField(
+        verbose_name='GBIF id',
+        null=True,
+        blank=True,
+    )
     iucn_status = models.ForeignKey(
         IUCNStatus,
         models.SET_NULL,
@@ -37,3 +42,6 @@ class Taxon(models.Model):
         app_label = 'fish'
         verbose_name_plural = 'Taxa'
         verbose_name = 'Taxon'
+
+    def __str__(self):
+        return "%s (%s)" % (self.common_name, self.iucn_status)
