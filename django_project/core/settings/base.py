@@ -65,6 +65,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     absolute_path('core', 'base_static'),
     absolute_path('base', 'static'),
+    absolute_path('fish', 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -92,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 )
 
 TEMPLATES = [
@@ -101,6 +103,7 @@ TEMPLATES = [
             # project level templates
             absolute_path('core', 'base_templates'),
             absolute_path('base', 'templates'),
+            absolute_path('fish', 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
