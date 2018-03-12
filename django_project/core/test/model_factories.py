@@ -1,7 +1,7 @@
 # coding=utf-8
 import factory
 
-from django.contrib.auth.models import User
+from base_user.models.user import User
 from django.utils import timezone
 
 

@@ -3,7 +3,7 @@ __author__ = 'Irwan Fathurrahman <irwan@kartoza.com>'
 __date__ = '21/02/18'
 
 from django.test import TestCase
-from django.contrib.auth.models import User
+from base_user.models.user import User
 from django.core.management import call_command
 
 
