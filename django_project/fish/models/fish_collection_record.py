@@ -42,7 +42,7 @@ class FishCollectionRecord(models.Model):
         blank=True,
     )
     present = models.BooleanField(
-        default=False,
+        default=True,
     )
     collection_date = models.DateField(
         default=timezone.now
