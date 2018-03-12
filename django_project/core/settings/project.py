@@ -13,6 +13,7 @@ from .contrib import *  # noqa
 # Project apps
 INSTALLED_APPS += (
     'base',
+    'base_user',
     'roles',
 )
 
@@ -28,4 +29,4 @@ VALID_DOMAIN = [
     '0.0.0.0',
 ]
 
-AUTH_USER_MODEL = 'base.User'
+AUTH_USER_MODEL = 'base_user.User'

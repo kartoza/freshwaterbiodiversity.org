@@ -18,7 +18,7 @@ def get_old_users():
 
 
 def import_data(apps, schema_editor):
-    User = apps.get_model("base", "User")
+    User = apps.get_model("base_user", "User")
     rows = []
     try:
         rows = get_old_users()
@@ -44,7 +44,7 @@ def import_data(apps, schema_editor):
 class Migration(migrations.Migration):
     atomic = False
     dependencies = [
-        ('base', '0001_initial'),
+        ('base_user', '0001_initial'),
     ]
 
     operations = [

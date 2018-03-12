@@ -3,15 +3,17 @@ __author__ = 'Irwan Fathurrahman <irwan@kartoza.com>'
 __date__ = '21/02/18'
 
 import json
+
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
-from django.contrib.gis import admin
 from django.contrib.auth.models import Group
+from django.contrib.gis import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from base.models.user import User
 from rolepermissions.admin import RolePermissionsUserAdminMixin
 from rolepermissions.roles import RolesManager
+
+from base_user.models.user import User
 
 admin.site.unregister(Group)
 
