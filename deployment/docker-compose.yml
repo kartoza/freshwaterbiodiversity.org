@@ -57,7 +57,7 @@ uwsgi:
   links:
     - smtp:smtp
     - db:db
-  restart: unless-stopped
+  restart: on-failure:5
   user: root
 
 dbbackups:

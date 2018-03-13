@@ -18,6 +18,14 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+# Django grappelli need to be added before django.contrib.admin
+INSTALLED_APPS = (
+    'grappelli',
+) + INSTALLED_APPS
+
+# Grapelli settings
+GRAPPELLI_ADMIN_TITLE = 'HealthyRivers Admin Page'
+
 INSTALLED_APPS += (
     'allauth',
     'allauth.account',
@@ -26,6 +34,7 @@ INSTALLED_APPS += (
     'allauth.socialaccount.providers.github',
     'easyaudit',
     'rolepermissions',
+    'rest_framework',
 )
 
 MIDDLEWARE += (
