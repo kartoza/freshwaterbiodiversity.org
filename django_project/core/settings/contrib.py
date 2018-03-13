@@ -34,6 +34,7 @@ INSTALLED_APPS += (
     'allauth.socialaccount.providers.github',
     'easyaudit',
     'rolepermissions',
+    'rest_framework',
 )
 
 MIDDLEWARE += (
