@@ -50,3 +50,4 @@ LOGGING = {
 }
 
 ROLEPERMISSIONS_MODULE = 'roles.settings.roles_test'
+AUTH_USER_MODEL = 'base_user.User'
