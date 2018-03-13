@@ -17,7 +17,17 @@ class TaxonAdmin(admin.ModelAdmin):
     list_display = ('common_name', 'author', 'iucn_status')
 
 
-admin.site.register(FishCollectionRecord)
+class FishCollectionAdmin(admin.ModelAdmin):
+    list_display = (
+        'original_species_name',
+        'habitat',
+        'category',
+        'collection_date',
+        'owner',
+    )
+
+
+admin.site.register(FishCollectionRecord, FishCollectionAdmin)
 admin.site.register(IUCNStatus, IUCNStatusAdmin)
 admin.site.register(Taxon, TaxonAdmin)
 admin.site.register(CSVDocument)

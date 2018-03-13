@@ -75,8 +75,6 @@ migrate:
 	@#http://stackoverflow.com/questions/3143635/how-to-ignore-mv-error
 	@# We add the '-' prefix to the next line as the migration may fail
 	@# but we want to continue anyway.
-	@#We need to migrate accounts first as it has a reference to user model
-	-@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py migrate auth
 	@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py migrate
 
 update-migrations:
