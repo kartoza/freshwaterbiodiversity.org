@@ -14,11 +14,11 @@
         var bingMapKey = '{{ bing_map_key }}';
     </script>
 {% endblock %}
-
+{% block navigation %} {% endblock %}
 {% block body_content %}
     <div id="map-wrapper"></div>
 
-    <script type='template' id='map-template'>
+    <script type='text/html' id='map-template'>
         <div id="map" class="map"></div>
         <div class="map-control-panel">
             <div class="zoom-control row">

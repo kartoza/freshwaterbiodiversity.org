@@ -25,8 +25,9 @@ define([], function() {
         },
         render: function() {
             this.$el.html(this.template());
-            $('#map-wrapper').append(this.$el);
+            $('#map-wrapper').append(this.$el.children());
             this.map = this.loadMap();
+            return this;
         },
         loadMap: function() {
             var baseSourceLayer;
@@ -40,7 +41,7 @@ define([], function() {
                 baseSourceLayer = new ol.source.OSM();
             }
 
-            map = new ol.Map({
+            this.map = new ol.Map({
                 target: 'map',
                 layers: [
                     new ol.layer.Tile({
