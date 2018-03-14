@@ -1,14 +1,16 @@
 
-define([], function() {
+define(['shared'], function(Shared) {
     return Backbone.View.extend({
         template: _.template($('#map-template').html()),
+        className: 'map-wrapper',
         map: null,
         events: {
             'click .zoom-in': 'zoomInMap',
-            'click .zoom-out': 'zoomOutMap'
+            'click .zoom-out': 'zoomOutMap',
+            'click .layer-control': 'layerControlClicked'
         },
         zoomInMap: function (e) {
-            var view = map.getView();
+            var view = this.map.getView();
             var zoom = view.getZoom();
             view.animate({
                 zoom: zoom-1,
@@ -16,16 +18,19 @@ define([], function() {
             })
         },
         zoomOutMap: function (e) {
-            var view = map.getView();
+            var view = this.map.getView();
             var zoom = view.getZoom();
             view.animate({
                 zoom: zoom+1,
                 duration: 250
             })
         },
+        layerControlClicked: function (e) {
+            Shared.Dispatcher.trigger('map:layerControlClicked', e);
+        },
         render: function() {
             this.$el.html(this.template());
-            $('#map-wrapper').append(this.$el.children());
+            $('#map-container').append(this.$el);
             this.map = this.loadMap();
             return this;
         },
@@ -41,7 +46,7 @@ define([], function() {
                 baseSourceLayer = new ol.source.OSM();
             }
 
-            this.map = new ol.Map({
+            return new ol.Map({
                 target: 'map',
                 layers: [
                     new ol.layer.Tile({

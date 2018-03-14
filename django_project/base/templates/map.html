@@ -16,7 +16,7 @@
 {% endblock %}
 {% block navigation %} {% endblock %}
 {% block body_content %}
-    <div id="map-wrapper"></div>
+    <div id="map-container"></div>
 
     <script type='text/html' id='map-template'>
         <div id="map" class="map"></div>
@@ -38,11 +38,14 @@
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
             </div>
         </div>
+    </script>
+
+    <script type='text/html' id='side-panel-template'>
         <div class="right-panel">
             <div class="right-panel-title">
                 <i class="fa fa-map-marker"></i> Some title
                 <i class="fa fa-times close-panel"></i>
-            </div>
+           </div>
         </div>
     </script>
 
