@@ -3,11 +3,11 @@
 
 """
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
 from base.models.location_site import LocationSite
-from base_user.models.user import User
 from fish.models.taxon import Taxon
 
 
