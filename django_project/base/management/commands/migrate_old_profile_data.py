@@ -4,11 +4,10 @@ __date__ = '15/03/18'
 
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
-from django.db import connection, migrations
+from django.db import connection
 from django.db.utils import ProgrammingError
 
-from profile.models.profile import Profile
-from rolepermissions.roles import assign_role
+from base.models.profile import Profile
 import logging
 
 logger = logging.getLogger(__name__)
@@ -61,11 +60,13 @@ class Command(BaseCommand):
                 user.save()
 
                 print('%s : created' % user.username)
+
                 # insert profile
+                Profile.objects.create(user=user)
                 profile = user.profile
                 for field in self.profile_fields:
                     # TODO:
-                    # If there are other than char,
+                    # If there are other type than char,
                     # please update to parse vale
                     value = row_dictionary[field]
                     if value:

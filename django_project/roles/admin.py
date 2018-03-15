@@ -43,7 +43,9 @@ class RolePermissionsUserAdmin(RolePermissionsUserAdminMixin, UserAdmin):
     inlines = (ProfileInline,)
     form = RolePermissionsUserForm
     list_display = (
-        'username', 'email', 'first_name', 'last_name', 'is_staff', 'roles', 'date_joined', 'last_login')
+        'username', 'email',
+        'first_name', 'last_name', 'is_staff',
+        'roles', 'date_joined', 'last_login')
     list_filter = ('date_joined', 'last_login', 'is_staff')
     readonly_fields = ('role_permissions', 'all_roles_permissions')
     fieldsets = (

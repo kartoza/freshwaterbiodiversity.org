@@ -1,6 +1,6 @@
 # coding=utf-8
 """Tests for models."""
-import factory
+
 from django.test import TestCase
 from base.test.model_factories import ProfileF
 from core.test.model_factories import UserF
