@@ -42,15 +42,18 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">About</a>
             </li>
+            {% if not user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <a class="nav-link js-scroll-trigger" href="/accounts/login/">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+              <a class="nav-link js-scroll-trigger" href="/accounts/signup/">Sign Up</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            {% else %}
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/accounts/logout/">Logout</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
