@@ -13,7 +13,6 @@ from .contrib import *  # noqa
 # Project apps
 INSTALLED_APPS += (
     'base',
-    'profile',
     'roles',
     'fish',
 )
