@@ -6,16 +6,23 @@ import json
 
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.contrib.gis import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+
+from profile.models.profile import Profile
 from rolepermissions.admin import RolePermissionsUserAdminMixin
 from rolepermissions.roles import RolesManager
 
-from base_user.models.user import User
-
+admin.site.unregister(User)
 admin.site.unregister(Group)
+
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    classes = ('collapse open',)
+    inline_classes = ('collapse open',)
 
 
 class RolePermissionsUserForm(UserChangeForm):
@@ -33,9 +40,11 @@ class RolePermissionsUserAdmin(RolePermissionsUserAdminMixin, UserAdmin):
     Hide permissions because it will be
     automatically assign if groups is changed.
     """
+    inlines = (ProfileInline,)
     form = RolePermissionsUserForm
     list_display = (
-        'username', 'email', 'first_name', 'last_name', 'is_staff', 'roles')
+        'username', 'email', 'first_name', 'last_name', 'is_staff', 'roles', 'date_joined', 'last_login')
+    list_filter = ('date_joined', 'last_login', 'is_staff')
     readonly_fields = ('role_permissions', 'all_roles_permissions')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
@@ -45,8 +54,7 @@ class RolePermissionsUserAdmin(RolePermissionsUserAdminMixin, UserAdmin):
             'groups', 'role_permissions', 'all_roles_permissions')}),
         (_('Permissions'), {'fields': (
             'is_active', 'is_staff', 'is_superuser'
-        )}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        )})
     )
 
     def roles(self, obj):

@@ -1,7 +1,7 @@
 (function ($) {
     $(document).ready(function () {
         setTimeout(function () {
-            var rolesJson = JSON.parse($('.field-all_roles_permissions').find(".readonly").text());
+            var rolesJson = JSON.parse($('.all_roles_permissions').find(".grp-readonly").text());
             $("#id_groups_add_link").click(function () {
                 renderRolePermissions()
             });
@@ -14,9 +14,9 @@
                     permissions = $.merge(permissions, rolesJson[$(element).text()]);
                 });
                 if (permissions.length > 0) {
-                    $(".field-role_permissions .readonly").html(permissions.join('<br>'));
+                    $(".role_permissions .grp-readonly").html(permissions.join('<br>'));
                 } else {
-                    $(".field-role_permissions .readonly").html('-');
+                    $(".role_permissions .grp-readonly").html('-');
                 }
             }
         }, 500);

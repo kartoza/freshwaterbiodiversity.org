@@ -13,7 +13,7 @@ from .contrib import *  # noqa
 # Project apps
 INSTALLED_APPS += (
     'base',
-    'base_user',
+    'profile',
     'roles',
     'fish',
 )
@@ -29,5 +29,3 @@ LANGUAGES = (
 VALID_DOMAIN = [
     '0.0.0.0',
 ]
-
-AUTH_USER_MODEL = 'base_user.User'
