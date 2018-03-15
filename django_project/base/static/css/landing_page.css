@@ -235,3 +235,9 @@ html, body, .map, .map-wrapper, #map-container {
         width: 100%;
     }
 }
+
+#content-panel {
+    padding: 30px 30px 30px 50px;
+    font-size: 20pt;
+    font-weight: bold;
+}

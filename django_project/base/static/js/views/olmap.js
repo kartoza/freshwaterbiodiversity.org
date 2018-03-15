@@ -30,19 +30,38 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
                 duration: 250
             })
         },
+        mapClicked: function (e) {
+            var self = this;
+            var features = self.map.getFeaturesAtPixel(e.pixel);
+            if (features) {
+                self.featureClicked(features[0]);
+            } else {
+               Shared.Dispatcher.trigger('sidePanel:closeSidePanel');
+            }
+        },
+        featureClicked: function (feature) {
+            var self = this;
+            var properties = feature.getProperties();
+            delete properties['geometry'];
+            Shared.Dispatcher.trigger('sidePanel:openSidePanel', properties);
+        },
         layerControlClicked: function (e) {
-            Shared.Dispatcher.trigger('map:layerControlClicked', e);
         },
         renderCollection: function () {
             var self = this;
 
             for(var i=0; i < this.collection.length; i++) {
-                var fish = this.collection.models[i];
-                var geojsonObject = JSON.parse(fish.get('geometry'));
+                var fish = this.collection.models[i].toJSON();
+                var geometry = JSON.parse(fish['geometry']);
+                delete fish['geometry'];
                 var geojson = {
                     'type': 'FeatureCollection',
                     'features': [
-                        geojsonObject
+                        {
+                            'type': 'Feature',
+                            'geometry': geometry,
+                            'properties': fish
+                        }
                     ]
                 };
                 var features = new ol.format.GeoJSON().readFeatures(geojson, {
@@ -61,6 +80,10 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
             this.collection = new FishCollection();
             this.collection.fetch().done(function () {
                 self.renderCollection();
+            });
+
+            this.map.on('click', function (e) {
+               self.mapClicked(e);
             });
 
             return this;

@@ -4,10 +4,12 @@ define(['shared'], function(Shared) {
         className: 'panel-wrapper',
         rightPanel: null,
         events: {
+            'click .close-panel': 'closeSidePanel'
         },
         initialize: function () {
             // Events
-            Shared.Dispatcher.on('map:layerControlClicked', this.openSidePanel, this);
+            Shared.Dispatcher.on('sidePanel:openSidePanel', this.openSidePanel, this);
+            Shared.Dispatcher.on('sidePanel:closeSidePanel', this.closeSidePanel, this);
         },
         render: function() {
             this.$el.html(this.template());
@@ -19,8 +21,28 @@ define(['shared'], function(Shared) {
 
             return this;
         },
-        openSidePanel: function (e) {
+        openSidePanel: function (properties) {
             this.rightPanel.show('slide', { direction: 'right'}, 200);
+            if(properties) {
+                this.clearSidePanel();
+                this.fillSidePanel(properties);
+            }
+        },
+        closeSidePanel: function (e) {
+            var self = this;
+            this.rightPanel.hide('slide', { direction: 'right'}, 200, function () {
+                self.clearSidePanel();
+            });
+        },
+        fillSidePanel: function (contents) {
+            for (var key in contents) {
+                if (contents.hasOwnProperty(key)) {
+                    $('#content-panel').append('<p>'+ key +' : '+ contents[key] +'</p>');
+                }
+            }
+        },
+        clearSidePanel: function () {
+            $('#content-panel').html('');
         }
     })
 });
