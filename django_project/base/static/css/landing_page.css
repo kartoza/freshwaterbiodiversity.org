@@ -213,22 +213,38 @@ html, body, .map, .map-wrapper, #map-container {
 }
 
 .map-control-panel {
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 70px;
-    height: 300px;
+    background-color: transparent;
+    border: 4px solid white;
+    border-radius: 5px;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 35%;
     transform: translateY(-50%);
     padding: 10px;
-    font-size: 28pt;
+    font-size: 20pt;
     text-align: center;
+    color: white;
+    margin-left: 25px;
 }
 
 .zoom-control {
-    font-size: 13pt;
-    padding-left: 2px;
-    padding-right: 10px;
+    font-size: 12pt;
+    padding: 1px 3px;
+    position: absolute;
+    left: 0;
+    top: 51.5%;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-left: 25px;
+    border-radius: 3px;
+}
+
+.sub-zoom-control {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
+.sub-zoom-control:hover{
+    color: #436461 !important;
 }
 
 .sub-control-panel {
@@ -302,4 +318,8 @@ html, body, .map, .map-wrapper, #map-container {
 
 .about-links p {
     margin-bottom: 5px;
+}
+
+.dropdown-toggle {
+    color: transparent;
 }

@@ -9,22 +9,19 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "css/landing_page.css" %}" rel="stylesheet">
+    <link href="{% static "css/map.css" %}" rel="stylesheet">
 
     <script type="text/javascript">
         var bingMapKey = '{{ bing_map_key }}';
     </script>
 {% endblock %}
-{% block navigation %} {% endblock %}
+
 {% block body_content %}
     <div id="map-container"></div>
 
     <script type='text/html' id='map-template'>
         <div id="map" class="map"></div>
         <div class="map-control-panel">
-            <div class="zoom-control row">
-                <div class="col-lg-6 sub-zoom-control zoom-out"><i class="fa fa-plus" aria-hidden="true"></i></div>
-                <div class="col-lg-6 sub-zoom-control zoom-in"><i class="fa fa-minus" aria-hidden="true"></i></div>
-            </div>
             <div class="search-control sub-control-panel">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
@@ -37,6 +34,10 @@
             <div class="location-control sub-control-panel">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
             </div>
+        </div>
+        <div class="zoom-control row">
+            <div class="col-lg-6 sub-zoom-control zoom-out"><i class="fa fa-plus" aria-hidden="true"></i></div>
+            <div class="col-lg-6 sub-zoom-control zoom-in"><i class="fa fa-minus" aria-hidden="true"></i></div>
         </div>
     </script>
 
