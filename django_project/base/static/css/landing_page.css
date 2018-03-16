@@ -189,8 +189,9 @@ html, body, .map, .map-wrapper, #map-container {
     position: absolute;
     height: 100%;
     width: 27.5%;
-    background:rgba(0,0,0,0.40);
+    background:rgba(0,0,0,0.6);
     color: white;
+    z-index: 2000;
 }
 
 .right-panel-title {
@@ -218,29 +219,30 @@ html, body, .map, .map-wrapper, #map-container {
     border-radius: 5px;
     position: absolute;
     left: 0;
-    top: 35%;
+    top: 135px;
     transform: translateY(-50%);
-    padding: 10px;
-    font-size: 20pt;
+    padding: 6px;
+    font-size: 18pt;
     text-align: center;
     color: white;
-    margin-left: 25px;
+    margin-left: 30px;
 }
 
 .zoom-control {
-    font-size: 12pt;
-    padding: 1px 3px;
+    font-size: 11pt;
+    padding: 0;
+    padding-top: 3px;
     position: absolute;
     left: 0;
-    top: 51.5%;
+    top: 220px;
     background-color: rgba(255, 255, 255, 0.8);
-    margin-left: 25px;
+    margin-left: 30px;
     border-radius: 3px;
 }
 
 .sub-zoom-control {
-    padding-left: 6px !important;
-    padding-right: 6px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
 }
 
 .sub-zoom-control:hover{
@@ -266,12 +268,6 @@ html, body, .map, .map-wrapper, #map-container {
     .right-panel {
         width: 100%;
     }
-}
-
-#content-panel {
-    padding: 30px 30px 30px 50px;
-    font-size: 20pt;
-    font-weight: bold;
 }
 
 .btn-account {

@@ -25,14 +25,11 @@
             <div class="search-control sub-control-panel">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
-            <div class="filter-control sub-control-panel">
-                <i class="fa fa-filter" aria-hidden="true"></i>
-            </div>
             <div class="layer-control sub-control-panel">
                 <i class="fa fa-map" aria-hidden="true"></i>
             </div>
             <div class="location-control sub-control-panel">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <i class="fa fa-info" aria-hidden="true"></i>
             </div>
         </div>
         <div class="zoom-control row">
@@ -44,10 +41,33 @@
     <script type='text/html' id='side-panel-template'>
         <div class="right-panel">
             <div class="right-panel-title">
-                <i class="fa fa-map-marker"></i> Some title
+                <i class="fa fa-map-marker"></i> Site #number
                 <i class="fa fa-times close-panel"></i>
            </div>
-            <div id="content-panel">
+            <div class="row side-panel">
+                <div class="col-lg-6" id="content-panel"></div>
+                <div class="col-lg-3 text-center">
+                    <p><i class="fa fa-map-marker text-yellow side-marker"></i></p>
+                    <p id="number_site" class="text-center">44</p>
+                    <p>Sites</p>
+                </div>
+            </div>
+            <div class="row side-panel panel-icons">
+              <div class="col-lg-3 ml-auto text-center">
+                  <img src="static/img/shark-icon.svg" class="right-panel-icon">
+                  <p id="data-fish" class="text-bold">12</p>
+                  <p>Fish</p>
+              </div>
+              <div class="col-lg-3 text-center">
+                  <img src="static/img/crab-icon.png" class="right-panel-icon">
+                  <p id="data-invertebra" class="text-bold">46</p>
+                  <p>Aquatic Invertebras</p>
+              </div>
+              <div class="col-lg-3 mr-auto text-center">
+                  <img src="static/img/algae-icon.png" class="right-panel-icon">
+                  <p id="data-algae" class="text-bold">9</p>
+                  <p>Algae</p>
+              </div>
             </div>
         </div>
     </script>
