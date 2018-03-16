@@ -1,7 +1,7 @@
 # coding: utf-8
 from requests.exceptions import HTTPError
 from pygbif import species
-from fish.models import Taxon
+from fish.models import Taxon, FishCollectionRecord
 
 
 def update_taxa():
@@ -23,3 +23,35 @@ def update_taxa():
         except HTTPError as e:
             print('Taxon not updated')
             print(e)
+
+
+def update_fish_collection_record(fish_collection_id=None):
+    """
+    Check fish record if there is a matching taxon for the species
+    name in the taxon table. If there is not
+    we need to do a name search using pygbif to
+    fetch the authoriative name and GBIF taxon id,
+    """
+    if not fish_collection_id:
+        fish_collections = FishCollectionRecord.objects.all()
+        for record in fish_collections:
+            print('Update record : %s' % record.original_species_name)
+            response = species.name_lookup(
+                    q=record.original_species_name,
+                    limit=3,
+                    offset=2)
+            results = response['results']
+            if not results:
+                continue
+
+            for result in results:
+                if 'nubKey' in result:
+                    taxon, created = Taxon.objects.get_or_create(
+                            gbif_id=result['nubKey'])
+                    taxon.common_name = result['canonicalName']
+                    taxon.scientific_name = result['scientificName']
+                    taxon.author = result['authorship']
+                    taxon.save()
+                    record.taxon_gbif_id = taxon
+                    record.save()
+                    continue
