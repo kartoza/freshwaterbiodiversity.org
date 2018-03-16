@@ -1,3 +1,7 @@
+body {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .bg-primary {
     background-color: #526B43 !important;
 }
@@ -11,11 +15,23 @@
 }
 
 section {
-    padding: 8rem 0;
+    padding: 1rem 0;
+    border: 1px solid #aad223;
+    border-bottom: none !important;
+}
+
+#header {
+    background-image: url('../img/underwater.jpg');
+    background-repeat: no-repeat;
+}
+
+#about {
+    border: 2px solid #e0d441 !important;
 }
 
 .section-heading {
     margin-top: 0;
+    margin-bottom: 20px;
 }
 
 ::-moz-selection {
@@ -240,4 +256,50 @@ html, body, .map, .map-wrapper, #map-container {
     padding: 30px 30px 30px 50px;
     font-size: 20pt;
     font-weight: bold;
+}
+
+.btn-account {
+    background-color: white;
+    border-radius: 0;
+    margin: 10px;
+    font-weight: normal;
+    color: #436461;
+    border: 2px solid #436461;
+}
+
+.btn-account:hover {
+    background-color: #436461;
+    color: white;
+}
+
+.section-heading {
+    color: #a02246;
+    font-weight: normal;
+}
+
+.total-data {
+    font-weight: bold;
+}
+
+.green {
+    color: #436461;
+    font-size: 20pt;
+    margin-bottom: 0;
+}
+
+.fish-icon {
+    width: 150px;
+    border: 2px solid #e0d441;
+    border-radius: 75px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.about-links {
+    border-left: 2px solid #436461;
+    padding: 15px 20px;
+}
+
+.about-links p {
+    margin-bottom: 5px;
 }
