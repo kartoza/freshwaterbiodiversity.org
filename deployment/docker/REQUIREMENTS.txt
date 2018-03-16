@@ -10,7 +10,7 @@ markdown==2.6.11
 # https://github.com/getsentry/raven-python/issues/337
 raven==5.8.1
 django-sentry==1.13.5
-requests==1.2.3
+requests==2.18.4
 pytz
 # support special characters
 
@@ -24,3 +24,4 @@ django-grappelli==2.11.1
 djangorestframework==3.7.7
 django-filter==1.1.0
 coreapi==2.3.3
+pygbif==0.2.0
