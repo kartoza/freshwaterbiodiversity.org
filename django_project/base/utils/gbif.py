@@ -1,7 +1,7 @@
 # coding: utf-8
 from requests.exceptions import HTTPError
 from pygbif import species
-from fish.models import Taxon, FishCollectionRecord
+from fish.models import Taxon
 
 
 def update_taxa():
@@ -25,33 +25,45 @@ def update_taxa():
             print(e)
 
 
-def update_fish_collection_record(fish_collection_id=None):
+def find_species(original_species_name):
     """
-    Check fish record if there is a matching taxon for the species
-    name in the taxon table. If there is not
-    we need to do a name search using pygbif to
-    fetch the authoriative name and GBIF taxon id,
+    Find species from gbif with lookup query.
+    :param original_species_name: the name of species we want to find
+    :return: List of species
     """
-    if not fish_collection_id:
-        fish_collections = FishCollectionRecord.objects.all()
-        for record in fish_collections:
-            print('Update record : %s' % record.original_species_name)
-            response = species.name_lookup(
-                    q=record.original_species_name,
-                    limit=3,
-                    offset=2)
-            results = response['results']
-            if not results:
-                continue
+    print('Find species : %s' % original_species_name)
+    list_of_species = []
+    try:
+        response = species.name_lookup(
+            q=original_species_name,
+            limit=3,
+            offset=2
+        )
+        results = response['results']
+        for result in results:
+            if 'nubKey' in result:
+                list_of_species.append(result)
+    except HTTPError as e:
+        print('Species not found')
 
-            for result in results:
-                if 'nubKey' in result:
-                    taxon, created = Taxon.objects.get_or_create(
-                            gbif_id=result['nubKey'])
-                    taxon.common_name = result['canonicalName']
-                    taxon.scientific_name = result['scientificName']
-                    taxon.author = result['authorship']
-                    taxon.save()
-                    record.taxon_gbif_id = taxon
-                    record.save()
-                    continue
+    return list_of_species
+
+
+def update_fish_collection_record(fish_collection):
+    """
+    Update taxon for a fish collection.
+    :param fish_collection: Fish collection record model
+    """
+    results = find_species(fish_collection.original_species_name)
+
+    for result in results:
+        if 'nubKey' in result:
+            taxon, created = Taxon.objects.get_or_create(
+                    gbif_id=result['nubKey'])
+            taxon.common_name = result['canonicalName']
+            taxon.scientific_name = result['scientificName']
+            taxon.author = result['authorship']
+            taxon.save()
+            fish_collection.taxon_gbif_id = taxon
+            fish_collection.save()
+            continue
