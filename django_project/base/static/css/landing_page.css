@@ -175,105 +175,18 @@ header.masthead p {
     color: #526B43 !important;
 }
 
-/** MAP **/
-
-html, body, .map, .map-wrapper, #map-container {
+html, body {
     margin: 0;
     width: 100%;
     height: 100%;
 }
 
-.right-panel {
-    top: 0;
-    right: 0;
-    position: absolute;
-    height: 100%;
-    width: 27.5%;
-    background:rgba(0,0,0,0.6);
-    color: white;
-    z-index: 2000;
-}
-
-.right-panel-title {
-    font-size: 25pt;
-    padding-top: 12px;
-    padding-bottom: 5px;
-    padding-left: 50px;
-    height: 80px;
-    background:rgba(0,0,0,0.40);
-}
-
-.close-panel {
-    float: right;
-    padding-right: 30px;
-    padding-top: 10px;
-}
-
-.close-panel:hover {
-    cursor: pointer;
-}
-
-.map-control-panel {
-    background-color: white;
-    border: 4px solid white;
-    border-radius: 5px;
-    position: absolute;
-    left: 0;
-    top: 135px;
-    transform: translateY(-50%);
-    padding: 6px;
-    font-size: 18pt;
-    text-align: center;
-    color: #4e4e4e;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-left: 30px;
-}
-
-.zoom-control {
-    font-size: 11pt;
-    padding: 0;
-    padding-top: 3px;
-    position: absolute;
-    left: 0;
-    top: 220px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-left: 30px;
-    border-radius: 3px;
-}
-
-.sub-zoom-control {
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-}
-
-.sub-zoom-control:hover{
-    color: #323437 !important;
-}
-
-.sub-control-panel {
-   padding-top: 8px;
-}
-
-.search-control {
-    padding-top: 0 !important;
-}
-
-.sub-control-panel:hover, .sub-zoom-control:hover {
-    cursor: pointer;
-    color: #323437;
-}
-
-@media (max-width: 800px) and (min-width: 500px) {
-    .right-panel {
-        width: 40%;
-    }
-}
-
-@media (max-width: 500px) {
-    .right-panel {
-        width: 100%;
-    }
+.fish-icon {
+    width: 150px;
+    border: 2px solid #e0d441;
+    border-radius: 75px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .btn-account {
@@ -297,31 +210,4 @@ html, body, .map, .map-wrapper, #map-container {
 
 .total-data {
     font-weight: bold;
-}
-
-.green {
-    color: #436461;
-    font-size: 20pt;
-    margin-bottom: 0;
-}
-
-.fish-icon {
-    width: 150px;
-    border: 2px solid #e0d441;
-    border-radius: 75px;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.about-links {
-    border-left: 2px solid #436461;
-    padding: 15px 20px;
-}
-
-.about-links p {
-    margin-bottom: 5px;
-}
-
-.dropdown-toggle {
-    color: transparent;
 }
