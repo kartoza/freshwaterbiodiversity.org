@@ -1,7 +1,7 @@
 # coding=utf-8
 """Tests for models."""
 from django.test import TestCase
-from fish.test.model_factories import (
+from fish.tests.model_factories import (
     FishCollectionRecordF,
     TaxonF,
     IUCNStatusF,
