@@ -7,8 +7,8 @@ from fish.models import (
     IUCNStatus,
     Taxon,
 )
-from base.test.model_factories import LocationSiteF
-from core.test.model_factories import UserF
+from base.tests.model_factories import LocationSiteF
+from core.tests.model_factories import UserF
 
 
 class IUCNStatusF(factory.django.DjangoModelFactory):

@@ -3,7 +3,7 @@
 from django.test import TestCase
 from django.contrib.gis.geos import LineString
 from django.core.exceptions import ValidationError
-from base.test.model_factories import LocationTypeF, LocationSiteF
+from base.tests.model_factories import LocationTypeF, LocationSiteF
 
 
 class TestLocationTypeCRUD(TestCase):

@@ -2,8 +2,8 @@
 """Tests for models."""
 
 from django.test import TestCase
-from base.test.model_factories import ProfileF
-from core.test.model_factories import UserF
+from base.tests.model_factories import ProfileF
+from core.tests.model_factories import UserF
 
 
 class TestProfile(TestCase):
