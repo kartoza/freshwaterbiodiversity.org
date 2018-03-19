@@ -40,3 +40,8 @@
 .panel-icons p {
     font-size: 11pt;
 }
+
+.right-panel > .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
