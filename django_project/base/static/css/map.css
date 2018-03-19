@@ -1,0 +1,42 @@
+.container {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    max-width: 100% !important;
+}
+
+#content-panel {
+    margin: 20px 10px 10px 40px;
+    font-size: 8pt;
+    font-weight: normal;
+    border: 1px solid #e0d441;
+    padding: 15px;
+}
+
+#content-panel p, .side-panel p {
+    margin-bottom: 0 !important;
+}
+
+.text-yellow{
+    color: #e0d441;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.side-marker {
+    font-size: 60pt;
+    margin-top: 20px;
+}
+
+#number_site {
+    font-weight: bold;
+}
+
+.right-panel-icon {
+    width: 70px;
+}
+
+.panel-icons p {
+    font-size: 11pt;
+}
