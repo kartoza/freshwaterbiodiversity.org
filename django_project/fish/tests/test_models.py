@@ -2,14 +2,12 @@
 """Tests for models."""
 from django.test import TestCase
 from django.db.models import signals
-from fish.test.model_factories import (
+from fish.tests.model_factories import (
     FishCollectionRecordF,
     TaxonF,
     IUCNStatusF,
 )
 from fish.models.iucn_status import iucn_status_pre_save_handler
-from fish.models.fish_collection_record import \
-    fish_collection_post_save_handler
 
 
 class TestIUCNStatusCRUD(TestCase):

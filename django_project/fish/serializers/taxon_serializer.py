@@ -17,7 +17,7 @@ class TaxonSerializer(serializers.ModelSerializer):
 
     def get_iucn_status_name(self, obj):
         if obj.iucn_status:
-            return obj.iucn_status.name
+            return obj.iucn_status.category
         else:
             return None
 
