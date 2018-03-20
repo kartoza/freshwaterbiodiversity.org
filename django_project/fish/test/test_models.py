@@ -1,11 +1,15 @@
 # coding=utf-8
 """Tests for models."""
 from django.test import TestCase
+from django.db.models import signals
 from fish.test.model_factories import (
     FishCollectionRecordF,
     TaxonF,
     IUCNStatusF,
 )
+from fish.models.iucn_status import iucn_status_pre_save_handler
+from fish.models.fish_collection_record import \
+    fish_collection_post_save_handler
 
 
 class TestIUCNStatusCRUD(TestCase):
@@ -29,19 +33,19 @@ class TestIUCNStatusCRUD(TestCase):
         self.assertTrue(model.pk is not None)
 
         # check if name exists
-        self.assertTrue(model.name is not None)
+        self.assertTrue(model.category is not None)
 
     def test_IUCNStatus_read(self):
         """
         Tests iucn status model read
         """
         model = IUCNStatusF.create(
-            name=u'custom iucn status',
-            sensitive=True,
+            category=u'custom iucn status',
+            sensitive=False,
         )
 
-        self.assertTrue(model.name == 'custom iucn status')
-        self.assertTrue(model.sensitive)
+        self.assertTrue(model.category == 'custom iucn status')
+        self.assertFalse(model.sensitive)
 
     def test_IUCNStatus_update(self):
         """
@@ -49,8 +53,8 @@ class TestIUCNStatusCRUD(TestCase):
         """
         model = IUCNStatusF.create()
         new_data = {
-            'name': u'new name',
-            'sensitive': True,
+            'category': u'new name',
+            'sensitive': False,
         }
         model.__dict__.update(new_data)
         model.save()
@@ -68,6 +72,13 @@ class TestIUCNStatusCRUD(TestCase):
 
         # check if deleted
         self.assertTrue(model.pk is None)
+
+    def test_signal_registry(self):
+        """
+        Test signal is registered.
+        """
+        registered_signal = [r[1]() for r in signals.pre_save.receivers]
+        self.assertIn(iucn_status_pre_save_handler, registered_signal)
 
 
 class TestTaxonCRUD(TestCase):
@@ -101,7 +112,7 @@ class TestTaxonCRUD(TestCase):
         Tests taxon model read
         """
         iucn_status = IUCNStatusF.create(
-            name=u'custom iucn status',
+            category=u'custom iucn status',
             sensitive=True,
         )
         model = TaxonF.create(
@@ -111,7 +122,7 @@ class TestTaxonCRUD(TestCase):
             author=u'custom author'
         )
 
-        self.assertTrue(model.iucn_status.name == 'custom iucn status')
+        self.assertTrue(model.iucn_status.category == 'custom iucn status')
         self.assertTrue(model.scientific_name == 'custom scientific name')
         self.assertTrue(model.common_name == 'custom common name')
         self.assertTrue(model.author == 'custom author')
@@ -122,7 +133,7 @@ class TestTaxonCRUD(TestCase):
         """
         model = TaxonF.create()
         iucn_status = IUCNStatusF.create(
-            name=u'custom iucn status',
+            category=u'custom iucn status',
             sensitive=True,
         )
         new_data = {
@@ -163,6 +174,7 @@ class TestFishCollectionRecordCRUD(TestCase):
         """
         Tests fish collection record creation
         """
+
         model = FishCollectionRecordF.create()
 
         # check if pk exists
@@ -195,11 +207,10 @@ class TestFishCollectionRecordCRUD(TestCase):
         model = FishCollectionRecordF.create()
         new_data = {
             'habitat': u'freshwater',
-            'original_species_name': u'custom original_species_name',
+            'original_species_name': u'custom original_species_name update',
             'present': False,
         }
         model.__dict__.update(new_data)
-        model.save()
 
         # check if updated
         for key, val in new_data.items():

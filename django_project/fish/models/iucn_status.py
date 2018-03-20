@@ -41,7 +41,7 @@ class IUCNStatus(models.Model):
 
 
 @receiver(models.signals.pre_save, sender=IUCNStatus)
-def iucn_status_post_save_handler(sender, instance, **kwargs):
+def iucn_status_pre_save_handler(sender, instance, **kwargs):
     if instance.category:
         # if the category is Critically Endangered or Endangered or
         # Vulnerable then the iucn status is sensitive
