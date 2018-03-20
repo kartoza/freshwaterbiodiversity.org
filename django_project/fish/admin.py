@@ -10,7 +10,7 @@ from fish.models import (
 
 
 class IUCNStatusAdmin(admin.ModelAdmin):
-    list_display = ('name', 'sensitive')
+    list_display = ('get_category_display', 'sensitive')
 
 
 class TaxonAdmin(admin.ModelAdmin):

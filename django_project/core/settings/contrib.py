@@ -3,6 +3,10 @@
 core.settings.contrib
 """
 from .base import *  # noqa
+try:
+    from .secret import IUCN_API_KEY  # noqa
+except ImportError:
+    IUCN_API_KEY = ''
 
 STOP_WORDS = (
     'a', 'an', 'and', 'if', 'is', 'the', 'in', 'i', 'you', 'other',
@@ -66,3 +70,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 LOGIN_REDIRECT_URL = "/"
 
 ROLEPERMISSIONS_MODULE = 'roles.settings.roles'
+
+IUCN_API_URL = 'http://apiv3.iucnredlist.org/api/v3'

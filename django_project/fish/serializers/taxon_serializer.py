@@ -10,10 +10,16 @@ class TaxonSerializer(serializers.ModelSerializer):
     iucn_status_name = serializers.SerializerMethodField()
 
     def get_iucn_status_sensitive(self, obj):
-        return obj.iucn_status.sensitive
+        if obj.iucn_status:
+            return obj.iucn_status.sensitive
+        else:
+            return None
 
     def get_iucn_status_name(self, obj):
-        return obj.iucn_status.name
+        if obj.iucn_status:
+            return obj.iucn_status.name
+        else:
+            return None
 
     class Meta:
         model = Taxon

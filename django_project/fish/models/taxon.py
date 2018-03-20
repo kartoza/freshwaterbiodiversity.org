@@ -4,7 +4,9 @@
 """
 
 from django.db import models
+from django.dispatch import receiver
 from fish.models.iucn_status import IUCNStatus
+from base.utils.iucn import get_iucn_status
 
 
 class Taxon(models.Model):
@@ -19,6 +21,7 @@ class Taxon(models.Model):
         IUCNStatus,
         models.SET_NULL,
         null=True,
+        blank=True,
     )
     common_name = models.CharField(
         max_length=100,
@@ -45,3 +48,14 @@ class Taxon(models.Model):
 
     def __str__(self):
         return "%s (%s)" % (self.common_name, self.iucn_status)
+
+
+@receiver(models.signals.pre_save, sender=Taxon)
+def taxon_pre_save_handler(sender, instance, **kwargs):
+    """Get iucn status before save."""
+    if instance.common_name and not instance.iucn_status:
+        iucn_status = get_iucn_status(
+            species_name=instance.common_name
+        )
+        if iucn_status:
+            instance.iucn_status = iucn_status
