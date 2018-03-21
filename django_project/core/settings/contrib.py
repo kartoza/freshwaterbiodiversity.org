@@ -3,6 +3,7 @@
 core.settings.contrib
 """
 from .base import *  # noqa
+from .celery_settings import *  # noqa
 import os
 try:
     from .secret import IUCN_API_KEY  # noqa

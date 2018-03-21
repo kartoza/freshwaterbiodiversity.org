@@ -62,7 +62,8 @@ def update_fish_collection_record(fish_collection):
                     gbif_id=result['nubKey'])
             taxon.common_name = result['canonicalName']
             taxon.scientific_name = result['scientificName']
-            taxon.author = result['authorship']
+            if 'authorship' in result:
+                taxon.author = result['authorship']
             taxon.save()
             fish_collection.taxon_gbif_id = taxon
             fish_collection.save()
