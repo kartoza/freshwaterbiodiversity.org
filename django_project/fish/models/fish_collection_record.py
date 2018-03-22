@@ -11,7 +11,6 @@ from django.dispatch import receiver
 from base.models.location_site import LocationSite
 from base.utils.gbif import update_fish_collection_record
 from fish.models.taxon import Taxon
-from base.utils.iucn import get_iucn_status
 
 
 class FishCollectionRecord(models.Model):
