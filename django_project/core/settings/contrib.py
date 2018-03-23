@@ -3,6 +3,8 @@
 core.settings.contrib
 """
 from .base import *  # noqa
+from .celery_settings import *  # noqa
+import os
 try:
     from .secret import IUCN_API_KEY  # noqa
 except ImportError:
@@ -39,6 +41,7 @@ INSTALLED_APPS += (
     'easyaudit',
     'rolepermissions',
     'rest_framework',
+    'celery',
 )
 
 MIDDLEWARE += (
@@ -72,3 +75,9 @@ LOGIN_REDIRECT_URL = "/"
 ROLEPERMISSIONS_MODULE = 'roles.settings.roles'
 
 IUCN_API_URL = 'http://apiv3.iucnredlist.org/api/v3'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+BROKER_URL = 'amqp://guest:guest@%s:5672//' % os.environ['RABBITMQ_HOST']
