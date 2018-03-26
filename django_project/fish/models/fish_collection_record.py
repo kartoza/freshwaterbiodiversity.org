@@ -25,6 +25,7 @@ class FishCollectionRecord(models.Model):
     site = models.ForeignKey(
         LocationSite,
         models.CASCADE,
+        related_name='fish_collection_records',
     )
     original_species_name = models.CharField(
         max_length=100,
