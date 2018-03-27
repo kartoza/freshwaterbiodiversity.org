@@ -66,11 +66,12 @@ h6 {
 
 #mainNav {
   border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-  background-color: #aad993;
+  background-color: transparent;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s;
+  padding-top: 15px;
 }
 
 #mainNav .navbar-brand {
@@ -111,7 +112,6 @@ h6 {
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
-    background-color: #aad993;
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
@@ -148,4 +148,45 @@ h6 {
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
     color: #F05F40;
   }
+}
+
+.user-icon {
+  border: 3px solid white;
+  font-size: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #404040;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: lighter;
+}
+
+.dropdown-menu {
+  min-width: 10px !important;
+  font-weight: bold;
+  background-color: white;
+  color: #404040;
+  border: none;
+}
+
+#navbarResponsive .dropdown-menu {
+  right: 10px !important;
+  left: auto !important;
+}
+
+.dropdown-menu li {
+  padding: 0 10px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f4f4f4 !important;
+}
+
+.dropdown-menu a {
+  color: #404040 !important;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  color: #323437 !important;
 }
