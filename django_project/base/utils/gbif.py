@@ -15,9 +15,12 @@ def update_taxa():
         try:
             response = species.name_usage(key=taxon.gbif_id)
             if response:
-                taxon.common_name = response['canonicalName']
-                taxon.scientific_name = response['scientificName']
-                taxon.author = response['authorship']
+                if 'canonicalName' in response:
+                    taxon.common_name = response['canonicalName']
+                if 'scientificName' in response:
+                    taxon.scientific_name = response['scientificName']
+                if 'authorship' in response:
+                    taxon.author = response['authorship']
                 taxon.save()
                 print('Taxon updated')
         except HTTPError as e:
@@ -39,10 +42,11 @@ def find_species(original_species_name):
             limit=3,
             offset=2
         )
-        results = response['results']
-        for result in results:
-            if 'nubKey' in result:
-                list_of_species.append(result)
+        if 'results' in response:
+            results = response['results']
+            for result in results:
+                if 'nubKey' in result:
+                    list_of_species.append(result)
     except HTTPError as e:
         print('Species not found')
 
@@ -60,9 +64,12 @@ def update_fish_collection_record(fish_collection):
         if 'nubKey' in result:
             taxon, created = Taxon.objects.get_or_create(
                     gbif_id=result['nubKey'])
-            taxon.common_name = result['canonicalName']
-            taxon.scientific_name = result['scientificName']
-            taxon.author = result['authorship']
+            if 'canonicalName' in result:
+                taxon.common_name = result['canonicalName']
+            if 'scientificName' in result:
+                taxon.scientific_name = result['scientificName']
+            if 'authorship' in result:
+                taxon.author = result['authorship']
             taxon.save()
             fish_collection.taxon_gbif_id = taxon
             fish_collection.save()

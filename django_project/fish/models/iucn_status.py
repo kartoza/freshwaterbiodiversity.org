@@ -6,6 +6,8 @@
 from django.db import models
 from django.dispatch import receiver
 
+SENSITIVE_STATUS = ['CR', 'EN', 'VU']
+
 
 class IUCNStatus(models.Model):
     """IUCN status model."""
@@ -45,9 +47,7 @@ def iucn_status_pre_save_handler(sender, instance, **kwargs):
     if instance.category:
         # if the category is Critically Endangered or Endangered or
         # Vulnerable then the iucn status is sensitive
-        if instance.category == 'CR' or \
-                instance.category == 'EN' or \
-                instance.category == 'VU':
+        if instance.category in SENSITIVE_STATUS:
             instance.sensitive = True
         else:
             instance.sensitive = False
