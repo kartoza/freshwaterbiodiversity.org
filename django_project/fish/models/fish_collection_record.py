@@ -6,8 +6,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from django.dispatch import receiver
 
 from base.models.location_site import LocationSite
+from base.utils.gbif import update_fish_collection_record
 from fish.models.taxon import Taxon
 
 
@@ -25,6 +27,7 @@ class FishCollectionRecord(models.Model):
     site = models.ForeignKey(
         LocationSite,
         models.CASCADE,
+        related_name='fish_collection_records',
     )
     original_species_name = models.CharField(
         max_length=100,
@@ -66,6 +69,7 @@ class FishCollectionRecord(models.Model):
         Taxon,
         models.SET_NULL,
         null=True,
+        blank=True,
         verbose_name='Taxon GBIF ',
     )
 
@@ -73,3 +77,19 @@ class FishCollectionRecord(models.Model):
     class Meta:
         """Meta class for project."""
         app_label = 'fish'
+
+
+@receiver(models.signals.post_save, sender=FishCollectionRecord)
+def fish_collection_post_save_handler(sender, instance, **kwargs):
+    """
+    Fetch taxon from original species name.
+    """
+    models.signals.post_save.disconnect(
+            fish_collection_post_save_handler,
+            sender=sender
+    )
+    update_fish_collection_record(instance)
+    models.signals.post_save.connect(
+            fish_collection_post_save_handler,
+            sender=sender
+    )

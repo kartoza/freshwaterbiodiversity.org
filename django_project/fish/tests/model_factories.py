@@ -1,14 +1,15 @@
 # noinspection PyUnresolvedReferences,PyPackageRequirements
 import factory
 from django.utils import timezone
+from django.db.models import signals
 
 from fish.models import (
     FishCollectionRecord,
     IUCNStatus,
     Taxon,
 )
-from base.test.model_factories import LocationSiteF
-from core.test.model_factories import UserF
+from base.tests.model_factories import LocationSiteF
+from core.tests.model_factories import UserF
 
 
 class IUCNStatusF(factory.django.DjangoModelFactory):
@@ -18,10 +19,11 @@ class IUCNStatusF(factory.django.DjangoModelFactory):
     class Meta:
         model = IUCNStatus
 
-    name = factory.Sequence(lambda n: u'Test name %s' % n)
+    category = factory.Sequence(lambda n: u'Test name %s' % n)
     sensitive = False
 
 
+@factory.django.mute_signals(signals.pre_save)
 class TaxonF(factory.django.DjangoModelFactory):
     """
     Taxon factory
@@ -36,6 +38,7 @@ class TaxonF(factory.django.DjangoModelFactory):
     author = factory.Sequence(lambda n: u'Test author %s' % n)
 
 
+@factory.django.mute_signals(signals.post_save)
 class FishCollectionRecordF(factory.django.DjangoModelFactory):
     """
     Fish collection record factory
