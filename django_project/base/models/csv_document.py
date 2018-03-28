@@ -16,7 +16,7 @@ class CSVDocument(models.Model):
     # noinspection PyClassicStyleClass
     class Meta:
         """Meta class for project."""
-        app_label = 'fish'
+        app_label = 'base'
         verbose_name_plural = 'CSV Documents'
         verbose_name = 'CSV Document'
 

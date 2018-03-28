@@ -5,7 +5,7 @@
 
 from django.db import models
 from django.dispatch import receiver
-from fish.models.iucn_status import IUCNStatus
+from base.models.iucn_status import IUCNStatus
 from base.utils.iucn import get_iucn_status
 
 
@@ -42,7 +42,7 @@ class Taxon(models.Model):
     # noinspection PyClassicStyleClass
     class Meta:
         """Meta class for project."""
-        app_label = 'fish'
+        app_label = 'base'
         verbose_name_plural = 'Taxa'
         verbose_name = 'Taxon'
 

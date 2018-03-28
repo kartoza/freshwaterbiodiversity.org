@@ -2,8 +2,8 @@
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from fish.models.taxon import Taxon
-from fish.serializers.taxon_serializer import \
+from base.models.taxon import Taxon
+from base.serializers.taxon_serializer import \
     TaxonSerializer
 
 

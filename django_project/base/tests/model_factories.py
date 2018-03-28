@@ -3,7 +3,14 @@ import factory
 import random
 from django.contrib.auth.models import User
 from django.contrib.gis.geos import Point
-from base.models import LocationType, LocationSite, Profile
+from django.db.models import signals
+from base.models import (
+    LocationType,
+    LocationSite,
+    Profile,
+    IUCNStatus,
+    Taxon,
+)
 
 
 class LocationTypeF(factory.django.DjangoModelFactory):
@@ -45,3 +52,29 @@ class ProfileF(factory.django.DjangoModelFactory):
     user = factory.SubFactory(User)
     qualifications = factory.Sequence(lambda n: "qualifications%s" % n)
     other = factory.Sequence(lambda n: "other%s" % n)
+
+
+class IUCNStatusF(factory.django.DjangoModelFactory):
+    """
+    Iucn status factory
+    """
+    class Meta:
+        model = IUCNStatus
+
+    category = factory.Sequence(lambda n: u'Test name %s' % n)
+    sensitive = False
+
+
+@factory.django.mute_signals(signals.pre_save)
+class TaxonF(factory.django.DjangoModelFactory):
+    """
+    Taxon factory
+    """
+    class Meta:
+        model = Taxon
+
+    iucn_status = factory.SubFactory(IUCNStatusF)
+    common_name = factory.Sequence(lambda n: u'Test common name %s' % n)
+    scientific_name = factory.Sequence(
+            lambda n: u'Test scientific name %s' % n)
+    author = factory.Sequence(lambda n: u'Test author %s' % n)
