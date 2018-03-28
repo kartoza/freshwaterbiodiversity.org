@@ -9,6 +9,7 @@ from base.tests.model_factories import (
     LocationSiteF,
     TaxonF,
     IUCNStatusF,
+    SurveyF,
 )
 from base.models.iucn_status import iucn_status_pre_save_handler
 
@@ -301,6 +302,76 @@ class TestTaxonCRUD(TestCase):
         Tests taxon model delete
         """
         model = TaxonF.create()
+        model.delete()
+
+        # check if deleted
+        self.assertTrue(model.pk is None)
+
+
+class TestSurveyCRUD(TestCase):
+    """
+    Tests survey.
+    """
+
+    def setUp(self):
+        """
+        Sets up before each test
+        """
+        self.location_site_1 = LocationSiteF.create(
+            pk=1
+        )
+        self.location_site_2 = LocationSiteF.create(
+            pk=2
+        )
+        pass
+
+    def test_Survey_create(self):
+        """
+        Tests taxon creation
+        """
+        model = SurveyF.create(
+                sites=(self.location_site_1, self.location_site_2)
+        )
+
+        # check if pk exists
+        self.assertTrue(model.pk is not None)
+
+        # check if date exists
+        self.assertTrue(model.date is not None)
+
+        # check if sites name exists
+        self.assertTrue(model.sites is not None)
+
+    def test_Survey_read(self):
+        """
+        Survey taxon model read
+        """
+        survey = SurveyF.create(
+            sites=(self.location_site_1, self.location_site_2)
+        )
+
+        self.assertTrue(survey.sites.get(pk=1) == self.location_site_1)
+
+    def test_Survey_update(self):
+        """
+        Tests survey model update
+        """
+        model = SurveyF.create()
+        new_data = {
+            'sites': (self.location_site_1, self.location_site_2),
+        }
+        model.__dict__.update(new_data)
+        model.save()
+
+        # check if updated
+        for key, val in new_data.items():
+            self.assertEqual(model.__dict__.get(key), val)
+
+    def test_Survey_delete(self):
+        """
+        Tests survey model delete
+        """
+        model = SurveyF.create()
         model.delete()
 
         # check if deleted

@@ -3,6 +3,7 @@ import factory
 import random
 from django.contrib.auth.models import User
 from django.contrib.gis.geos import Point
+from django.utils import timezone
 from django.db.models import signals
 from base.models import (
     LocationType,
@@ -10,6 +11,7 @@ from base.models import (
     Profile,
     IUCNStatus,
     Taxon,
+    Survey,
 )
 
 
@@ -78,3 +80,24 @@ class TaxonF(factory.django.DjangoModelFactory):
     scientific_name = factory.Sequence(
             lambda n: u'Test scientific name %s' % n)
     author = factory.Sequence(lambda n: u'Test author %s' % n)
+
+
+class SurveyF(factory.django.DjangoModelFactory):
+    """
+    Survey factory
+    """
+    class Meta:
+        model = Survey
+
+    date = timezone.now()
+
+    @factory.post_generation
+    def sites(self, create, extracted, **kwargs):
+        if not create:
+            # Simple build, do nothing.
+            return
+
+        if extracted:
+            # A list of groups were passed in, use them
+            for site in extracted:
+                self.sites.add(site)
