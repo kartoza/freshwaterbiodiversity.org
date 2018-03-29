@@ -11,7 +11,6 @@ from base.tests.model_factories import (
     TaxonF,
     IUCNStatusF,
     SurveyF,
-    LocationContextF,
 )
 from base.models.iucn_status import iucn_status_pre_save_handler
 
