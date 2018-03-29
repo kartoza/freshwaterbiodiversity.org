@@ -12,7 +12,21 @@ from base.models import (
     IUCNStatus,
     Taxon,
     Survey,
+    LocationContext,
 )
+
+
+class LocationContextF(factory.django.DjangoModelFactory):
+    """
+    Location context factory
+    """
+    class Meta:
+        model = LocationContext
+
+    context_document = '{"type": "FeatureCollection", "features":' \
+                       ' [{"type": "Feature","properties": {},' \
+                       '"geometry": {"type": "Point",' \
+                       '"coordinates": [20.654296875,-33.275435412981615]}}]}'
 
 
 class LocationTypeF(factory.django.DjangoModelFactory):
@@ -41,6 +55,7 @@ class LocationSiteF(factory.django.DjangoModelFactory):
         random.uniform(-180.0, 180.0),
         random.uniform(-90.0, 90.0)
     )
+    location_context = factory.SubFactory(LocationContextF)
 
 
 class ProfileF(factory.django.DjangoModelFactory):

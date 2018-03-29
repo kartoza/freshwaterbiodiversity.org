@@ -1,5 +1,6 @@
 # coding=utf-8
 """Tests for models."""
+import json
 from django.test import TestCase
 from django.contrib.gis.geos import LineString
 from django.core.exceptions import ValidationError
@@ -10,6 +11,7 @@ from base.tests.model_factories import (
     TaxonF,
     IUCNStatusF,
     SurveyF,
+    LocationContextF,
 )
 from base.models.iucn_status import iucn_status_pre_save_handler
 
@@ -113,6 +115,14 @@ class TestLocationSiteCRUD(TestCase):
         model = LocationSiteF.create(
             location_type=location_type
         )
+
+        try:
+            location_context = json.loads(
+                    model.location_context.context_document
+            )
+            self.assertTrue(len(location_context['features']) > 0)
+        except ValueError:
+            pass
 
         self.assertTrue(model.location_type.name == 'custom type')
 

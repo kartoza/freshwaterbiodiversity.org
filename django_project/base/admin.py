@@ -8,6 +8,7 @@ from base.models import (
     IUCNStatus,
     Taxon,
     Survey,
+    LocationContext,
 )
 
 
@@ -31,3 +32,4 @@ admin.site.register(CSVDocument)
 admin.site.register(IUCNStatus, IUCNStatusAdmin)
 admin.site.register(Taxon, TaxonAdmin)
 admin.site.register(Survey)
+admin.site.register(LocationContext)
