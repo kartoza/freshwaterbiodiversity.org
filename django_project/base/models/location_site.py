@@ -6,6 +6,7 @@
 from django.core.exceptions import ValidationError
 from django.contrib.gis.db import models
 from base.models.location_type import LocationType
+from base.models.location_context import LocationContext
 
 
 class LocationSite(models.Model):
@@ -33,6 +34,12 @@ class LocationSite(models.Model):
         blank=True,
     )
     geometry_multipolygon = models.MultiPolygonField(
+        null=True,
+        blank=True,
+    )
+    location_context = models.ForeignKey(
+        LocationContext,
+        models.SET_NULL,
         null=True,
         blank=True,
     )

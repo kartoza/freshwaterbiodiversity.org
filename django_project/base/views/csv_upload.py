@@ -4,7 +4,7 @@
 
 from django.urls import reverse_lazy
 from django.views.generic import FormView
-from fish.forms.csv_upload import CsvUploadForm
+from base.forms.csv_upload import CsvUploadForm
 
 
 class CsvUploadView(FormView):

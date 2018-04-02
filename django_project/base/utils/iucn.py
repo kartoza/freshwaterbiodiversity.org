@@ -1,7 +1,7 @@
 import requests
 from requests.exceptions import HTTPError
 from django.conf import settings
-from fish.models.iucn_status import IUCNStatus
+from base.models.iucn_status import IUCNStatus
 
 
 def get_iucn_status(taxon_id=None, species_name=None):

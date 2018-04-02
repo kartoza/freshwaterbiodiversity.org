@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from fish.models import Taxon
+from base.models import Taxon
 
 
 class TaxonSerializer(serializers.ModelSerializer):

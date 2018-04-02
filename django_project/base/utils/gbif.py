@@ -1,7 +1,7 @@
 # coding: utf-8
 from requests.exceptions import HTTPError
 from pygbif import species
-from fish.models import Taxon
+from base.models import Taxon
 
 
 def update_taxa():
