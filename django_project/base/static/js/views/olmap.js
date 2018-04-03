@@ -1,10 +1,10 @@
 
-define(['shared', 'collections/fish'], function(Shared, FishCollection) {
+define(['shared', 'models/location_site', 'views/location_site'], function(Shared, LocationSiteModel, LocationSiteView) {
     return Backbone.View.extend({
         template: _.template($('#map-template').html()),
         className: 'map-wrapper',
         map: null,
-        fishVectorSource: null,
+        locationSiteVectorSource: null,
         events: {
             'click .zoom-in': 'zoomInMap',
             'click .zoom-out': 'zoomOutMap',
@@ -13,6 +13,9 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
         initialize: function () {
             // Ensure methods keep the `this` references to the view itself
             _.bindAll(this, 'render');
+            this.collection.fetch({
+                success: this.render
+            })
         },
         zoomInMap: function (e) {
             var view = this.map.getView();
@@ -43,6 +46,9 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
             var self = this;
             var properties = feature.getProperties();
             delete properties['geometry'];
+            if(properties.hasOwnProperty('location_type')) {
+                properties = properties['location_type'];
+            }
             Shared.Dispatcher.trigger('sidePanel:openSidePanel', properties);
         },
         layerControlClicked: function (e) {
@@ -51,23 +57,11 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
             var self = this;
 
             for(var i=0; i < this.collection.length; i++) {
-                var fish = this.collection.models[i].toJSON();
-                var geometry = JSON.parse(fish['geometry']);
-                delete fish['geometry'];
-                var geojson = {
-                    'type': 'FeatureCollection',
-                    'features': [
-                        {
-                            'type': 'Feature',
-                            'geometry': geometry,
-                            'properties': fish
-                        }
-                    ]
-                };
-                var features = new ol.format.GeoJSON().readFeatures(geojson, {
-                    featureProjection: 'EPSG:3857'
+                var locationSiteModel = this.collection.models[i];
+                var locationSiteView = new LocationSiteView({
+                    model: locationSiteModel,
+                    parent: this
                 });
-                self.fishVectorSource.addFeatures(features);
             }
         },
         render: function() {
@@ -77,10 +71,7 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
             $('#map-container').append(this.$el);
             this.map = this.loadMap();
 
-            this.collection = new FishCollection();
-            this.collection.fetch().done(function () {
-                self.renderCollection();
-            });
+            self.renderCollection();
 
             this.map.on('click', function (e) {
                self.mapClicked(e);
@@ -101,10 +92,10 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
                 baseSourceLayer = new ol.source.OSM();
             }
 
-            self.fishVectorSource = new ol.source.Vector({});
+            self.locationSiteVectorSource = new ol.source.Vector({});
 
-            var fishVectorLayer = new ol.layer.Vector({
-                source: self.fishVectorSource
+            var locationSiteVectorLayer = new ol.layer.Vector({
+                source: self.locationSiteVectorSource
             });
 
             return new ol.Map({
@@ -113,7 +104,7 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
                     new ol.layer.Tile({
                         source: baseSourceLayer
                     }),
-                    fishVectorLayer
+                    locationSiteVectorLayer
                 ],
                 view: new ol.View({
                     center: ol.proj.fromLonLat([22.937506, -30.559482]),
@@ -123,6 +114,9 @@ define(['shared', 'collections/fish'], function(Shared, FishCollection) {
                     zoom: false
                 })
             });
+        },
+        addLocationSiteFeatures: function (features) {
+            this.locationSiteVectorSource.addFeatures(features);
         }
     })
 });

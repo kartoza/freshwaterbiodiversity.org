@@ -1,8 +1,10 @@
 
-define( ['views/olmap', 'views/side_panel', 'shared'], function(olmap, side_panel, Shared) {
+define( ['views/olmap', 'views/side_panel', 'collections/location_site', 'shared'], function(olmap, side_panel, LocationSiteCollection, Shared) {
     // Display the map
-    var map = new olmap();
-    map.render();
+    var locationSiteCollection = new LocationSiteCollection();
+    var map = new olmap({
+        collection: locationSiteCollection
+    });
 
     var panel = new side_panel();
     panel.render();
