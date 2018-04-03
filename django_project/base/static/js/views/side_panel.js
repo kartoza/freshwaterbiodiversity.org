@@ -1,4 +1,4 @@
-define(['shared'], function(Shared) {
+define(['shared', 'backbone', 'underscore', 'jqueryUi'], function(Shared, Backbone, _) {
     return Backbone.View.extend({
         template: _.template($('#side-panel-template').html()),
         className: 'panel-wrapper',
