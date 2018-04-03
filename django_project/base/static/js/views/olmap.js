@@ -43,12 +43,7 @@ define(['shared', 'models/location_site', 'views/location_site'], function(Share
             }
         },
         featureClicked: function (feature) {
-            var self = this;
             var properties = feature.getProperties();
-            delete properties['geometry'];
-            if(properties.hasOwnProperty('location_type')) {
-                properties = properties['location_type'];
-            }
             Shared.Dispatcher.trigger('sidePanel:openSidePanel', properties);
         },
         layerControlClicked: function (e) {

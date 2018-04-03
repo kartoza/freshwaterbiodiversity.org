@@ -18,4 +18,4 @@ class LocationSiteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LocationSite
-        fields = ['id', 'geometry', 'location_type']
+        fields = ['id', 'name', 'geometry', 'location_type']

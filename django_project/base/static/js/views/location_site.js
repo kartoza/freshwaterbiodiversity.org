@@ -11,6 +11,7 @@ define(['models/location_site'], function (LocationSite) {
             var modelJson = this.model.toJSON();
             var geometry = JSON.parse(modelJson['geometry']);
             delete modelJson['geometry'];
+            console.log(modelJson);
             var geojson = {
                 'type': 'FeatureCollection',
                 'features': [

@@ -14,6 +14,7 @@ class LocationSiteDetailSerializer(LocationSiteSerializer):
         model = LocationSite
         fields = [
             'id',
+            'name',
             'geometry',
             'location_type',
             'fish_collection_records']
