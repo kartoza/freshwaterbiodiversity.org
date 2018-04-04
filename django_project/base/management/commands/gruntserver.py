@@ -2,7 +2,6 @@ import subprocess
 import atexit
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
-from core.settings.utils import absolute_path
 
 
 class Command(BaseCommand):
@@ -19,8 +18,8 @@ class Command(BaseCommand):
 
         self.grunt_process = subprocess.call([
             'grunt',
-            '--gruntfile={0}/Gruntfile.js'.format(absolute_path()),
-            '--base=.'],
+            '--gruntfile=/Gruntfile.js',
+            '--base=/'],
                 shell=True)
 
         self.stdout.write('>>> Collectstatic')

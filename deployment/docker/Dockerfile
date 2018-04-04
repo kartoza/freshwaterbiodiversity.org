@@ -33,17 +33,17 @@ RUN npm -g install yuglify
 
 RUN rpl "env node" "env nodejs" /usr/lib/node_modules/yuglify/bin/yuglify
 
+# Install grunt
+RUN npm install -g grunt-cli
+ADD package.json /package.json
+ADD Gruntfile.js /Gruntfile.js
+RUN cd / && npm install grunt grunt-contrib-concat grunt-contrib-uglify
+RUN cd / && npm install grunt-contrib-requirejs
+
 #USER www-data
 WORKDIR /home/web/django_project
 
-# Install grunt
-RUN npm install -g grunt-cli
-COPY package.json /home/web/django_project/package.json
-RUN cd /home/web/django_project && npm install --save-dev grunt grunt-contrib-concat grunt-contrib-uglify
-RUN cd /home/web/django_project && npm install --save-dev grunt-contrib-requirejs
-
 ADD uwsgi.conf /uwsgi.conf
-ADD package.json /package.json
 
 # Open port 8080 as we will be running our uwsgi socket on that
 EXPOSE 8080
