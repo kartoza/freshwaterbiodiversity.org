@@ -3,38 +3,32 @@
 {% load account socialaccount %}
 
 {% block css_head %}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="{% static "libs/jquery-ui-1.12.1/jquery-ui.min.css" %}" rel="stylesheet">
+    <link href="{% static "libs/bootstrap-4.0.0/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "libs/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
 
     <!-- Chosen library -->
-    <link rel="stylesheet" href="{% static 'chosen/chosen.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
 {% endblock %}
 
 {% block js_head %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js"></script>
 
-    <script src="{% static 'chosen/chosen.jquery.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static "libs/jquery/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "libs/bootstrap-4.0.0/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "libs/jquery-ui-1.12.1/jquery-ui.min.js" %}"></script>
 
 {% endblock %}
 
 {% block container %}
-    <div class="content">
+    <div class="content" style="height: 100%;">
         {% block content %}
 
             {% csrf_token %}
-            <div class="container">
+            <div class="container" style="height: 100%;">
 
-                <div class="custom-form-container">
+                <div class="custom-form-container" style="margin-top: 40px;">
                     <h1>{% trans "Sign Up" %}</h1>
                     <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">{% csrf_token %}
                         {% if form.non_field_errors %}
