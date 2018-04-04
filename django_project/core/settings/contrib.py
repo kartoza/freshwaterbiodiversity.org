@@ -15,6 +15,11 @@ STOP_WORDS = (
     'this', 'that', 'to',
 )
 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_FINDERS += (
+    'pipeline.finders.PipelineFinder',
+)
+
 # Django-allauth related settings
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -42,6 +47,7 @@ INSTALLED_APPS += (
     'rolepermissions',
     'rest_framework',
     'celery',
+    'pipeline',
 )
 
 MIDDLEWARE += (

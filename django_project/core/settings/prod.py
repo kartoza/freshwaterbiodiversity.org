@@ -13,19 +13,11 @@ ALLOWED_HOSTS = [
     'localhost:9000',
 ]
 
-INSTALLED_APPS += (
-    'pipeline',
-)
-
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
-STATICFILES_FINDERS += (
-    'pipeline.finders.PipelineFinder',
-)
-
-PIPELINE = {
-    'PIPELINE_ENABLED': True,
-}
+PIPELINE['YUI_BINARY'] = '/usr/bin/yui-compressor'
+PIPELINE['JS_COMPRESSOR'] = 'pipeline.compressors.yui.YUICompressor'
+PIPELINE['CSS_COMPRESSOR'] = 'pipeline.compressors.yui.YUICompressor'
+PIPELINE_YUI_JS_ARGUMENTS = '--nomunge'
+PIPELINE_DISABLE_WRAPPER = True
 
 # Comment if you are not running behind proxy
 USE_X_FORWARDED_HOST = True

@@ -12,18 +12,29 @@ RUN apt-get update -y
 RUN apt-get install -y python3-pip \
     python-gdal \
     python-geoip \
-    python3-setuptools
+    python3-setuptools \
+    rpl
+
+RUN apt-get -y --force-yes install yui-compressor
 
 ADD REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
 RUN pip install uwsgi
 
-ADD uwsgi.conf /uwsgi.conf
-
 # Install Node js
 RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get -y --force-yes install nodejs
+RUN npm -g install yuglify
+
+# Debian is messed up and aliases node as nodejs
+# So when yuglify is installed it references the wrong node binary...
+# lets fix that here...
+
+RUN rpl "env node" "env nodejs" /usr/lib/node_modules/yuglify/bin/yuglify
+
+#USER www-data
+WORKDIR /home/web/django_project
 
 # Install grunt
 RUN npm install -g grunt-cli
@@ -31,10 +42,10 @@ COPY package.json /home/web/django_project/package.json
 RUN cd /home/web/django_project && npm install --save-dev grunt grunt-contrib-concat grunt-contrib-uglify
 RUN cd /home/web/django_project && npm install --save-dev grunt-contrib-requirejs
 
+ADD uwsgi.conf /uwsgi.conf
+ADD package.json /package.json
+
 # Open port 8080 as we will be running our uwsgi socket on that
 EXPOSE 8080
-
-#USER www-data
-WORKDIR /home/web/django_project
 
 CMD ["uwsgi", "--ini", "/uwsgi.conf"]
