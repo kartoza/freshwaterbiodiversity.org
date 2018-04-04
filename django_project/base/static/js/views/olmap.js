@@ -1,5 +1,11 @@
 
-define(['shared', 'models/location_site', 'views/location_site'], function(Shared, LocationSiteModel, LocationSiteView) {
+define([
+    'backbone',
+    'underscore',
+    'shared',
+    'models/location_site',
+    'views/location_site',
+    'openlayers'], function(Backbone, _, Shared, LocationSiteModel, LocationSiteView, ol) {
     return Backbone.View.extend({
         template: _.template($('#map-template').html()),
         className: 'map-wrapper',

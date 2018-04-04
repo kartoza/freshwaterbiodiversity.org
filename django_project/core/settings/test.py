@@ -3,19 +3,9 @@ from .project import *  # noqa
 # http://hustoknow.blogspot.com/2011/02/setting-up-django-nose-on-hudson.html
 INSTALLED_APPS += (
     'django_nose',  # don't remove this comma
-    'pipeline',
 )
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
-STATICFILES_FINDERS += (
-    'pipeline.finders.PipelineFinder',
-)
-
-PIPELINE = {
-    'PIPELINE_ENABLED': True,
-}
-
+PIPELINE['PIPELINE_ENABLED'] = False
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 NOSE_ARGS = (

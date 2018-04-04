@@ -1,4 +1,4 @@
-define(['models/location_site'], function (LocationSite) {
+define(['backbone', 'models/location_site', 'openlayers'], function (Backbone, LocationSite, ol) {
    return Backbone.View.extend({
         initialize: function (options) {
             this.parent = options.parent;
@@ -11,7 +11,6 @@ define(['models/location_site'], function (LocationSite) {
             var modelJson = this.model.toJSON();
             var geometry = JSON.parse(modelJson['geometry']);
             delete modelJson['geometry'];
-            console.log(modelJson);
             var geojson = {
                 'type': 'FeatureCollection',
                 'features': [
