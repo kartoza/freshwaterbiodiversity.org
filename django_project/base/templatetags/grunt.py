@@ -16,7 +16,7 @@ def grunt_module(module):
     """
     if not settings.DEBUG:
         return mark_safe(
-            """<script type="text/javascript" 
+            """<script type="text/javascript"
             src={optimized}></script>""".format(
                 optimized=staticfiles_storage.url(
                         grunt_settings.GRUNT_MODULES[module]["optimized"]),
