@@ -19,9 +19,8 @@
 }
 
 .custom-form-container button[type=submit] {
-    width: 100%;
     display: block;
-    margin-bottom: 10px;
+    margin: 0 auto !important;
     position: relative;
 }
 
@@ -208,4 +207,9 @@
     padding: 0 !important;
     border: None;
     box-shadow: None;
+}
+
+h1 {
+    color: #436461 !important;
+    border-bottom: 1px solid #436461;
 }
