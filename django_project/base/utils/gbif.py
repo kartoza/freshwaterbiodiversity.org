@@ -47,7 +47,7 @@ def find_species(original_species_name):
             for result in results:
                 if 'nubKey' in result:
                     list_of_species.append(result)
-    except HTTPError as e:
+    except HTTPError:
         print('Species not found')
 
     return list_of_species

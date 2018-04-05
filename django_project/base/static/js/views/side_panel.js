@@ -1,4 +1,4 @@
-define(['shared'], function(Shared) {
+define(['shared', 'backbone', 'underscore', 'jqueryUi'], function(Shared, Backbone, _) {
     return Backbone.View.extend({
         template: _.template($('#side-panel-template').html()),
         className: 'panel-wrapper',
@@ -25,8 +25,22 @@ define(['shared'], function(Shared) {
             this.rightPanel.show('slide', { direction: 'right'}, 200);
             if(properties) {
                 this.clearSidePanel();
-                this.fillSidePanel(properties);
+                this.setSiteName(properties['name']);
+                if(properties.hasOwnProperty('location_type')) {
+                    this.fillSidePanel(properties['location_type']);
+                }
+                if(properties.hasOwnProperty('fish_collection_records')) {
+                    this.setTotalFish(properties['fish_collection_records'].length);
+                }
             }
+        },
+        setSiteName: function(name) {
+            var $siteName = this.$el.find('.site-name');
+            $siteName.html(name);
+        },
+        setTotalFish: function(total) {
+            var $dataFish = this.$el.find('.data-fish');
+            $dataFish.html(total);
         },
         closeSidePanel: function (e) {
             var self = this;

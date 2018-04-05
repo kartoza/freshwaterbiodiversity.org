@@ -55,3 +55,5 @@ LOGGING = {
         'level': 'WARNING'
     }
 }
+
+PIPELINE['PIPELINE_ENABLED'] = False
