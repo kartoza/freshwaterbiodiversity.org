@@ -9,11 +9,16 @@ from base.api_views.location_site import (
     LocationSiteList,
     LocationSiteDetail,
 )
+from base.api_views.location_type import (
+    LocationTypeAllowedGeometryDetail
+)
 from base.api_views.taxon import TaxonDetail
 from base.views.csv_upload import CsvUploadView
 
 
 api_urls = [
+    url(r'^api/location-type/(?P<pk>[0-9]+)/allowed-geometry/$',
+        LocationTypeAllowedGeometryDetail.as_view()),
     url(r'^api/location-site/$', LocationSiteList.as_view()),
     url(r'^api/location-site/(?P<pk>[0-9]+)/$',
         LocationSiteDetail.as_view()),
