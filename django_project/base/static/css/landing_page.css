@@ -1,5 +1,5 @@
 body {
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .bg-primary {
@@ -16,17 +16,13 @@ body {
 
 section {
     padding: 1rem 0;
-    border: 1px solid #aad223;
     border-bottom: none !important;
 }
 
-#header {
-    background-image: url('../img/underwater.jpg');
-    background-repeat: no-repeat;
-}
-
 #about {
-    border: 2px solid #e0d441 !important;
+    background-color: #aad993;
+    color: white;
+    padding-top: 25px;
 }
 
 .section-heading {
@@ -59,7 +55,7 @@ img::-moz-selection {
 header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
-    background-image: url("../img/header.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/Banner1.jpg');
     background-position: center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -88,7 +84,6 @@ header.masthead p {
 
 @media (min-width: 992px) {
     header.masthead {
-        height: 100vh;
         min-height: 650px;
         padding-top: 0;
         padding-bottom: 0;
@@ -183,7 +178,6 @@ html, body {
 
 .fish-icon {
     width: 150px;
-    border: 2px solid #e0d441;
     border-radius: 75px;
     padding: 10px;
     margin-top: 10px;
@@ -195,7 +189,7 @@ html, body {
     margin: 10px;
     font-weight: normal;
     color: #436461;
-    border: 2px solid #436461;
+    padding: 10px 50px 10px 50px;
 }
 
 .btn-account:hover {
@@ -210,4 +204,35 @@ html, body {
 
 .total-data {
     font-weight: bold;
+    font-size: 25px;
+    color: #436461;
+    margin-bottom: 0;
+}
+
+.total-data-desc {
+    font-weight: 100;
+    font-size: 25px;
+    color: #436461;
+    margin-bottom: 0;
+}
+
+#total-fish img {
+    height: 160px;
+    width: 160px;
+}
+
+#fish-data {
+    padding-top: 50px;
+}
+
+.kartoza-icon {
+    padding-top: 25px;
+}
+
+.about-links {
+    border-left: 1px solid white;
+}
+
+.about-links>p {
+    margin-top: 15px;
 }
