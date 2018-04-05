@@ -151,14 +151,23 @@ h6 {
 }
 
 .user-icon {
-  border: 3px solid white;
+  border: 5px solid white;
   font-size: 20px;
-  background-color: white;
+  background-color: transparent;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  color: #404040;
+  color: white;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: lighter;
+}
+
+.navbar-shrink {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-shrink .user-icon {
+  color: #526B43 !important;
+  border-color: #526B43 !important;
 }
 
 .dropdown-menu {
