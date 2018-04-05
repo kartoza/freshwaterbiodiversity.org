@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from django.contrib.gis import admin
+from django import forms
 from base.models import (
     LocationType,
     LocationSite,
@@ -12,7 +13,16 @@ from base.models import (
 )
 
 
+class LocationSiteForm(forms.ModelForm):
+    class Media:
+        css = {}
+        js = (
+            '/static/libs/jquery/jquery-3.3.1.min.js',
+            '/static/js/forms/location-site-admin-form.js')
+
+
 class LocationSiteAdmin(admin.GeoModelAdmin):
+    form = LocationSiteForm
     default_zoom = 5
     default_lat = -30
     default_lon = 25

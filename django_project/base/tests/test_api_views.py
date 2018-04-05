@@ -11,6 +11,9 @@ from base.api_views.location_site import (
     LocationSiteList,
     LocationSiteDetail,
 )
+from base.api_views.location_type import (
+    LocationTypeAllowedGeometryDetail
+)
 from base.api_views.taxon import TaxonDetail
 
 
@@ -61,3 +64,11 @@ class TestApiView(TestCase):
             taxon.common_name,
             response.data['common_name']
         )
+
+        # def test_get_allowed_geometry_location_type_by_id(self):
+        view = LocationTypeAllowedGeometryDetail.as_view()
+        pk = '%s' % self.fish_collection_1.site.location_type.pk
+        request = self.factory.get(
+            '/api/location-type/%s/allowed-geometry/' % pk)
+        response = view(request, pk)
+        self.assertEqual(response.data, 'POINT')
