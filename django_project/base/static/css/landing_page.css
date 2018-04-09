@@ -1,5 +1,5 @@
 body {
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .bg-primary {
@@ -16,17 +16,13 @@ body {
 
 section {
     padding: 1rem 0;
-    border: 1px solid #aad223;
     border-bottom: none !important;
 }
 
-#header {
-    background-image: url('../img/underwater.jpg');
-    background-repeat: no-repeat;
-}
-
 #about {
-    border: 2px solid #e0d441 !important;
+    background-color: #aad993;
+    color: white;
+    padding-top: 25px;
 }
 
 .section-heading {
@@ -59,7 +55,6 @@ img::-moz-selection {
 header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
-    background-image: url("../img/header.jpg");
     background-position: center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -88,7 +83,6 @@ header.masthead p {
 
 @media (min-width: 992px) {
     header.masthead {
-        height: 100vh;
         min-height: 650px;
         padding-top: 0;
         padding-bottom: 0;
@@ -102,6 +96,49 @@ header.masthead p {
     header.masthead h1 {
         font-size: 4rem;
     }
+}
+
+#title-header {
+    position: absolute;
+    width: 100%;
+    height: 678px;
+}
+
+.title-header-buttons {
+    height: 100%;
+    width: 100%;
+}
+
+.title-header-buttons .btn {
+    margin-top: 550px;
+}
+
+#carouselIndicators {
+    width: 100%;
+    position: relative;
+    height: 678px;
+    overflow-y: hidden;
+}
+
+.carousel-indicators li {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(255,255,255,0) !important;
+}
+
+.bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: absolute;
+    margin: 3px -5px;
+    background-color: rgba(255,255,255,0);
+}
+
+.active > .bullet {
+    background-color: rgba(255,255,255,1);
 }
 
 .service-box {
@@ -182,11 +219,12 @@ html, body {
 }
 
 .fish-icon {
-    width: 150px;
-    border: 2px solid #e0d441;
+    width: 150px !important;
+    height: 150px !important;
     border-radius: 75px;
     padding: 10px;
     margin-top: 10px;
+    border: 3px solid #e0d441;
 }
 
 .btn-account {
@@ -195,19 +233,76 @@ html, body {
     margin: 10px;
     font-weight: normal;
     color: #436461;
-    border: 2px solid #436461;
+    padding: 10px 20px 10px 20px;
+    font-size: 13pt;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease 0s;
 }
 
 .btn-account:hover {
-    background-color: #436461;
-    color: white;
+  transform: translateY(-5px);
 }
 
 .section-heading {
     color: #a02246;
-    font-weight: normal;
+    font-weight: normal !important;
+    font-size: 26pt !important;
 }
 
 .total-data {
     font-weight: bold;
+    font-size: 25px;
+    color: #436461;
+    margin-bottom: 0;
+}
+
+.total-data-desc {
+    font-weight: 100;
+    font-size: 25px;
+    color: #436461;
+    margin-bottom: 0;
+}
+
+#total-fish img {
+    height: 160px;
+    width: 160px;
+}
+
+#fish-data {
+    padding-top: 50px;
+}
+
+.kartoza-icon {
+    padding-top: 25px;
+}
+
+.about-links {
+    border-left: 1px solid white;
+}
+
+.about-links>p {
+    margin-top: 15px;
+}
+
+.dropdown-toggle {
+    color: transparent !important;
+}
+
+.carousel-title {
+    margin-top: -30px;
+    height: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 40px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5)
+}
+
+.carousel-inner, .carousel-item {
+    height: 100%;
 }
