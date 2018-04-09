@@ -22,6 +22,8 @@
     display: block;
     margin: 0 auto !important;
     position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .custom-form-container input[type=text], input[type=password], input[type=email]{
