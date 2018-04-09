@@ -60,6 +60,7 @@ header.masthead {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-color: black;
 }
 
 header.masthead hr {
@@ -133,12 +134,20 @@ header.masthead p {
     height: 10px;
     border-radius: 5px;
     position: absolute;
-    margin: 3px -5px;
+    margin: 3px;
     background-color: rgba(255,255,255,0);
+    display: block;
 }
 
 .active > .bullet {
     background-color: rgba(255,255,255,1);
+}
+
+.carousel-item {
+	transition: -webkit-transform 500ms ease;
+	transition: transform 500ms ease !important;
+	-webkit-backface-visibility: visible;
+	        backface-visibility: visible;
 }
 
 .service-box {
