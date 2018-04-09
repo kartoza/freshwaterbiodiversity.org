@@ -100,9 +100,17 @@ header.masthead p {
 
 #title-header {
     position: absolute;
-    top: 30%;
     width: 100%;
-    margin: 0 auto !important;
+    height: 678px;
+}
+
+.title-header-buttons {
+    height: 100%;
+    width: 100%;
+}
+
+.title-header-buttons .btn {
+    margin-top: 550px;
 }
 
 #carouselIndicators {
@@ -225,13 +233,14 @@ html, body {
     margin: 10px;
     font-weight: normal;
     color: #436461;
-    padding: 10px 30px 10px 30px;
-    font-size: 14pt;
+    padding: 10px 20px 10px 20px;
+    font-size: 13pt;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease 0s;
 }
 
 .btn-account:hover {
-    background-color: #436461;
-    color: white;
+  transform: translateY(-5px);
 }
 
 .section-heading {
@@ -277,4 +286,23 @@ html, body {
 
 .dropdown-toggle {
     color: transparent !important;
+}
+
+.carousel-title {
+    margin-top: -30px;
+    height: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 40px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5)
+}
+
+.carousel-inner, .carousel-item {
+    height: 100%;
 }
