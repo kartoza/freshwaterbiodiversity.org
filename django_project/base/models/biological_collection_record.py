@@ -38,6 +38,9 @@ class BiologicalCollectionRecord(models.Model):
     present = models.BooleanField(
         default=True,
     )
+    absent = models.BooleanField(
+        default=True,
+    )
     collection_date = models.DateField(
         default=timezone.now
     )
@@ -71,7 +74,8 @@ class BiologicalCollectionRecord(models.Model):
         abstract = True
 
     def on_post_save(self):
-        update_fish_collection_record(self)
+        if not self.taxon_gbif_id:
+            update_fish_collection_record(self)
 
 
 @receiver(models.signals.post_save)

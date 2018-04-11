@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 
 {% block title %}
-    CSV Uploader
+    Uploader
 {% endblock %}
 
 {% block head %}
@@ -14,22 +14,23 @@
 
 {% block body_content %}
 
+    <div class="loading">Loading&#8230;</div>
     <div class="container">
         <div class="jumbotron csv-uploader-wrapper">
             <h3>CSV Uploader</h3>
             <div id="csv-alert" class="alert alert-warning" role="alert" style="display: none;">
             </div>
-            <form onchange="Validate(this)" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
                 <div class="modal-body">
-                    <label for="file"><b>Upload csv here</b></label>
-                    <input type="file" name="csv_file">
-                    <p class="help-block">Upload a .csv file you want to read.</p>
+                    <form id="upload-form" onchange="Validate(this)" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <label for="file"><b>Upload csv here</b></label>
+                        <input type="file" name="csv_file">
+                        <p class="help-block">Upload a .csv file you want to read.</p>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="upload-file-btn" class="btn btn-primary" data-dismiss="modal" value="Upload">Upload</button>
+                    <button id="upload-file-btn" class="btn btn-primary" data-dismiss="modal" value="Upload">Upload</button>
                 </div>
-            </form>
 
             {% if data.uploaded %}
                 <p> {{ data.uploaded }} </p>
@@ -43,10 +44,25 @@
 
 {% block foot %}
 
+    <!-- Plugin JavaScript -->
+    <script src="{% static "libs/jquery/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "libs/bootstrap-4.0.0/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "libs/jquery-easing/jquery.easing.min.js" %}"></script>
+    <script src="{% static "libs/scrollreveal/scrollreveal.min.js" %}"></script>
+    <script src="{% static "libs/magnific-popup/jquery.magnific-popup.min.js" %}"></script>
+
     <script type="text/javascript">
         var _validFileExtensions = [".csv"];
+
+        $('#upload-file-btn').click(function (e) {
+            $('.loading').show();
+            $('#upload-form').submit();
+        });
+
         function Validate(oForm) {
             var arrInputs = oForm.getElementsByTagName("input");
+            var alertDiv = $('#csv-alert');
+            alertDiv.hide();
             for (var i = 0; i < arrInputs.length; i++) {
                 var oInput = arrInputs[i];
                 if (oInput.type == "file") {
@@ -62,7 +78,6 @@
                         }
 
                         if (!blnValid) {
-                            var alertDiv = $('#csv-alert');
                             alertDiv.html("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
                             alertDiv.show();
                             oInput.value = '';
@@ -71,7 +86,6 @@
                     }
                 }
             }
-
             return true;
         }
 
