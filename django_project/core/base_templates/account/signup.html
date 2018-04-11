@@ -3,13 +3,10 @@
 {% load account socialaccount %}
 
 {% block css_head %}
-
-    <link href="{% static "libs/jquery-ui-1.12.1/jquery-ui.min.css" %}" rel="stylesheet">
-    <link href="{% static "libs/bootstrap-4.0.0/css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "libs/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
-
     <!-- Chosen library -->
+    <link rel="stylesheet" href="{% static 'chosen/chosen.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
 
 {% endblock %}
 
@@ -18,6 +15,9 @@
     <script src="{% static "libs/jquery/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "libs/bootstrap-4.0.0/js/bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "libs/jquery-ui-1.12.1/jquery-ui.min.js" %}"></script>
+
+    <script src="{% static 'chosen/chosen.jquery.min.js' %}"></script>
+    <script src="{% static 'js/form.js' %}"></script>
 
 {% endblock %}
 
@@ -29,7 +29,7 @@
             <div class="container" style="height: 100%;">
 
                 <div class="custom-form-container" style="margin-top: 40px;">
-                    <h1>{% trans "Sign Up" %}</h1>
+                    <h1>{% trans "SIGN UP" %}</h1>
                     <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">{% csrf_token %}
                         {% if form.non_field_errors %}
                             <div class="alert alert-warning">
@@ -42,7 +42,7 @@
                         {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
-                        <button class="login custom-form-submit" type="submit">{% trans "Sign Up" %}</button>
+                        <button class="login custom-form-submit btn-login" type="submit">{% trans "SIGN UP" %}</button>
                     </form>
                     <div class="login-help">
                         <a href="{% url 'account_login' %}">{% trans "Log In" %}</a> -
@@ -53,3 +53,5 @@
             </div>
         {% endblock %}
 {% endblock %}
+
+{% include 'main_base.html' %}
