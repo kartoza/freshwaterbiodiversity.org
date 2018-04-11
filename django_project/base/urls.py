@@ -13,7 +13,6 @@ from base.api_views.location_type import (
     LocationTypeAllowedGeometryDetail
 )
 from base.api_views.taxon import TaxonDetail
-from base.views.csv_upload import CsvUploadView
 
 
 api_urls = [
@@ -30,7 +29,4 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="landing_page.html")),
     path('map', LandingPageView.as_view()),
     url(r'^api/docs/', include_docs_urls(title='Healthyrivers API')),
-    url(regex=r'^csv_uploader/$',
-        view=CsvUploadView.as_view(),
-        name='csv-upload'),
 ] + api_urls

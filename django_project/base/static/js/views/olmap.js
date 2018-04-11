@@ -95,8 +95,52 @@ define([
 
             self.locationSiteVectorSource = new ol.source.Vector({});
 
+            var iconStyle = new ol.style.Style({
+                image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+                    anchor: [0.5, 46],
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'pixels',
+                    opacity: 0.75,
+                    src: 'static/img/map-marker.png'
+                }))
+            });
+
+            var styles = {
+                'Point': iconStyle,
+                'LineString': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'green',
+                        width: 1
+                    })
+                }),
+                'MultiPolygon': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'yellow',
+                        width: 1
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 0, 0.1)'
+                    })
+                }),
+                'Polygon': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'blue',
+                        lineDash: [4],
+                        width: 3
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(0, 0, 255, 0.1)'
+                    })
+                })
+            };
+
+            var styleFunction = function(feature) {
+                return styles[feature.getGeometry().getType()];
+            };
+
             var locationSiteVectorLayer = new ol.layer.Vector({
-                source: self.locationSiteVectorSource
+                source: self.locationSiteVectorSource,
+                style: styleFunction
             });
 
             return new ol.Map({

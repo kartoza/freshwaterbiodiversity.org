@@ -3,7 +3,7 @@
 """
 
 from django import forms
-from base.models.csv_document import CSVDocument
+from fish.models.csv_document import CSVDocument
 
 
 class CsvUploadForm(forms.ModelForm):

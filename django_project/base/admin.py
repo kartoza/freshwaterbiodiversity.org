@@ -5,7 +5,6 @@ from django import forms
 from base.models import (
     LocationType,
     LocationSite,
-    CSVDocument,
     IUCNStatus,
     Taxon,
     Survey,
@@ -38,7 +37,6 @@ class TaxonAdmin(admin.ModelAdmin):
 
 admin.site.register(LocationSite, LocationSiteAdmin)
 admin.site.register(LocationType)
-admin.site.register(CSVDocument)
 admin.site.register(IUCNStatus, IUCNStatusAdmin)
 admin.site.register(Taxon, TaxonAdmin)
 admin.site.register(Survey)

@@ -13,7 +13,7 @@ class FishCollectionList(APIView):
     """
 
     def get(self, request, *args):
-        fish_collections = FishCollectionRecord.objects.all()
+        fish_collections = FishCollectionRecord.objects.filter(absent=True)
         serializer = FishCollectionSerializer(fish_collections, many=True)
         return Response(serializer.data)
 
