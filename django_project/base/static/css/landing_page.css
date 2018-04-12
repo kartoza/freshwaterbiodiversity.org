@@ -131,16 +131,23 @@ header.masthead p {
     border: 2px solid white;
 }
 
+.chart-icon-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
 .bullet {
-    width: 90px;
-    height: 90px;
-    border-radius: 50px;
-    border: 2px solid #436461;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    border: 1px solid #436461;
     position: absolute;
-    margin: 3px;
+    margin: 0;
     display: block;
-    left: 33%;
-    top: 70px;
+    left: 38px;
+    top: 80px;
 }
 
 .carousel-item {
@@ -230,8 +237,23 @@ html, body {
 .fish-icon {
     width: 140px !important;
     height: 140px !important;
-    border-radius: 75px;
-    position: relative;
+    position: absolute;
+    margin-top: 22px;
+    margin-left: -71px;
+}
+
+.crab {
+    padding: 15px 0;
+}
+
+.algae {
+    padding: 10px;
+}
+
+.donut-chart {
+    position: absolute !important;
+    top: 55px;
+    left: 13px;
 }
 
 .btn-account {

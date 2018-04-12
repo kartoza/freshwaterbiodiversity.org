@@ -67,22 +67,37 @@
         </div>
         <div class="row">
           <div class="col-lg-3 ml-auto text-center" id="total-fish">
-            <p class="total-data green">123</p>
-            <p class="total-data-desc green">Fish</p>
-            <img src="static/img/fish.svg" class="fish-icon">
-              <span class="bullet"></span>
+            <div class="chart-icon-wrapper">
+                <p class="total-data green">123</p>
+                <p class="total-data-desc green">Fish Species</p>
+                <img src="static/img/fish-icon.svg" class="fish-icon fish">
+                <span class="bullet"></span>
+                <div class="donut-chart">
+                  <canvas id="chart-fish" width="170" height="170"></canvas>
+                </div>
+            </div>
           </div>
           <div class="col-lg-3 text-center" id="total-invertebra" c>
-            <p class="total-data green">456</p>
-            <p class="total-data-desc green">Aquatic Invertebras</p>
-            <img src="static/img/aquatic-invertebrates.svg" class="fish-icon">
+            <div class="chart-icon-wrapper">
+              <p class="total-data green">456</p>
+              <p class="total-data-desc green">Aquatic Invertebrates</p>
+              <img src="static/img/aquatic-invertebrates-icon.svg" class="fish-icon crab">
               <span class="bullet"></span>
+              <div class="donut-chart">
+                  <canvas id="chart-crab" width="170" height="170"></canvas>
+              </div>
+            </div>
           </div>
           <div class="col-lg-3 mr-auto text-center" id="total-algae">
-            <p class="total-data green">789</p>
-            <p class="total-data-desc green">Algae</p>
-            <img src="static/img/algae.svg" class="fish-icon">
-              <span class="bullet"></span>
+              <div class="chart-icon-wrapper">
+                <p class="total-data green">789</p>
+                <p class="total-data-desc green">Algae</p>
+                <img src="static/img/algae-icon.svg" class="fish-icon algae">
+                <span class="bullet"></span>
+                <div class="donut-chart">
+                  <canvas id="chart-algae" width="170" height="170"></canvas>
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -114,6 +129,9 @@
     <script src="{% static "libs/jquery-easing/jquery.easing.min.js" %}"></script>
     <script src="{% static "libs/scrollreveal/scrollreveal.min.js" %}"></script>
     <script src="{% static "libs/magnific-popup/jquery.magnific-popup.min.js" %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="{% static "js/views/donut-chart.js" %}"></script>
+    <script src="{% static "js/views/generate-donut-chart.js" %}"></script>
 
     <!-- Custom scripts for this template -->
     <script src="{% static "js/creative.js" %}"></script>
