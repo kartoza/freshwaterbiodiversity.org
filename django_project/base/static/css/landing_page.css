@@ -23,7 +23,10 @@ section {
 #about {
     background-color: #aad993;
     color: white;
-    padding-top: 25px;
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    padding: 12px 0;
 }
 
 .section-heading {
@@ -234,6 +237,10 @@ html, body {
     height: 100%;
 }
 
+#fish-data {
+    margin-bottom: 100px;
+}
+
 .fish-icon {
     width: 140px !important;
     height: 140px !important;
@@ -294,7 +301,7 @@ html, body {
 }
 
 .kartoza-icon {
-    padding-top: 25px;
+    margin: auto auto;
 }
 
 .about-links {
@@ -302,7 +309,8 @@ html, body {
 }
 
 .about-links>p {
-    margin-top: 15px;
+    margin: 3px 0;
+    font-size: 11pt;
 }
 
 .dropdown-toggle {
