@@ -51,7 +51,7 @@ define(['shared', 'backbone', 'underscore', 'jqueryUi'], function(Shared, Backbo
         fillSidePanel: function (contents) {
             for (var key in contents) {
                 if (contents.hasOwnProperty(key)) {
-                    $('#content-panel').append('<p>'+ key +' : '+ contents[key] +'</p>');
+                    $('#content-panel').append('<p>'+ key.charAt(0).toUpperCase() + key.substring(1) +' : '+ contents[key] +'</p>');
                 }
             }
         },
