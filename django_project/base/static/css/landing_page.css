@@ -29,6 +29,11 @@ section {
     padding: 12px 0;
 }
 
+.footer-shrink {
+    background-color: rgba(170, 217, 147, 0.5) !important;
+    transition: 0.3s;
+}
+
 .section-heading {
     margin-top: 0;
     margin-bottom: 20px;
