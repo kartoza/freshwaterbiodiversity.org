@@ -1,6 +1,10 @@
 body {
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.2;
+    box-sizing: border-box; //to account for the border on top
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .bg-primary {
@@ -20,11 +24,18 @@ section {
     border-bottom: none !important;
 }
 
+#section-wrapper {
+    box-sizing: border-box; //to account for the padding
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 100%;
+    margin-bottom: 50px;
+}
+
 #about {
     background-color: #aad993;
     color: white;
-    position: fixed;
-    bottom:0;
     width: 100%;
     padding: 12px 0;
 }
@@ -240,10 +251,6 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
-}
-
-#fish-data {
-    margin-bottom: 100px;
 }
 
 .fish-icon {

@@ -33,13 +33,6 @@
     } else {
       $("#mainNav").removeClass("navbar-shrink");
     }
-
-    console.log($('#about').offset())
-    if($('#about').offset().top < 700){
-      $("#about").addClass("footer-shrink");
-    }else {
-      $("#about").removeClass("footer-shrink");
-    }
   };
   // Collapse now if page is not at top
   navbarCollapse();
