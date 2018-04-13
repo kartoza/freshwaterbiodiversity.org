@@ -1,6 +1,10 @@
 body {
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.2;
+    box-sizing: border-box; //to account for the border on top
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .bg-primary {
@@ -20,10 +24,25 @@ section {
     border-bottom: none !important;
 }
 
+#section-wrapper {
+    box-sizing: border-box; //to account for the padding
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 100%;
+    margin-bottom: 50px;
+}
+
 #about {
     background-color: #aad993;
     color: white;
-    padding-top: 25px;
+    width: 100%;
+    padding: 12px 0;
+}
+
+.footer-shrink {
+    background-color: rgba(170, 217, 147, 0.5) !important;
+    transition: 0.3s;
 }
 
 .section-heading {
@@ -294,7 +313,7 @@ html, body {
 }
 
 .kartoza-icon {
-    padding-top: 25px;
+    margin: auto auto;
 }
 
 .about-links {
@@ -302,7 +321,8 @@ html, body {
 }
 
 .about-links>p {
-    margin-top: 15px;
+    margin: 3px 0;
+    font-size: 11pt;
 }
 
 .dropdown-toggle {
