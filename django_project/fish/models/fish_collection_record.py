@@ -5,7 +5,7 @@
 
 from django.db import models
 
-from base.models.biological_collection_record import \
+from bims.models.biological_collection_record import \
     BiologicalCollectionRecord
 
 
@@ -26,3 +26,5 @@ class FishCollectionRecord(BiologicalCollectionRecord):
     class Meta:
         """Meta class for project."""
         app_label = 'fish'
+        verbose_name = 'fish'
+        verbose_name_plural = 'fishes'

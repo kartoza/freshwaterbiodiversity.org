@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.gis.geos import Point
 from django.views.generic import FormView
 from fish.forms.csv_upload import CsvUploadForm
-from base.models import (
+from bims.models import (
     LocationSite,
     LocationType,
 )

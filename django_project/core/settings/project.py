@@ -12,13 +12,11 @@ from .contrib import *  # noqa
 
 # Project apps
 INSTALLED_APPS += (
-    'base',
+    'bims',
     'roles',
     'fish',
+    'base',
 )
-
-# Set debug to false for production
-DEBUG = TEMPLATE_DEBUG = False
 
 # Set languages which want to be translated
 LANGUAGES = (

@@ -6,7 +6,7 @@ from django.db.models import signals
 from fish.models import (
     FishCollectionRecord,
 )
-from base.tests.model_factories import LocationSiteF, TaxonF
+from bims.tests.model_factories import LocationSiteF, TaxonF
 from core.tests.model_factories import UserF
 
 

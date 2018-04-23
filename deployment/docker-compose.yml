@@ -58,7 +58,6 @@ uwsgi:
   links:
     - smtp:smtp
     - db:db
-    - worker:worker
   restart: on-failure:5
   user: root
 

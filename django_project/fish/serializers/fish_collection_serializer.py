@@ -10,7 +10,7 @@ class FishCollectionSerializer(serializers.ModelSerializer):
 
     def get_owner(self, obj):
         if obj.owner:
-            return '%s,%s' % (obj.owner.id, obj.owner.username)
+            return '%s,%s' % (obj.owner.pk, obj.owner.username)
 
     class Meta:
         model = FishCollectionRecord
