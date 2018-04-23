@@ -11,7 +11,7 @@ from django.contrib.gis import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from base.models.profile import Profile
+from bims.models.profile import Profile
 from rolepermissions.admin import RolePermissionsUserAdminMixin
 from rolepermissions.roles import RolesManager
 

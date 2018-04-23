@@ -84,7 +84,7 @@ update-migrations:
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py makemigrations
 
-collectstatic: gruntserver
+collectstatic:
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Collecting static in production mode"
@@ -265,13 +265,6 @@ sync-roles:
 	@echo "Running update migrations in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py sync_roles
-
-gruntserver:
-	@echo
-	@echo "------------------------------------------------------------------"
-	@echo "Run grunt"
-	@echo "------------------------------------------------------------------"
-	@docker-compose -p $(PROJECT_ID) run uwsgi python manage.py gruntserver
 
 # ----------------------------------------------------------------------------
 #    DEVELOPMENT C O M M A N D S
