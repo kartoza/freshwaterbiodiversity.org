@@ -51,7 +51,6 @@ uwsgi:
     - RABBITMQ_HOST=rabbitmq
   volumes:
     - ../django_project:/home/web/django_project
-    - ./docker/django-bims:/home/web/django-bims
     - ./static:/home/web/static:rw
     - ./media:/home/web/media:rw
     - ./reports:/home/web/reports
@@ -123,7 +122,6 @@ devweb:
     - RABBITMQ_HOST=rabbitmq
   volumes:
     - ../django_project:/home/web/django_project
-    - ../django-bims:/home/web/django-bims
     - ./static:/home/web/static
     - ./media:/home/web/media
     - ./reports:/home/web/reports

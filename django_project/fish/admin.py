@@ -3,6 +3,7 @@
 from django.contrib import admin
 from fish.models import (
     FishCollectionRecord,
+    CSVDocument,
 )
 
 
@@ -17,3 +18,4 @@ class FishCollectionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(FishCollectionRecord, FishCollectionAdmin)
+admin.site.register(CSVDocument)

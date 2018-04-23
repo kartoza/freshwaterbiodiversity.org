@@ -159,6 +159,13 @@ h6 {
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: lighter;
+  transition: all 0.3s ease 0s;
+}
+
+.user-icon:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #436461;
+  border-color: #436461;
 }
 
 .navbar-shrink {
