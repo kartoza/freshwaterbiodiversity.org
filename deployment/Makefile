@@ -6,7 +6,7 @@ SHELL := /bin/bash
 #    P R O D U C T I O N     C O M M A N D S
 # ----------------------------------------------------------------------------
 default: web
-run: db build permissions web migrate collectstatic
+run: build permissions web migrate collectstatic
 
 deploy: run
 	@echo
@@ -21,7 +21,7 @@ build:
 	@echo "Building in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) build uwsgi
-	@docker-compose -p $(PROJECT_ID) up -d uwsgi
+	@# docker-compose -p $(PROJECT_ID) up -d uwsgi
 
 web:
 	@echo

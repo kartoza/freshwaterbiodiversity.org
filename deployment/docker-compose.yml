@@ -101,6 +101,9 @@ services:
     container_name: healthyrivers-web
     image: nginx
     hostname: nginx
+    depends_on:
+      - uwsgi
+      - db
     volumes:
       - ./sites-enabled:/etc/nginx/conf.d:ro
       # I dont use volumes_from as I want to use the ro modifier
@@ -123,6 +126,8 @@ services:
       context: ./docker
       dockerfile: Dockerfile-dev
     hostname: uwsgi
+    depends_on:
+      - db
     environment:
       - DATABASE_NAME=gis
       - DATABASE_USERNAME=docker
