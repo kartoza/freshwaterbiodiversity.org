@@ -21,6 +21,7 @@ build:
 	@echo "Building in production mode"
 	@echo "------------------------------------------------------------------"
 	@docker-compose -p $(PROJECT_ID) build uwsgi
+	@# docker-compose -p $(PROJECT_ID) up -d uwsgi
 
 web:
 	@echo
