@@ -17,7 +17,7 @@ RUN apt-get install -y python3-pip \
 
 RUN apt-get -y --force-yes install yui-compressor
 
-ADD REQUIREMENTS.txt /REQUIREMENTS.txt
+COPY ./REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
 RUN pip install uwsgi
 
