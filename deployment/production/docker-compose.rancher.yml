@@ -49,7 +49,7 @@ services:
           - uwsgi
 
   dbbackups:
-    image: kartoza/pg-backup:9.4
+    image: kartoza/geonode_db
     hostname: pg-backups
     volumes:
       - db-backups:/backups
