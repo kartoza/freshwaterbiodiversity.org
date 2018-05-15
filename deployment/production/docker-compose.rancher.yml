@@ -12,7 +12,7 @@ services:
       - backend
 
   db:
-    image: kartoza/postgis:9.6-2.4
+    image: kartoza/geonode_db
     volumes:
       #- ./pg/postgres_data:/var/lib/postgresql
       - db-backups:/backups
