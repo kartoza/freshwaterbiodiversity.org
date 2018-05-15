@@ -33,15 +33,16 @@ RUN npm -g install yuglify
 
 RUN rpl "env node" "env nodejs" /usr/lib/node_modules/yuglify/bin/yuglify
 
-# Install grunt
-RUN npm install -g grunt-cli
-ADD package.json /package.json
-ADD Gruntfile.js /Gruntfile.js
-RUN cd / && npm install grunt grunt-contrib-concat grunt-contrib-uglify
-RUN cd / && npm install grunt-contrib-requirejs
+WORKDIR /home/web
+RUN git init && git remote add origin https://github.com/kartoza/healthyrivers.git
+RUN git pull origin develop
 
 #USER www-data
 WORKDIR /home/web/django_project
+
+RUN mkdir -p /home/web/media
+ADD entry-point.sh /entry-point.sh
+RUN chmod +x /entry-point.sh
 
 ADD uwsgi.conf /uwsgi.conf
 
