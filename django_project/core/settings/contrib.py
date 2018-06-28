@@ -87,3 +87,5 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 BROKER_URL = 'amqp://guest:guest@%s:5672//' % os.environ['RABBITMQ_HOST']
+ELASTIC_MIN_SCORE = 0.5
+CONTACT_US_EMAIL = os.environ['CONTACT_US_EMAIL']

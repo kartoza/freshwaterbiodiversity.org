@@ -51,6 +51,8 @@ services:
       context: ./docker
       dockerfile: Dockerfile
     hostname: uwsgi
+    depends_on:
+      - elasticsearch
     environment:
       - DATABASE_NAME=gis
       - DATABASE_USERNAME=docker
@@ -60,6 +62,8 @@ services:
       - VIRTUAL_HOST=healthyrivers.kartoza.com
       - VIRTUAL_PORT=8080
       - RABBITMQ_HOST=rabbitmq
+      - HAYSTACK_HOST=elasticsearch
+      - CONTACT_US_EMAIL=dimas@kartoza.com
     volumes:
       - ../django_project:/home/web/django_project
       - ./static:/home/web/static:rw
@@ -126,6 +130,8 @@ services:
       context: ./docker
       dockerfile: Dockerfile-dev
     hostname: uwsgi
+    links:
+      - elasticsearch
     depends_on:
       - db
     environment:
@@ -222,6 +228,21 @@ services:
     restart: on-failure:5
     networks:
       - backend
+
+  elasticsearch:
+    # Note you cannot scale if you use conteiner_name
+    container_name: healthyrivers-elasticsearch
+    restart: on-failure:5
+    #  read_only: true
+    image: elasticsearch:2.4.2
+    hostname: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+    networks:
+      backend:
+        aliases:
+            - elasticsearch
 
 networks:
   backend:
