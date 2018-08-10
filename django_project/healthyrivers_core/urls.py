@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^', include('bims.urls')),
     url(r'^', include('healthyrivers_base.urls')),
     url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^', include(('fish.urls', 'fish'), namespace='fish')),
 ]
 
 try:

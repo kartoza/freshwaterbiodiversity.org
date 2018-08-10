@@ -19,6 +19,7 @@ from .utils import absolute_path
 INSTALLED_APPS += (
     'bims',
     'healthyrivers_base',
+    'fish',
 )
 
 try:

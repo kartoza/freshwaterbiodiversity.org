@@ -12,6 +12,8 @@
 
 {% endblock %}
 
+{% block upload_data_url %} /fish/upload {% endblock %}
+
 {% block body_content %}
 <div id="section-wrapper">
     <header class="masthead text-center text-white d-flex" id="header">
@@ -53,6 +55,7 @@
                     <a class="btn btn-account btn-l js-scroll-trigger" href="/accounts/signup/">Sign Up</a>
                 {% else %}
                     <a class="btn btn-account btn-l js-scroll-trigger" href="/map">OPEN MAP</a>
+                    <a class="btn btn-account btn-l js-scroll-trigger" href="/fish/upload">UPLOAD FISH DATA</a>
                 {% endif %}
             </div>
       </div>
