@@ -43,14 +43,18 @@ section {
 }
 
 #about {
-    background-color: #aad993;
+    background-color: #759763;
     color: white;
     width: 100%;
-    padding: 13px 0;
+    padding: 18px 0;
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.fbis-icon {
+    padding-top: 10px;
 }
 
 .footer-shrink {
@@ -325,12 +329,18 @@ html, body {
 }
 
 .about-links {
-    border-left: 1px solid white;
+    text-align: center;
 }
 
 .about-links>p {
-    margin: 3px 0;
-    font-size: 11pt;
+    font-weight: lighter;
+    margin: 17px 0;
+    font-size: 13pt;
+}
+
+.about-links a {
+    color: white;
+    text-decoration: none;
 }
 
 .dropdown-toggle {
