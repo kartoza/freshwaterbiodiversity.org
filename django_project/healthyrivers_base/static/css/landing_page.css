@@ -5,6 +5,8 @@ body {
     -o-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    height: 100%;
+    position: relative;
 }
 
 .bg-primary {
@@ -29,25 +31,35 @@ section {
     -o-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    height: 100%;
-    margin-bottom: 50px;
+    min-height: 100%;
+    position: relative;
+}
+
+#fish-data {
+    position: relative;
+    padding-top: 20px;
+    height: 425px;
+    padding-bottom: 80px;
 }
 
 #about {
-    background-color: #aad993;
+    background-color: #759763;
     color: white;
     width: 100%;
-    padding: 12px 0;
+    padding: 18px 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.fbis-icon {
+    padding-top: 12px;
 }
 
 .footer-shrink {
     background-color: rgba(170, 217, 147, 0.5) !important;
     transition: 0.3s;
-}
-
-.section-heading {
-    margin-top: 0;
-    margin-bottom: 20px;
 }
 
 ::-moz-selection {
@@ -317,12 +329,18 @@ html, body {
 }
 
 .about-links {
-    border-left: 1px solid white;
+    text-align: center;
 }
 
 .about-links>p {
-    margin: 3px 0;
-    font-size: 11pt;
+    font-weight: lighter;
+    margin: 17px 0;
+    font-size: 13pt;
+}
+
+.about-links a {
+    color: white;
+    text-decoration: none;
 }
 
 .dropdown-toggle {

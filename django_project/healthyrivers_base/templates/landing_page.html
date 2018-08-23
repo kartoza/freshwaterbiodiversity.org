@@ -1,7 +1,7 @@
 {% extends 'main_base.html' %}
 {% load static from staticfiles %}
 
-{% block title %}
+{% block subtitle %}
     Home
 {% endblock %}
 
@@ -12,117 +12,127 @@
 
 {% endblock %}
 
-{% block upload_data_url %} /fish/upload {% endblock %}
-
 {% block body_content %}
-<div id="section-wrapper">
-    <header class="masthead text-center text-white d-flex" id="header">
-        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                 <div class="carousel-title">
-                      Human needs, conservation, and water resources collide in South Africa where threats
-                        to freshwater biodiversity and ecosystem services will only increase in the years ahead.
-                  </div>
-                  <img class="d-block w-100" src="static/img/Banner1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-title">
-                        Freshwater ecosystems including rivers, lakes and wetlands not only support
-                        a wealth of biodiversity, but they are also fundamental to our economic, social
-                        and spiritual well-being.
+    <div id="section-wrapper">
+        <header class="masthead text-center text-white d-flex" id="header">
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-title">
+                            Human needs, conservation, and water resources collide in South Africa where threats
+                            to freshwater biodiversity and ecosystem services will only increase in the years ahead.
+                        </div>
+                        <img class="d-block w-100" src="static/img/Banner1.jpg" alt="First slide">
                     </div>
-                  <img class="d-block w-100" src="static/img/Banner2.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-title">
-                        Water is the most critical resource issue of our lifetime and our children's lifetime.
-                        The health of our rivers is the principal measure of how we live on the land.
+                    <div class="carousel-item">
+                        <div class="carousel-title">
+                            Freshwater ecosystems including rivers, lakes and wetlands not only support
+                            a wealth of biodiversity, but they are also fundamental to our economic, social
+                            and spiritual well-being.
+                        </div>
+                        <img class="d-block w-100" src="static/img/Banner2.jpg" alt="Second slide">
                     </div>
-                  <img class="d-block w-100" src="static/img/Banner3.jpg" alt="Third slide">
+                    <div class="carousel-item">
+                        <div class="carousel-title">
+                            Water is the most critical resource issue of our lifetime and our children's lifetime.
+                            The health of our rivers is the principal measure of how we live on the land.
+                        </div>
+                        <img class="d-block w-100" src="static/img/Banner3.jpg" alt="Third slide">
+                    </div>
                 </div>
             </div>
-        </div>
-      <div id="title-header">
-            <div class="title-header-buttons">
-                {% if not user.is_authenticated %}
-                    <a class="btn btn-account btn-l js-scroll-trigger" href="/accounts/login/">Login</a>
-                    <a class="btn btn-account btn-l js-scroll-trigger" href="/accounts/signup/">Sign Up</a>
-                {% else %}
-                    <a class="btn btn-account btn-l js-scroll-trigger" href="/map">OPEN MAP</a>
-                    <a class="btn btn-account btn-l js-scroll-trigger" href="/fish/upload">UPLOAD FISH DATA</a>
-                {% endif %}
+            <div id="title-header">
+                <div class="title-header-buttons">
+                    {% if not user.is_authenticated %}
+                        <a class="btn btn-account btn-l js-scroll-trigger" href="/accounts/login/">Login</a>
+                        <a class="btn btn-account btn-l js-scroll-trigger" href="/accounts/signup/">Sign Up</a>
+                    {% else %}
+                        <a class="btn btn-account btn-l js-scroll-trigger" href="/map">OPEN MAP</a>
+                        <a class="btn btn-account btn-l js-scroll-trigger" href="/fish/upload">UPLOAD FISH DATA</a>
+                    {% endif %}
+                </div>
             </div>
-      </div>
-    </header>
+        </header>
 
-    <section id="fish-data" style="position: relative">
-      <div class="container" style="margin-bottom: 25px">
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading">BIODIVERSITY RECORDS</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 ml-auto text-center" id="total-fish">
-            <div class="chart-icon-wrapper">
-                <p class="total-data green">123</p>
-                <p class="total-data-desc green">Fish Species</p>
-                <img src="static/img/fish-icon.svg" class="fish-icon fish">
-                <span class="bullet"></span>
-                <div class="donut-chart">
-                  <canvas id="chart-fish" width="170" height="170"></canvas>
+        <section id="fish-data">
+            <div class="container" style="margin-bottom: 25px">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h2 class="section-heading">BIODIVERSITY RECORDS</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 ml-auto text-center" id="total-fish">
+                        <div class="chart-icon-wrapper">
+                            <p class="total-data green">123</p>
+                            <p class="total-data-desc green">Fish Species</p>
+                            <img src="static/img/fish-icon.svg" class="fish-icon fish">
+                            <span class="bullet"></span>
+                            <div class="donut-chart">
+                                <canvas id="chart-fish" width="170" height="170"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-center" id="total-invertebra" c>
+                        <div class="chart-icon-wrapper">
+                            <p class="total-data green">456</p>
+                            <p class="total-data-desc green">Aquatic Invertebrates</p>
+                            <img src="static/img/aquatic-invertebrates-icon.svg" class="fish-icon crab">
+                            <span class="bullet"></span>
+                            <div class="donut-chart">
+                                <canvas id="chart-crab" width="170" height="170"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mr-auto text-center" id="total-algae">
+                        <div class="chart-icon-wrapper">
+                            <p class="total-data green">789</p>
+                            <p class="total-data-desc green">Algae</p>
+                            <img src="static/img/algae-icon.svg" class="fish-icon algae">
+                            <span class="bullet"></span>
+                            <div class="donut-chart">
+                                <canvas id="chart-algae" width="170" height="170"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
-          <div class="col-lg-3 text-center" id="total-invertebra" c>
-            <div class="chart-icon-wrapper">
-              <p class="total-data green">456</p>
-              <p class="total-data-desc green">Aquatic Invertebrates</p>
-              <img src="static/img/aquatic-invertebrates-icon.svg" class="fish-icon crab">
-              <span class="bullet"></span>
-              <div class="donut-chart">
-                  <canvas id="chart-crab" width="170" height="170"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 mr-auto text-center" id="total-algae">
-              <div class="chart-icon-wrapper">
-                <p class="total-data green">789</p>
-                <p class="total-data-desc green">Algae</p>
-                <img src="static/img/algae-icon.svg" class="fish-icon algae">
-                <span class="bullet"></span>
-                <div class="donut-chart">
-                  <canvas id="chart-algae" width="170" height="170"></canvas>
+
+        </section>
+        <div id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 pull-left fbis-icon">
+                        <a href="#" class="pull-left">
+                            <img src="static/img/fbis-text.png" width="300px">
+                        </a>
+                    </div>
+                    <div class="col-lg-4 about-links">
+                        <p>
+                            <a href="#">Home</a> |
+                            <a href="/map">Map</a> |
+                            <a href="/links">External Resources</a> |
+                            <a href="/under-development">Documents & Reports</a> |
+                            <a href="/contact">Contact</a> |
+                            <a href="/bibliography">Bibliography</a> |
+                            <a href="/layers">GIS Catalogue</a>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 pull-right">
+                        <a href="http://kartoza.com/en/" class="pull-right">
+                            <img src="static/img/kartoza-logo.png" width="90px">
+                        </a>
+                    </div>
                 </div>
-              </div>
-          </div>
+            </div>
         </div>
-      </div>
-    </section>
     </div>
 
-    <section id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 pull-left kartoza-icon">
-                <a href="http://kartoza.com/en/">
-                    <img src="static/img/kartoza-logo-only.png" style="width: 55px">
-                </a>
-            </div>
-            <div class="col-lg-2 pull-right about-links">
-                <p><a href="#">About</a></p>
-                <p><a href="/contact">Contact Us</a></p>
-                <p><a href="#">Others</a></p>
-            </div>
-        </div>
-    </div>
-    </section>
 {% endblock %}
 
 {% block foot %}

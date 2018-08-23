@@ -1,0 +1,71 @@
+{% load static from staticfiles %}
+{% load pipeline %}
+{% load grunt %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %} Healhtyrivers | {% block subtitle%}{% endblock %}{% endblock %}</title>
+
+    <link href="{% static "js/libs/bootstrap-4.0.0/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "js/libs/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static "css/navbar.css" %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya:400,400i,500,500i,700,700i|Roboto+Condensed:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTIC_KEY }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ GOOGLE_ANALYTIC_KEY }}');
+    </script>
+
+    {% block head %} {% endblock %}
+
+</head>
+<body id="page-top">
+
+    {% block navigation %}
+    <div class="hr-navbar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+            <a href="/">
+                <img src="{% static "img/fbis-icon.png" %}" width="38"/>
+                <img src="{% static "img/fbis-text.png" %}" width="255"/>
+            </a>
+        </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2" href="/map">MAP</a>
+            <a class="p-2" href="/contact">CONTACT</a>
+            {% if not user.is_authenticated %}
+                <a class="p-2" href="/accounts/login">LOGIN</a>
+                <a class="p-2" href="/accounts/signup">SIGN UP</a>
+            {% else %}
+                <a class="p-2" href="/profile">PROFILE</a>
+                <a class="p-2" href="/fish/upload">UPLOAD DATA</a>
+                {% if user.is_staff or user.is_superuser %}
+                    <a class="p-2" href="/admin/">ADMINISTRATION</a>
+                {% endif %}
+                <a class="p-2" href="/nonvalidated-list/">VALIDATE RECORDS</a>
+                <a class="p-2" href="/nonvalidated-user-list/">UPDATE RECORDS</a>
+                <a class="p-2" href="/accounts/logout">LOGOUT</a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endblock %}
+
+    {% block body_content %} {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+
+    {% block foot %} {% endblock %}
+
+</body>
+
+
+</html>
