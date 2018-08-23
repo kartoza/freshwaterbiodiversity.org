@@ -131,6 +131,10 @@
             var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
 
             $('#fish-occurence-count').html(fishNumber);
+            var nativeNum = (data['modules_info']['fish']['categories']['indigenous'] !== undefined) ? data['modules_info']['fish']['categories']['indigenous'] : 0;
+            var nonNativeNum = (data['modules_info']['fish']['categories']['alien'] !== undefined) ? data['modules_info']['fish']['categories']['alien'] : 0;
+            var translocatedNum = (data['modules_info']['fish']['categories']['translocated'] !== undefined) ? data['modules_info']['fish']['categories']['translocated'] : 0;
+
             var barOptions = {
                 scales: {
                     xAxes: [{
@@ -228,7 +232,7 @@
             };
 
             // Note: data are dummies.
-            createDataGraph(document.getElementById("fish-graph").getContext('2d'), [12, 19, 3], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
+            createDataGraph(document.getElementById("fish-graph").getContext('2d'), [nativeNum, nonNativeNum, translocatedNum], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
             createDataGraph(document.getElementById("fish-calculation-graph").getContext('2d'), [speciesRichness, shannonDiversity, simpsonDiversity], 'horizontalBar', ["Species Richness", "Shannon Diversity", "Simpson Diversity"], options, horizontalBarColor);
 
             var pieData = [25, 2, 7, 10, 12, 25, 60];
