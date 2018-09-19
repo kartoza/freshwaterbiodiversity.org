@@ -117,20 +117,13 @@
             });
         }
         function renderDashboard(data) {
-            var fishNumber = 0;
-            var recordOccurrence = data['records_occurrence'];
-            var speciesRichness = 0;
-            $.each(recordOccurrence, function (index, object) {
-                speciesRichness += Object.keys(object).length;
-                $.each(object, function (key, value) {
-                    fishNumber += value['count']
-                })
-            });
+            var $detailWrapper = $('<div></div>');
+            var dashboardTemplate = _.template($('#site-dashboard-template').html());
+            $detailWrapper.append(dashboardTemplate());
+            return $detailWrapper;
+        }
 
-            var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
-            var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
-
-            $('#fish-occurence-count').html(fishNumber);
+        function calculateChart(dashboardDiv, data) {
             var barOptions = {
                 scales: {
                     xAxes: [{
@@ -227,10 +220,6 @@
                 ]
             };
 
-            // Note: data are dummies.
-            createDataGraph(document.getElementById("fish-graph").getContext('2d'), [12, 19, 3], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
-            createDataGraph(document.getElementById("fish-calculation-graph").getContext('2d'), [speciesRichness, shannonDiversity, simpsonDiversity], 'horizontalBar', ["Species Richness", "Shannon Diversity", "Simpson Diversity"], options, horizontalBarColor);
-
             var pieData = [25, 2, 7, 10, 12, 25, 60];
             var pieLabel = ['grey', 'black', 'red', 'orange', 'yellow', 'lightgreen', 'green'];
             var pieColor = ['grey', 'black', 'red', 'orange', 'yellow', 'lightgreen', 'green'];
@@ -241,11 +230,49 @@
                 cutoutPercentage: 0,
                 maintainAspectRatio: false
             };
-            createPieChart(document.getElementById("fish-pie-chart-major").getContext('2d'), pieData, pieLabel, pieOptions, pieColor);
 
-            var pieData2 = [25, 50, 12, 40, 10];
-            var pieLabel2 = ['purple', 'white', 'blue', 'green', 'orange'];
-            var pieColor2 = ['purple', 'white', 'blue', 'green', 'orange'];
+            var recordOccurrence = data['records_occurrence'];
+            var speciesRichness = 0;
+            var fishNumber = 0;
+            $.each(recordOccurrence, function (index, object) {
+                speciesRichness += Object.keys(object).length;
+                $.each(object, function (key, value) {
+                    fishNumber += value['count']
+                })
+            });
+
+            var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
+            fishOccurenceCount.html(fishNumber);
+
+            var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
+            var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
+
+            try {
+                var fishGraph = dashboardDiv.find('#fish-graph').get(0).getContext('2d');
+                var fishCalculationGraph = dashboardDiv.find('#fish-calculation-graph').get(0).getContext('2d');
+                var fishPieChartMajor = dashboardDiv.find('#fish-pie-chart-major').get(0).getContext('2d');
+
+                var categories = data['modules_info']['fish']['categories'];
+                var native = 0;
+                var nonNative = 0;
+                var translocated = 0;
+
+                if (categories.hasOwnProperty('indigenous')) {
+                    native = categories['indigenous'];
+                }
+                if (categories.hasOwnProperty('alien')) {
+                    nonNative = categories['alien'];
+                }
+                if (categories.hasOwnProperty('translocated')) {
+                    translocated = categories['translocated'];
+                }
+
+                createDataGraph(fishGraph, [native, nonNative, translocated], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
+                createDataGraph(fishCalculationGraph, [speciesRichness, shannonDiversity, simpsonDiversity], 'horizontalBar', ["Species Richness", "Shannon Diversity", "Simpson Diversity"], options, horizontalBarColor);
+                createPieChart(fishPieChartMajor, pieData, pieLabel, pieOptions, pieColor);
+            } catch (err) {
+                setTimeout(calculateChart, 100);
+            }
         }
 
         function countShannonDiversity(data, totalOccurrence) {

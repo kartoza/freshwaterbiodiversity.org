@@ -1,3 +1,22 @@
+.zoom-control {
+    top: 80px;
+}
+.no-upload {
+    top: 183px !important;
+}
+.map-control-panel {
+    top: 205px;
+}
+.map-control-panel-box {
+    top: 19px;
+}
+.download-control-panel {
+    top: 322px;
+}
+.layer-switcher {
+    top: 277px !important;
+}
+
 .panel-wrapper {
     width: 400px;
 }
