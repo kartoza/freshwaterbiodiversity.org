@@ -139,10 +139,17 @@
 
 .btn-dashboard {
     border-radius: 0;
-    border: 2px solid #526B43 !important;
+    border: 2px solid black !important;
+    position: fixed;
+    top: 3px;
+    right: 3px;
 }
 
 .btn-dashboard:hover {
     color: #526B43 !important;
     background-color: white !important;
+}
+
+.panel-wrapper {
+    padding-top: 69px;
 }
