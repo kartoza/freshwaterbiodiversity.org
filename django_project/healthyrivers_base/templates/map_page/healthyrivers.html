@@ -4,10 +4,67 @@
 
 
 {% block extra_head %}
+    <link href="{% static "js/libs/openlayers-4.6.4/ol.css" %}" rel="stylesheet">
+    <script src="{% static 'js/libs/openlayers-4.6.4/ol.js' %}"></script>
     <link href="{% static "css/healthyrivers-map.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block additional_template %}
+    <div id="detailed-dashboard" style="display: none">
+    <button class="btn btn-primary btn-dashboard" style="float: right" onclick="$('#detailed-dashboard').hide('slide', {direction: 'right'}, 300)"><i class="fa fa-times pull-right"></i></button>
+    <div class="container dashboard-wrapper">
+        <div>
+            <h3>Overview</h3>
+        </div>
+        <div class="container row">
+            <div class="col-lg-4">
+                <div id="locationsite-map" class="map" style="height: 300px; width: 100%; border: 1px solid black"></div>
+                <div id="overview-dashboard-table" class="dashboard-table" style="margin-top: 10px; margin-bottom: 10px">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td id="site-name"></td>
+                        </tr>
+                        <tr>
+                            <td>Records</td>
+                            <td id="total-records"></td>
+                        </tr>
+                    </table>
+                </div>
+                <span><b>Occurence data</b></span>
+                <div id="occurence-table" class="dashboard-table">
+                </div>
+            </div>
+            <div class="col-lg-8" id="dashboard-graph-wrapper">
+                <span><b>Fish</b></span>
+                <div  style="border: 1px solid black">
+                    <table style="width: 100%; text-align: center">
+                        <tr>
+                            <td width="33%">
+                                <canvas id="fish-category-graph" width="150px" height="150px"></canvas>
+                            </td>
+                            <td width="33%">
+                                <canvas id="origin-graph" width="150px" height="150px"></canvas>
+                            </td>
+                            <td width="33%">
+                                <canvas id="cons-status-graph" width="150px" height="150px"></canvas>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Origin</td>
+                            <td>Cons status</td>
+                            <td>Sampling method</td>
+                        </tr>
+                    </table>
+                </div>
+                <div  style="border: 1px solid black; margin-top: 15px; width: 300px">
+                    <canvas id="fish-timeline-graph" width="150px" height="150px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
     <script type='text/html' id='site-dashboard-template'>
         <div id="healthyrivers-side-panel" class="right-panel-header-healthyrivers">
             <div class="row healthyrivers-site-detail">
@@ -81,12 +138,68 @@
             </div>
             <div class="row healthyrivers-side-panel-footer">
                 <div class="col-lg-3"><i class="fa fa-link"></i></div>
-                <div class="col-lg-7"><span style="text-decoration: underline">3rd party knowledge database</span></div>
-                <div class="col-lg-2"><a href="#"><i class="fa fa-arrow-right"></i></a></div>
+                <div class="col-lg-7" style="line-height: 60px"><span style="text-decoration: underline">Detailed dashboard</span></div>
+                <div class="col-lg-2"><a onclick="renderDetailedDashboard()"><i class="fa fa-arrow-right"></i></a></div>
             </div>
         </div>
     </script>
     <script>
+        var locationSitePk = null;
+        function renderDetailedDashboard() {
+            $('#detailed-dashboard').show('slide', {direction: 'right'}, 300);
+            renderLocationSiteMap();
+            console.log(locationSiteData);
+            locationSitePk = locationSiteData['id'];
+
+            $('#site-name').html(locationSiteData['name']);
+            $('#total-records').html(fishNumber);
+            $.getScript('/static/scripts/render-data-graph.js')
+        }
+
+        function renderLocationSiteMap() {
+            var locationSiteGeometry = JSON.parse(locationSiteData['geometry']);
+            var center = ol.proj.transform([locationSiteGeometry['coordinates'][0], locationSiteGeometry['coordinates'][1]], 'EPSG:4326', 'EPSG:3857')
+            var mapLocationSite = new ol.Map({
+                layers: [
+                  new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                  })
+                ],
+                target: 'locationsite-map',
+                view: new ol.View({
+                  center: center,
+                  zoom: 2
+                })
+            });
+            var iconFeatures=[];
+            var iconFeature = new ol.Feature({
+                  geometry: new ol.geom.Point(center)
+            });
+
+            var iconStyle = new ol.style.Style({
+                image: new ol.style.Icon(({
+                    anchor: [0.5, 46],
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'pixels',
+                    opacity: 0.75,
+                    src: '/static/img/map-marker.png'
+                }))
+            });
+
+            iconFeature.setStyle(iconStyle);
+            iconFeatures.push(iconFeature);
+
+            var vectorSource = new ol.source.Vector({
+              features: iconFeatures
+            });
+
+            var vectorLayer = new ol.layer.Vector({
+              source: vectorSource
+            });
+            mapLocationSite.addLayer(vectorLayer);
+        }
+
+
         function createDataGraph(container, data, barType, labels, options, colorOptions) {
             var myChart = new Chart(container, {
                 type: barType,
@@ -116,21 +229,16 @@
                 options: options
             });
         }
+        var locationSiteData;
+        var fishNumber = 0;
         function renderDashboard(data) {
-            var fishNumber = 0;
-            var recordOccurrence = data['records_occurrence'];
-            var speciesRichness = 0;
-            $.each(recordOccurrence, function (index, object) {
-                speciesRichness += Object.keys(object).length;
-                $.each(object, function (key, value) {
-                    fishNumber += value['count']
-                })
-            });
+            var $detailWrapper = $('<div></div>');
+            var dashboardTemplate = _.template($('#site-dashboard-template').html());
+            $detailWrapper.append(dashboardTemplate());
+            return $detailWrapper;
+        }
 
-            var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
-            var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
-
-            $('#fish-occurence-count').html(fishNumber);
+        function calculateChart(dashboardDiv, data) {
             var barOptions = {
                 scales: {
                     xAxes: [{
@@ -227,10 +335,6 @@
                 ]
             };
 
-            // Note: data are dummies.
-            createDataGraph(document.getElementById("fish-graph").getContext('2d'), [12, 19, 3], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
-            createDataGraph(document.getElementById("fish-calculation-graph").getContext('2d'), [speciesRichness, shannonDiversity, simpsonDiversity], 'horizontalBar', ["Species Richness", "Shannon Diversity", "Simpson Diversity"], options, horizontalBarColor);
-
             var pieData = [25, 2, 7, 10, 12, 25, 60];
             var pieLabel = ['grey', 'black', 'red', 'orange', 'yellow', 'lightgreen', 'green'];
             var pieColor = ['grey', 'black', 'red', 'orange', 'yellow', 'lightgreen', 'green'];
@@ -241,11 +345,50 @@
                 cutoutPercentage: 0,
                 maintainAspectRatio: false
             };
-            createPieChart(document.getElementById("fish-pie-chart-major").getContext('2d'), pieData, pieLabel, pieOptions, pieColor);
 
-            var pieData2 = [25, 50, 12, 40, 10];
-            var pieLabel2 = ['purple', 'white', 'blue', 'green', 'orange'];
-            var pieColor2 = ['purple', 'white', 'blue', 'green', 'orange'];
+            var recordOccurrence = data['records_occurrence'];
+            var speciesRichness = 0;
+            fishNumber = 0;
+            locationSiteData = data;
+            $.each(recordOccurrence, function (index, object) {
+                speciesRichness += Object.keys(object).length;
+                $.each(object, function (key, value) {
+                    fishNumber += value['count']
+                })
+            });
+
+            var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
+            fishOccurenceCount.html(fishNumber);
+
+            var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
+            var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
+
+            try {
+                var fishGraph = dashboardDiv.find('#fish-graph').get(0).getContext('2d');
+                var fishCalculationGraph = dashboardDiv.find('#fish-calculation-graph').get(0).getContext('2d');
+                var fishPieChartMajor = dashboardDiv.find('#fish-pie-chart-major').get(0).getContext('2d');
+
+                var categories = data['modules_info']['fish']['categories'];
+                var native = 0;
+                var nonNative = 0;
+                var translocated = 0;
+
+                if (categories.hasOwnProperty('indigenous')) {
+                    native = categories['indigenous'];
+                }
+                if (categories.hasOwnProperty('alien')) {
+                    nonNative = categories['alien'];
+                }
+                if (categories.hasOwnProperty('translocated')) {
+                    translocated = categories['translocated'];
+                }
+
+                createDataGraph(fishGraph, [native, nonNative, translocated], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
+                createDataGraph(fishCalculationGraph, [speciesRichness, shannonDiversity, simpsonDiversity], 'horizontalBar', ["Species Richness", "Shannon Diversity", "Simpson Diversity"], options, horizontalBarColor);
+                createPieChart(fishPieChartMajor, pieData, pieLabel, pieOptions, pieColor);
+            } catch (err) {
+                setTimeout(calculateChart, 100);
+            }
         }
 
         function countShannonDiversity(data, totalOccurrence) {
@@ -269,6 +412,10 @@
             var simpsonNum = n / (totalOccurrence * (totalOccurrence - 1));
             return simpsonNum
         }
+
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
 {% endblock %}

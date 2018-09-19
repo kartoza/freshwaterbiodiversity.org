@@ -1,3 +1,22 @@
+.zoom-control {
+    top: 80px;
+}
+.no-upload {
+    top: 183px !important;
+}
+.map-control-panel {
+    top: 205px;
+}
+.map-control-panel-box {
+    top: 19px;
+}
+.download-control-panel {
+    top: 322px;
+}
+.layer-switcher {
+    top: 277px !important;
+}
+
 .panel-wrapper {
     width: 400px;
 }
@@ -85,4 +104,45 @@
 .healthyrivers-side-panel-footer i {
     font-size: 25pt;
     line-height: 60px;
+}
+
+#detailed-dashboard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 10000;
+    background: white;
+    border: 3px solid black;
+}
+
+.dashboard-wrapper {
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.dashboard-table table {
+    width: 100%;
+}
+
+.dashboard-table table,
+.dashboard-table tr, .dashboard-table td,
+.dashboard-table th {
+    border: 1px solid black;
+}
+
+.dashboard-table td, .dashboard-table th {
+    padding: 2px 5px;
+}
+
+.btn-dashboard {
+    border-radius: 0;
+    border: 2px solid #526B43 !important;
+}
+
+.btn-dashboard:hover {
+    color: #526B43 !important;
+    background-color: white !important;
 }
