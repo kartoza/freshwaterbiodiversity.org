@@ -1,6 +1,29 @@
 .zoom-control {
     top: 80px;
+    background-color: #ACD796;
 }
+
+.right-panel-header .fa-map-marker {
+    color: black;
+}
+
+.control-panel-selected {
+    background-color: #DCD040;
+}
+
+.search-box {
+    background-color: #DCD040;
+}
+
+.right-panel-header {
+    background-color: white;
+    color: black;
+}
+
+.panel-wrapper {
+    padding-top: 69px;
+}
+
 .no-upload {
     top: 183px !important;
 }
