@@ -270,6 +270,7 @@
         var locationSiteData;
         var fishNumber = 0;
         function renderDashboard(data) {
+            $('#dashboard-detail').find('.search-result-title').html('INDICATOR SUMMARY');
             var $detailWrapper = $('<div></div>');
             var dashboardTemplate = _.template($('#site-dashboard-template').html());
             $detailWrapper.append(dashboardTemplate());
