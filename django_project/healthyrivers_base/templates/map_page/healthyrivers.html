@@ -501,9 +501,9 @@
                 var that = this;
                 var filterTitle = $(that).text();
                 if(filterTitle.indexOf('COLLECTOR') !== -1){
-                    $(that).text('REFERENCE')
+                    $(that).contents().first().replaceWith('REFERENCE')
                 }else if(filterTitle.indexOf('CATEGORY') !== -1){
-                    $(that).text('ORIGIN')
+                    $(that).contents().first().replaceWith('ORIGIN')
                 }
             });
         }, 500);
