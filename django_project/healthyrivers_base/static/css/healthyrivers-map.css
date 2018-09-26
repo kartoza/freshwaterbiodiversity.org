@@ -28,16 +28,20 @@
     top: 183px !important;
 }
 .map-control-panel {
-    top: 205px;
+    top: 230px;
 }
 .map-control-panel-box {
     top: 19px;
 }
 .download-control-panel {
-    top: 322px;
+    top: 369px;
 }
 .layer-switcher {
-    top: 277px !important;
+    top: 325px !important;
+}
+
+.locate-farm {
+    font-size: 11pt;
 }
 
 .panel-wrapper {
