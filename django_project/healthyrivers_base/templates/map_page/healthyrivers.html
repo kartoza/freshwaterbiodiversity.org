@@ -104,13 +104,13 @@
                         </tr>
                         <tr>
                             <td width="33%">
-                                <canvas id="fish-graph" width="50px" height="50px"></canvas>
+                                <canvas id="fish-graph" width="50px" height="80px"></canvas>
                             </td>
                             <td width="33%">
-                                <canvas id="invertebrates-graph" width="50px" height="50px"></canvas>
+                                <canvas id="invertebrates-graph" width="50px" height="80px"></canvas>
                             </td>
                             <td width="33%">
-                                <canvas id="algae-graph" width="50px" height="50px"></canvas>
+                                <canvas id="algae-graph" width="50px" height="80px"></canvas>
                             </td>
                         </tr>
 {#                        <tr>#}
@@ -126,37 +126,37 @@
 {#                        </tr>#}
                         <tr>
                             <td width="33%">
-                                <canvas id="fish-calculation-graph" width="50px" height="50px"></canvas>
+                                <canvas id="fish-calculation-graph" width="50px" height="80px"></canvas>
                             </td>
                             <td width="33%">
-                                <canvas id="invertebrates-calculation-graph" width="50px" height="50px"></canvas>
+                                <canvas id="invertebrates-calculation-graph" width="50px" height="80px"></canvas>
                             </td>
                             <td width="33%">
-                                <canvas id="algae-calculation-graph" width="50px" height="50px"></canvas>
+                                <canvas id="algae-calculation-graph" width="50px" height="80px"></canvas>
                             </td>
                         </tr>
-                        <tr>
-                            <td width="33%">
-                                <canvas id="fish-pie-chart-major" width="50px" height="50px"></canvas>
-                            </td>
-                            <td width="33%">
-                                <canvas id="invertebrates-pie-chart-major" width="50px" height="50px"></canvas>
-                            </td>
-                            <td width="33%">
-                                <canvas id="algae-pie-chart-major" width="50px" height="50px"></canvas>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="33%">
-                                <canvas id="fish-pie-chart-minor" width="50px" height="50px"></canvas>
-                            </td>
-                            <td width="33%">
-                                <canvas id="invertebrates-pie-chart-minor" width="50px" height="50px"></canvas>
-                            </td>
-                            <td width="33%">
-                                <canvas id="algae-pie-chart-minor" width="50px" height="50px"></canvas>
-                            </td>
-                        </tr>
+{#                        <tr>#}
+{#                            <td width="33%">#}
+{#                                <canvas id="fish-pie-chart-major" width="50px" height="80px"></canvas>#}
+{#                            </td>#}
+{#                            <td width="33%">#}
+{#                                <canvas id="invertebrates-pie-chart-major" width="50px" height="80px"></canvas>#}
+{#                            </td>#}
+{#                            <td width="33%">#}
+{#                                <canvas id="algae-pie-chart-major" width="50px" height="80px"></canvas>#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td width="33%">#}
+{#                                <canvas id="fish-pie-chart-minor" width="50px" height="50px"></canvas>#}
+{#                            </td>#}
+{#                            <td width="33%">#}
+{#                                <canvas id="invertebrates-pie-chart-minor" width="50px" height="50px"></canvas>#}
+{#                            </td>#}
+{#                            <td width="33%">#}
+{#                                <canvas id="algae-pie-chart-minor" width="50px" height="50px"></canvas>#}
+{#                            </td>#}
+{#                        </tr>#}
                     </table>
                 </div>
             </div>
@@ -270,6 +270,14 @@
         var locationSiteData;
         var fishNumber = 0;
         function renderDashboard(data) {
+            $('#dashboard-detail').find('.search-result-title').html('INDICATOR SUMMARY');
+            $('.search-result-sub-title').each(function () {
+                var that = this;
+                var subtitle = $(that).html();
+                if(subtitle.indexOf('Monthly Mean Maximum Temperature') !== -1){
+                    $(that).parent().hide();
+                }
+            });
             var $detailWrapper = $('<div></div>');
             var dashboardTemplate = _.template($('#site-dashboard-template').html());
             $detailWrapper.append(dashboardTemplate());
@@ -278,6 +286,10 @@
 
         function calculateChart(dashboardDiv, data) {
             var barOptions = {
+                title: {
+                  display: true,
+                  text: 'ORIGIN'
+                },
                 scales: {
                     xAxes: [{
                         gridLines: {
@@ -287,21 +299,26 @@
                             autoSkip: false,
                             maxRotation: 90,
                             minRotation: 90,
-                            padding: -100,
                             fontColor: '#000000',
-                            fontStyle: 'bold',
+                            fontStyle: 'normal',
+                            fontSize: 7
                         },
                         categoryPercentage: 1,
-                        barPercentage: 1,
+                        barPercentage: 0.7,
                     }],
                     yAxes: [{
                         gridLines: {
                             display: false,
-                            drawBorder: false
+                            drawBorder: true
                         },
                         ticks: {
-                            display: false
-                        }
+                            display: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Frequency of\noccurrence',
+                            fontSize: 9
+                         }
                     }]
                 },
                 legend: {
@@ -311,48 +328,51 @@
 
             var barColor = {
                 'backgroundColor': [
-                    'rgba(222, 210, 65, 0.5)',
-                    'rgba(98, 156, 68, 0.5)',
-                    'rgba(62, 80, 50, 0.5)'
+                    'rgba(222, 210, 65,1)',
+                    'rgba(222, 210, 65,1)',
+                    'rgba(222, 210, 65,1)'
                 ],
                 'borderColor': [
                     'rgba(222, 210, 65,1)',
-                    'rgba(98, 156, 68, 1)',
-                    'rgba(62, 80, 50, 1)'
+                    'rgba(222, 210, 65,1)',
+                    'rgba(222, 210, 65,1)'
                 ]
             };
 
             var options = {
-                layout: {
-                    padding: {
-                        left: -10,
-                        right: 0,
-                        top: 0,
-                        bottom: 0
-                    }
+                title: {
+                  display: true,
+                  text: 'RICHNESS & DIVERSITY'
                 },
                 scales: {
-                    yAxes: [{
+                    xAxes: [{
                         gridLines: {
                             display: false
                         },
                         ticks: {
                             autoSkip: false,
-                            padding: -120,
                             fontColor: '#000000',
-                            fontStyle: 'bold',
+                            fontStyle: 'normal',
+                            maxRotation: 90,
+                            minRotation: 90,
+                            fontSize: 7
                         },
                         categoryPercentage: 1,
-                        barPercentage: 1,
+                        barPercentage: 0.7,
                     }],
-                    xAxes: [{
+                    yAxes: [{
                         gridLines: {
                             display: false,
-                            drawBorder: false
+                            drawBorder: true
                         },
                         ticks: {
-                            display: false
-                        }
+                            display: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Frequency of\noccurrence',
+                            fontSize: 9
+                         }
                     }]
                 },
                 legend: {
@@ -362,14 +382,14 @@
 
             var horizontalBarColor = {
                 'backgroundColor': [
-                    'rgba(236, 230, 150, 0.5)',
-                    'rgba(222, 210, 65, 0.5)',
-                    'rgba(242, 237, 182, 0.5)'
+                    '#76ab6f',
+                    '#76ab6f',
+                    '#76ab6f'
                 ],
                 'borderColor': [
-                    'rgba(0, 0, 0, 1)',
-                    'rgba(0, 0, 0, 1)',
-                    'rgba(0, 0, 0, 1)'
+                    '#76ab6f',
+                    '#76ab6f',
+                    '#76ab6f'
                 ]
             };
 
@@ -405,7 +425,7 @@
             try {
                 var fishGraph = dashboardDiv.find('#fish-graph').get(0).getContext('2d');
                 var fishCalculationGraph = dashboardDiv.find('#fish-calculation-graph').get(0).getContext('2d');
-                var fishPieChartMajor = dashboardDiv.find('#fish-pie-chart-major').get(0).getContext('2d');
+                {#var fishPieChartMajor = dashboardDiv.find('#fish-pie-chart-major').get(0).getContext('2d');#}
 
                 var categories = data['modules_info']['fish']['categories'];
                 var native = 0;
@@ -415,16 +435,22 @@
                 if (categories.hasOwnProperty('indigenous')) {
                     native = categories['indigenous'];
                 }
+                if (categories.hasOwnProperty('native')) {
+                    native = categories['native'];
+                }
                 if (categories.hasOwnProperty('alien')) {
                     nonNative = categories['alien'];
+                }
+                if (categories.hasOwnProperty('non-native')) {
+                    nonNative = categories['non-native'];
                 }
                 if (categories.hasOwnProperty('translocated')) {
                     translocated = categories['translocated'];
                 }
 
                 createDataGraph(fishGraph, [native, nonNative, translocated], 'bar', ["Native", "Non-Native", "Translocated"], barOptions, barColor);
-                createDataGraph(fishCalculationGraph, [speciesRichness, shannonDiversity, speciesEvenness], 'horizontalBar', ["Species Richness", "Shannon Diversity", "Species Evenness"], options, horizontalBarColor);
-                createPieChart(fishPieChartMajor, pieData, pieLabel, pieOptions, pieColor);
+                createDataGraph(fishCalculationGraph, [speciesRichness, shannonDiversity, speciesEvenness], 'bar', ["Species Richness", "Shannon Diversity", "Species Evenness"], options, horizontalBarColor);
+                {#createPieChart(fishPieChartMajor, pieData, pieLabel, pieOptions, pieColor);#}
             } catch (err) {
                 setTimeout(calculateChart, 100);
             }
@@ -469,6 +495,19 @@
               }
            })
         }
+
+        setTimeout(function () {
+            $('.subtitle').each(function () {
+                var that = this;
+                var filterTitle = $(that).text();
+                if(filterTitle.indexOf('COLLECTOR') !== -1){
+                    $(that).contents().first().replaceWith('REFERENCE')
+                }else if(filterTitle.indexOf('CATEGORY') !== -1){
+                    $(that).contents().first().replaceWith('ORIGIN')
+                }
+            });
+        }, 500);
+
     </script>
 
 {% endblock %}
