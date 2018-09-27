@@ -133,7 +133,7 @@
     line-height: 60px;
 }
 
-#detailed-dashboard {
+#detailed-taxa-dashboard, #detailed-dashboard {
     position: fixed;
     top: 0;
     left: 0;
@@ -186,6 +186,11 @@
     padding-top: 69px;
 }
 
-.chart-wrapper {
-    background: white;
+.chart-wrapper, #taxa-records-timeline-graph {
+    background: white !important;
+}
+
+#occurence-table, #records-table, #records-area-table {
+    max-height: 300px;
+    overflow-y: auto;
 }
