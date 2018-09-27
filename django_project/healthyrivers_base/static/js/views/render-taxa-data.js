@@ -21,6 +21,7 @@ $.ajax({
     url: '/api/get-bio-records/' + taxaId + '/',
     dataType: 'json',
     success: function (data) {
+        $('#taxa-records-timeline-graph').parent().empty().append('<canvas id="taxa-records-timeline-graph" width="150px" height="150px"></canvas>');
         siteGeoPoints = {};
         countObjectPerDateCollection(data);
         countObjectPerSite(data);
