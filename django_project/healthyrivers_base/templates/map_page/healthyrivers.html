@@ -619,18 +619,6 @@
            })
         }
 
-        setTimeout(function () {
-            $('.subtitle').each(function () {
-                var that = this;
-                var filterTitle = $(that).text();
-                if(filterTitle.indexOf('COLLECTOR') !== -1){
-                    $(that).contents().first().replaceWith('REFERENCE')
-                }else if(filterTitle.indexOf('CATEGORY') !== -1){
-                    $(that).contents().first().replaceWith('ORIGIN')
-                }
-            });
-        }, 500);
-
     </script>
 
 {% endblock %}
