@@ -371,8 +371,8 @@ html, body {
 }
 
 #partners-section img {
-    max-width:100%;
-    max-height:100%;
+    max-width:100% !important;
+    max-height:100% !important;
 }
 
 .section-partners-heading {
@@ -387,7 +387,7 @@ html, body {
 }
 
 .partner-icon-wrapper {
-    height: 130px;
+    height: 130px !important;
     text-align: center;
     line-height: 130px;
 }
