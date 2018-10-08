@@ -23,21 +23,14 @@
 .panel-wrapper {
     padding-top: 69px;
 }
-
-.no-upload {
-    top: 183px !important;
-}
 .map-control-panel {
-    top: 230px;
+    top: 20px;
 }
 .map-control-panel-box {
     top: 19px;
 }
 .download-control-panel {
-    top: 369px;
-}
-.layer-switcher {
-    top: 325px !important;
+    margin-top: 67px;
 }
 
 .locate-farm {
