@@ -871,6 +871,10 @@ drop table sitevisitsubstratum;
 drop table taxonabundance;
 drop table fishhabitatsamplingcatchability;
 drop table sitevisitxdata;
+drop table sitevisitbankmod;
+drop table specificbiotope;
+drop table substratum;
+	
 DROP TABLE Ihisitevisitresult;
 DROP TABLE Ihisitevisitriparianzone;
 DROP TABLE Ihisitevisitriparianzonecomponent;
