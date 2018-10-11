@@ -38,8 +38,7 @@ section {
 #fish-data {
     position: relative;
     padding-top: 20px;
-    height: 425px;
-    padding-bottom: 80px;
+    height: 325px;
 }
 
 #about {
@@ -305,9 +304,9 @@ html, body {
 }
 
 .section-heading {
-    color: #a02246;
+    color: black;
     font-weight: normal !important;
-    font-size: 1.75em !important;
+    font-size: 2.4em !important;
 }
 
 .total-data {
@@ -364,4 +363,31 @@ html, body {
 
 .carousel-inner, .carousel-item {
     height: 100%;
+}
+
+#partners-section {
+    padding-bottom: 80px;
+    height: 850px;
+}
+
+#partners-section img {
+    max-width:100% !important;
+    max-height:100% !important;
+}
+
+.section-partners-heading {
+    color: black;
+    font-weight: normal !important;
+    font-size: 2.4em !important;
+    margin-bottom: 0;
+}
+
+.partner-icon {
+    padding: 0 25px 25px 25px;
+}
+
+.partner-icon-wrapper {
+    height: 130px !important;
+    text-align: center;
+    line-height: 130px;
 }
