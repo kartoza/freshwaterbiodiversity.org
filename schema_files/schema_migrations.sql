@@ -823,3 +823,149 @@ DROP TABLE Sitetransaction;
 -- in the database specification documant
 -- Table: Traceriver
 DROP TABLE Traceriver;
+
+--
+-- Additions by Tim
+-- 
+
+-- Getting rid of unneeded columns in site and sitevisit
+alter table sitevisit drop column "User";                
+alter table sitevisit drop column datefrom;            
+alter table sitevisit drop column datemodified;        
+alter table sitevisit drop column dateto; 
+
+alter table site drop column riverid;
+alter table site drop column latitudegis;
+alter table site drop column longitudegis;
+alter table site drop column regionpolid;
+alter table "User" drop column regionpolid;
+alter table site drop column regionbioid;
+alter table site drop column ecoregionid;
+alter table site drop column ecoregion2id;
+alter table site drop column regionwqid;
+alter table site drop column catchmentsecondaryid;
+alter table site drop column quaternarycatchmentid;
+-- alter table site drop column altitude;
+--alter table site drop column Order;
+alter table site drop column geologyid;
+alter table site drop column vegetationid;
+alter table site drop column rainregionid;
+alter table site drop column watermanagementareaid;
+alter table site drop column "User";
+alter table site drop column datefrom;
+alter table site drop column datemodified;
+alter table site drop column dateto;
+
+
+-- dropping tables marked as drop in migration doc but not scripted by Alison
+drop table sitevisitcrosssectionpoint;
+drop table sitevisitfishhabitatcover;
+drop table sitevisitfishhabitatsample;
+drop table sitevisitfishhabitatsampledetail;
+drop table sitevisitformulacriterionentry;
+drop table sitevisithabitattype;
+drop table sitevisitlanduse;
+drop table sitevisitripvegchannelimpact;
+drop table sitevisitspecificbiotope;
+drop table sitevisitsubstratum;
+drop table taxonabundance;
+drop table fishhabitatsamplingcatchability;
+drop table sitevisitxdata;
+DROP TABLE Ihisitevisitresult;
+DROP TABLE Ihisitevisitriparianzone;
+DROP TABLE Ihisitevisitriparianzonecomponent;
+
+-- dropping tables not mentioned in migration doc
+drop table querymasterdatamart;
+drop table fishintoleranceindexitem;
+drop table cvssitevisitbiotopetaxon_sitevisttaxon;
+drop table cvssitevisitbiotopetaxon_sitevisttaxonerrors;
+drop table datafileproperty;
+drop table dtproperties;
+
+
+-- dropping fish because we imported from Helen's tidied up spreadhsheet rather
+drop table fish;
+
+
+
+-- dropping all the biobase stuff for now
+drop table biobiochemlink;
+drop table biobiodate;
+drop table biobiotope;
+drop table biobroadbiotope;
+drop table biochemcode;
+drop table biochemdate;
+drop table biochemunit;
+drop table bioclass;
+drop table biofamily;
+drop table biogenusspecies;
+drop table biomonth;
+drop table bioorder;
+drop table biophylum;
+drop table biopolregion;
+drop table bioreach;
+drop table bioreference;
+drop table bioregion;
+drop table biorivername;
+drop table biosassbiotope;
+drop table bioseason;
+drop table biosite;
+drop table biositevisitbio;
+drop table biositevisitbiobiotope;
+drop table biositevisitbiobiotopetaxon;
+drop table biositevisitchem;
+drop table biositevisitchemvalue;
+drop table biositevisittaxon;
+drop table biosoftware;
+drop table biospecificbiotope;
+drop table biosubfamily;
+drop table biosuborder;
+drop table biosubstratum;
+drop table biotaxon;
+drop table biowarning;
+drop table biowqregion;
+
+-- dropping other tables I think we don't need
+drop table AssessorUploadDate;
+drop table Chem;
+drop table Chemunit;
+drop table FormulaResultGrouping;
+drop table IssueLog;
+drop table Longitudinalzone;
+drop table Longitudinalzone;
+drop table OwnershipTransfer;
+drop table Reach;
+drop table Reachrivermapping;
+drop table Referencedownload;
+drop table Referenceupload;
+drop table RuleRole;
+drop table SiteGIS;
+drop table photoarea;
+drop table Sitephoto;
+drop table Sitevisitstreamdimension;
+drop table Sitevisitchem;
+drop table Sitevisitsassbiotope;
+drop table Sitevisittaxon;
+drop table SpatialData;
+drop table Streamdimension;
+drop table Streamdimensioncategory;
+drop table Taxon;
+drop table Userrole;
+drop table Usersassvalidation;
+drop table Vegetation;
+
+-- drop GIS tables
+drop table Catchmentsecondary;
+drop table Drainageregion;
+drop table Ecoregion;
+drop table Ecoregion2;
+drop table Geology;
+drop table Quaternarycatchment;
+drop table Rainregion;
+drop table Regionbio;
+drop table Regionpol;
+drop table Regionwq;
+drop table Spatialdata;
+drop table Vegetation;
+drop table Watermanagementarea;
