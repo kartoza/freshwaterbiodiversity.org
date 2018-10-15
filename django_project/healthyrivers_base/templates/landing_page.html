@@ -61,7 +61,7 @@
 
         <section id="fish-data">
             <div class="container" style="margin-bottom: 25px">
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px;">
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="section-heading">BIODIVERSITY RECORDS</h2>
                     </div>
@@ -69,20 +69,25 @@
                 <div class="row">
                     <div class="col-lg-3 ml-auto text-center" id="total-fish">
                         <div class="chart-icon-wrapper">
-                            <p class="total-data green">123</p>
-                            <p class="total-data-desc green">Fish Species</p>
                             <img src="{% static 'img/fish-2.svg' %}" class="fish-icon fish">
+                            <div class="module-info-wrapper">
+                                <span id="fish-total-records" class="total-data green">-</span>
+                                <span class="total-data-desc green">&nbsp;records</span><br/>
+                                <span id="fish-total-sites" class="total-data green">-</span>
+                                <span class="total-data-desc green">&nbsp;sites</span>
+                            </div>
                             <span class="bullet"></span>
                             <div class="donut-chart">
-                                <canvas id="chart-fish" width="170" height="170"></canvas>
+                                <canvas id="chart-fish" width="250" height="250"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 text-center" id="total-invertebra" c>
+                    <div class="col-lg-3 text-center" id="total-invertebra">
                         <div class="chart-icon-wrapper">
-                            <p class="total-data green">456</p>
-                            <p class="total-data-desc green">Aquatic Invertebrates</p>
-                            <img src="{% static 'img/invertebras-2.svg' %}" class="fish-icon crab">
+                            <img src="{% static 'img/invertebras-2.svg' %}" class="fish-icon crab greyed-icon">
+                            <div class="module-info-wrapper">
+                                <span class="total-data-desc green">coming soon</span>
+                            </div>
                             <span class="bullet"></span>
                             <div class="donut-chart">
                                 <canvas id="chart-crab" width="170" height="170"></canvas>
@@ -91,9 +96,10 @@
                     </div>
                     <div class="col-lg-3 mr-auto text-center" id="total-algae">
                         <div class="chart-icon-wrapper">
-                            <p class="total-data green">789</p>
-                            <p class="total-data-desc green">Algae</p>
-                            <img src="{% static 'img/algae-2.svg' %}" class="fish-icon algae">
+                            <img src="{% static 'img/algae-2.svg' %}" class="fish-icon algae greyed-icon">
+                            <div class="module-info-wrapper">
+                                <span class="total-data-desc green">coming soon</span>
+                            </div>
                             <span class="bullet"></span>
                             <div class="donut-chart">
                                 <canvas id="chart-algae" width="170" height="170"></canvas>
@@ -222,4 +228,5 @@
 
     <!-- Custom scripts for this template -->
     <script src="{% static "js/creative.js" %}"></script>
+    <script src="{% static "js/views/landing-page.js" %}"></script>
 {% endblock %}
