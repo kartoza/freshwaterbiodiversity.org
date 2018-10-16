@@ -8,26 +8,36 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: '/api/fish-collections/',
+        url: '/api/fish-summary/',
         dataType: 'json',
         success: function (data) {
             $('#chart-fish').parent().empty().append('<canvas id="chart-fish" width="250px" height="250px"></canvas>');
-            var total_sites = Object.keys(data).length;
-            $('#fish-total-records').html(total_sites);
             var native = 0;
             var non_native = 0;
             var translocated = 0;
-            $.each(data, function (index, key) {
-                if(key['category'] === 'native' || key['category'] === 'indigenous'){
-                    native += 1;
-                }
-                if(key['category'] === 'non-native' || key['category'] === 'alien'){
-                    non_native += 1;
-                }
-                if(key['category'] === 'translocated'){
-                    translocated += 1;
+            $.when($.each(data, function (index, value) {
+                if(value.hasOwnProperty('total_fish')){
+                    $('#fish-total-records').html(value['total_fish']);
                 }
 
+                if (value.hasOwnProperty('category')) {
+                    if(value['category'] === 'indigenous') {
+                        native += value['total'];
+                    }
+                    if(value['category'] === 'native') {
+                        native += value['total'];
+                    }
+                    if(value['category'] === 'alien') {
+                        non_native += value['total'];
+                    }
+                    if(value['category'] === 'non-native') {
+                        non_native += value['total'];
+                    }
+                    if(value['category'] === 'translocated') {
+                        translocated += value['total'];
+                    }
+                }
+            })).then(function () {
                 var fishContainer = document.getElementById("chart-fish");
                 var fishData = {
                     labels: ["Native", "Non-Native", "Translocated"],
@@ -42,7 +52,7 @@ $(document).ready(function () {
                     }]
                 };
                 createDonutGraph(fishContainer, fishData)
-            })
+            });
         }
     })
 });
