@@ -20,20 +20,22 @@ $(document).ready(function () {
                 $('#fish-total-records').html(data['total_fish']);
             }
 
-            if(data.hasOwnProperty('indigenous')) {
-                native += data['indigenous'];
-            }
-            if(data.hasOwnProperty('native')) {
-                native += data['native'];
-            }
-            if(data.hasOwnProperty('alien')) {
-                non_native += data['alien'];
-            }
-            if(data.hasOwnProperty('non-native')) {
-                non_native += data['non-native'];
-            }
-            if(data.hasOwnProperty('translocated')) {
-                translocated += data['translocated'];
+            if(data.hasOwnProperty('category')) {
+                if (data['category']['indigenous']) {
+                    native += data['category']['indigenous'];
+                }
+                if (data['category']['native']) {
+                    native += data['category']['native'];
+                }
+                if (data['category']['alien']) {
+                    non_native += data['category']['alien'];
+                }
+                if (data['category']['non-native']) {
+                    non_native += data['category']['non-native'];
+                }
+                if (data['category']['translocated']) {
+                    translocated += data['category']['translocated'];
+                }
             }
 
             var fishContainer = document.getElementById("chart-fish");
