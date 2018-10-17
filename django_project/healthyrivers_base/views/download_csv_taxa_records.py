@@ -3,16 +3,37 @@ import csv
 from django.http import HttpResponse
 from bims.models.biological_collection_record import BiologicalCollectionRecord
 from bims.models.taxon import Taxon
+from bims.api_views.collection import GetCollectionAbstract
 
 
-def download_csv_site_taxa_records(request, taxon_id):
-    records = BiologicalCollectionRecord.objects.filter(
-        taxon_gbif_id=taxon_id
-    )
-    fields = [f.name for f in BiologicalCollectionRecord._meta.get_fields()]
+def download_csv_site_taxa_records(request):
+    taxon_id = request.GET.get('taxon')
+    query_value = request.GET.get('search')
+    filters = request.GET
+
+    # Search collection
+    collection_results, \
+    site_results, \
+    fuzzy_search = GetCollectionAbstract.apply_filter(
+            query_value,
+            filters,
+            ignore_bbox=True)
+
+    records = [q.object for q in collection_results]
+
+    current_model = BiologicalCollectionRecord
+
+    try:
+        current_model = records[0].get_children()
+    except:
+        pass
+
+    fields = [f.name for f in current_model._meta.get_fields()]
     fields.remove('ready_for_validation')
     fields.remove('validated')
-    fields.remove('fishcollectionrecord')
+
+    if 'biologicalcollectionrecord_ptr' in fields:
+        fields.remove('biologicalcollectionrecord_ptr')
 
     taxon = Taxon.objects.get(pk=taxon_id)
     # Create the HttpResponse object with the appropriate CSV header.
@@ -25,12 +46,17 @@ def download_csv_site_taxa_records(request, taxon_id):
     writer.writerow(['Total records', len(records)])
     writer.writerow(['GBIF ID', taxon.gbif_id])
     writer.writerow([''])
-    writer.writerow(fields)
+    writer.writerow(fields + ['coordinates'])
 
     for record in records:
+        try:
+            record = record.get_children()
+        except:
+            pass
         row_object = []
         for field in fields:
             row_object.append(getattr(record, field))
+        row_object.append('%s,%s' % record.site.get_centroid().coords)
         writer.writerow(row_object)
 
     return response

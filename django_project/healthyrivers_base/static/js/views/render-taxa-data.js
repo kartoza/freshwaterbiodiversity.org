@@ -3,24 +3,37 @@ var taxaVectorLayer = null;
 var mapTaxaSite;
 renderTaxaSiteMap();
 
+var parameters = '';
+var urlTemplate = _.template("?taxon=<%= taxon %>&search=<%= search %>&siteId=<%= siteId %>" +
+            "&collector=<%= collector %>&category=<%= category %>" +
+            "&yearFrom=<%= yearFrom %>&yearTo=<%= yearTo %>&months=<%= months %>&boundary=<%= boundary %>&userBoundary=<%= userBoundary %>" +
+            "&referenceCategory=<%= referenceCategory %>&reference=<%= reference %>");
+
+if (typeof filterParameters !== 'undefined') {
+    parameters = filterParameters;
+    parameters['taxon'] = taxaId;
+}
+
 $.ajax({
-    url: '/api/taxon/' + taxaId + '/',
+    url: '/api/get-bio-records/' + urlTemplate(parameters),
     dataType: 'json',
     success: function (data) {
-        var $overviewWrapper = $('#overview-taxa-table');
-        var detailsTable = _.template($('#taxon-overview-table').html());
-        $overviewWrapper.html(detailsTable(data));
+        if (data.length === 0) {
+            return false;
+        }
 
+        var $overviewWrapper = $('#overview-taxa-table');
+        var overViewTable = _.template($('#taxon-overview-table').html());
+        $overviewWrapper.html(overViewTable({
+            id: urlTemplate(parameters),
+            count: data.length,
+            taxon_class: data[0]['taxonomy']['taxon_class'],
+            gbif_id: data[0]['taxon_gbif_id']
+        }));
         var $wrapper = $('#overview-name-taxonomy-table');
         var detailsTable = _.template($('#taxon-detail-table').html());
-        $wrapper.html(detailsTable(data));
-    }
-});
+        $wrapper.html(detailsTable(data[0]['taxonomy']));
 
-$.ajax({
-    url: '/api/get-bio-records/' + taxaId + '/',
-    dataType: 'json',
-    success: function (data) {
         $('#taxa-records-timeline-graph').parent().empty().append('<canvas id="taxa-records-timeline-graph" width="150px" height="150px"></canvas>');
         siteGeoPoints = {};
         countObjectPerDateCollection(data);
@@ -84,15 +97,9 @@ $.ajax({
         $.each(data, function (index, value) {
             var sites = Object.keys(siteGeoPoints);
             if(!sites.includes(value['site'])) {
-                $.ajax({
-                    url: '/api/location-site/' + value['site'] + '/',
-                    dataType: 'json',
-                    success: function (data) {
-                        var center = JSON.parse(data['geometry']);
-                        siteGeoPoints[value['site']] = center['coordinates'];
-                        addFeatures(siteGeoPoints)
-                    }
-                })
+                var center = JSON.parse(value['location']);
+                siteGeoPoints[value['site']] = center['coordinates'];
+                addFeatures(siteGeoPoints);
             }
         });
     }
@@ -190,36 +197,19 @@ function countObjectPerDateCollection(data) {
     })
 }
 
-var siteArray = [];
 var dataBySite = {};
 function countObjectPerSite(data) {
-    siteArray = [];
+    dataBySite = {};
     $.each(data, function (key, value) {
-        if($.inArray(value['site'], siteArray) === -1){
-            siteArray.push(value['site'])
+        if (!dataBySite.hasOwnProperty(value['site'])) {
+            dataBySite[value['site']] = {
+                'count': 1,
+                'site_name': value['site_name']
+            }
+        } else {
+            dataBySite[value['site']]['count'] += 1;
         }
     });
-
-    $.each(siteArray, function (idx, site) {
-        dataBySite[site] = {};
-        dataBySite[site]['count'] = 0;
-        $.each(data, function (key, value) {
-            if(value['site'] === site){
-                dataBySite[site]['count'] += 1;
-            }
-        })
-    });
-
-    $.each(dataBySite, function (key, value) {
-       $.ajax({
-           url: '/api/location-site/' + key + '/',
-           dataType: 'json',
-           success: function (data) {
-               dataBySite[key]['site_name'] = data['name'];
-               $('[data-site-id=' + key + ']').html(data['name'])
-           }
-       })
-    })
 }
 
 function createTimelineGraph(canvas, labels, dataset, options) {
