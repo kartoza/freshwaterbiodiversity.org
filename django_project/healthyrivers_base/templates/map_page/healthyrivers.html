@@ -542,6 +542,7 @@
             $.each(recordOccurrence, function (index, object) {
                 speciesRichness += Object.keys(object).length;
             });
+            fishNumber = speciesRichness;
 
             var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
             var fishTaxaCount = $(dashboardDiv.find('#fish-taxa-count').get(0));

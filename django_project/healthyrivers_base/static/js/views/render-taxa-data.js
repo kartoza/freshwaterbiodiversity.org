@@ -24,7 +24,6 @@ $.ajax({
 
         var $overviewWrapper = $('#overview-taxa-table');
         var overViewTable = _.template($('#taxon-overview-table').html());
-        console.log(urlTemplate(parameters));
         $overviewWrapper.html(overViewTable({
             id: urlTemplate(parameters),
             count: data.length,
@@ -98,15 +97,9 @@ $.ajax({
         $.each(data, function (index, value) {
             var sites = Object.keys(siteGeoPoints);
             if(!sites.includes(value['site'])) {
-                $.ajax({
-                    url: '/api/location-site/' + value['site'] + '/',
-                    dataType: 'json',
-                    success: function (data) {
-                        var center = JSON.parse(data['geometry']);
-                        siteGeoPoints[value['site']] = center['coordinates'];
-                        addFeatures(siteGeoPoints)
-                    }
-                })
+                var center = JSON.parse(value['location']);
+                siteGeoPoints[value['site']] = center['coordinates'];
+                addFeatures(siteGeoPoints);
             }
         });
     }
@@ -204,36 +197,19 @@ function countObjectPerDateCollection(data) {
     })
 }
 
-var siteArray = [];
 var dataBySite = {};
 function countObjectPerSite(data) {
-    siteArray = [];
+    dataBySite = {};
     $.each(data, function (key, value) {
-        if($.inArray(value['site'], siteArray) === -1){
-            siteArray.push(value['site'])
+        if (!dataBySite.hasOwnProperty(value['site'])) {
+            dataBySite[value['site']] = {
+                'count': 1,
+                'site_name': value['site_name']
+            }
+        } else {
+            dataBySite[value['site']]['count'] += 1;
         }
     });
-
-    $.each(siteArray, function (idx, site) {
-        dataBySite[site] = {};
-        dataBySite[site]['count'] = 0;
-        $.each(data, function (key, value) {
-            if(value['site'] === site){
-                dataBySite[site]['count'] += 1;
-            }
-        })
-    });
-
-    $.each(dataBySite, function (key, value) {
-       $.ajax({
-           url: '/api/location-site/' + key + '/',
-           dataType: 'json',
-           success: function (data) {
-               dataBySite[key]['site_name'] = data['name'];
-               $('[data-site-id=' + key + ']').html(data['name'])
-           }
-       })
-    })
 }
 
 function createTimelineGraph(canvas, labels, dataset, options) {
