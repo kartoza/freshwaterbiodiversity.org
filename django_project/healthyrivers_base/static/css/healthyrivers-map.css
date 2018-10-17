@@ -95,6 +95,7 @@
 
 .healthyrivers-site-detail table, .healthyrivers-site-detail tr, .healthyrivers-site-detail td {
     border: 1px solid lightgrey;
+    font-size: 11pt;
 }
 
 .healthyrivers-site-detail table {
