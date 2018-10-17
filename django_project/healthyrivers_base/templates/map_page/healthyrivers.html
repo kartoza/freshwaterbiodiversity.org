@@ -215,9 +215,18 @@
                 <div class="col-lg-12" style="padding: 0">
                     <table>
                         <tr>
-                            <td><img src="{% static 'img/fish-2.svg' %}" height="100px"><br/><span id="fish-occurence-count">0</span></td>
-                            <td><img src="{% static 'img/invertebras-2.svg' %}" height="100px"><br/><span id="invertebra-occurence-count">0</span></td>
-                            <td><img src="{% static 'img/algae-2.svg' %}" height="100px"><br/><span id="algae-occurence-count">0</span></td>
+                            <td><img src="{% static 'img/fish-2.svg' %}" height="100px"><br/>
+                                <span id="fish-taxa-count">0</span> Taxa <br/>
+                                <span id="fish-occurence-count">0</span> Occurrences
+                            </td>
+                            <td><img src="{% static 'img/invertebras-2.svg' %}" height="100px"><br/>
+                                <span id="invertebra-taxa-count">0</span> Taxa <br/>
+                                <span id="invertebra-occurence-count">0</span> Occurrences
+                            </td>
+                            <td><img src="{% static 'img/algae-2.svg' %}" height="100px"><br/>
+                                <span id="algae-taxa-count">0</span> Taxa <br/>
+                                <span id="algae-occurence-count">0</span> Occurrences
+                            </td>
                         </tr>
                         <tr>
                             <td width="33%">
@@ -526,20 +535,18 @@
                 cutoutPercentage: 0,
                 maintainAspectRatio: false
             };
-
             var recordOccurrence = data['records_occurrence'];
             var speciesRichness = 0;
             fishNumber = 0;
             locationSiteData = data;
             $.each(recordOccurrence, function (index, object) {
                 speciesRichness += Object.keys(object).length;
-                $.each(object, function (key, value) {
-                    fishNumber += value['count']
-                })
             });
 
             var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
-            fishOccurenceCount.html(fishNumber);
+            var fishTaxaCount = $(dashboardDiv.find('#fish-taxa-count').get(0));
+            fishOccurenceCount.html(data['modules_info']['fish']['count']);
+            fishTaxaCount.html(speciesRichness);
 
             var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
             var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
