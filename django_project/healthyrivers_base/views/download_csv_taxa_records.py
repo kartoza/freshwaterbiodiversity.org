@@ -56,7 +56,10 @@ def download_csv_site_taxa_records(request):
         row_object = []
         for field in fields:
             row_object.append(getattr(record, field))
-        row_object.append('%s,%s' % record.site.get_centroid().coords)
+        row_object.append('%s,%s' % (
+            record.site.get_centroid().coords[1],
+            record.site.get_centroid().coords[0],
+        ))
         writer.writerow(row_object)
 
     return response
