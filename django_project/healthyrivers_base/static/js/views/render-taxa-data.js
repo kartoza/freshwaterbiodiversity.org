@@ -3,6 +3,12 @@ var taxaVectorLayer = null;
 var mapTaxaSite;
 renderTaxaSiteMap();
 
+// Show loading screen
+var detailedTaxaDashboard = $("#detailed-taxa-dashboard");
+var taxaDashboardWrapper = detailedTaxaDashboard.find(".dashboard-wrapper");
+var loadingScreen = _.template($('#dashboard-loading-screen').html());
+taxaDashboardWrapper.prepend(loadingScreen);
+
 var parameters = '';
 var urlTemplate = _.template("?taxon=<%= taxon %>&search=<%= search %>&siteId=<%= siteId %>" +
             "&collector=<%= collector %>&category=<%= category %>" +
@@ -14,13 +20,62 @@ if (typeof filterParameters !== 'undefined') {
     parameters['taxon'] = taxaId;
 }
 
+var $originInfoList = $('.origin-info-list');
+$.each($originInfoList.children(), function (key, data) {
+    var $originInfoItem = $(data);
+    $originInfoItem.css('background-color', '');
+});
+
+var $endemicInfoList = $('.endemic-info-list');
+$.each($endemicInfoList.children(), function (key, data) {
+    var $endemicInfoItem = $(data);
+    $endemicInfoItem.css('background-color', '');
+});
+
+var $conservationStatusList = $('.conservation-status-list');
+$.each($conservationStatusList.children(), function (key, data) {
+    var $conservationStatusItem = $(data);
+    $conservationStatusItem.css('background-color', '');
+});
+
 $.ajax({
     url: '/api/get-bio-records/' + urlTemplate(parameters),
     dataType: 'json',
     success: function (data) {
+        detailedTaxaDashboard.find('.loading-dashboard').remove();
+
         if (data.length === 0) {
             return false;
         }
+
+        detailedTaxaDashboard.find('.detailed-dashboard-title').html(data[0]['original_species_name']);
+
+        // Set origin
+        var category = data[0]['category'];
+        $.each($originInfoList.children(), function (key, data) {
+            var $originInfoItem = $(data);
+            if ($originInfoItem.data('value') === category) {
+                $originInfoItem.css('background-color', 'rgba(5, 255, 103, 0.28)');
+            }
+        });
+
+        // Set endemic
+        var endemic = data[0]['endemism'];
+        $.each($endemicInfoList.children(), function (key, data) {
+            var $endemicInfoItem = $(data);
+            if ($endemicInfoItem.data('value') === endemic.toLowerCase()) {
+                $endemicInfoItem.css('background-color', 'rgba(5, 255, 103, 0.28)');
+            }
+        });
+
+        // Set con status
+        var conservation = data[0]['taxonomy']['iucn_status_name'];
+        $.each($conservationStatusList.children(), function (key, data) {
+            var $conservationStatusItem = $(data);
+            if ($conservationStatusItem.data('value') === conservation) {
+                $conservationStatusItem.css('background-color', 'rgba(5, 255, 103, 0.28)');
+            }
+        });
 
         var $overviewWrapper = $('#overview-taxa-table');
         var overViewTable = _.template($('#taxon-overview-table').html());
