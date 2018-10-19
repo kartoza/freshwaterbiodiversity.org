@@ -379,17 +379,19 @@ html, body {
     color: black;
     font-weight: normal !important;
     font-size: 2.4em !important;
-    margin-bottom: 0;
+    margin-bottom: 30px;
 }
 
 .partner-icon {
+    width: 100%;
+    height: 100%;
     padding: 0 25px 25px 25px;
 }
 
 .partner-icon-wrapper {
     height: 65px !important;
     text-align: center;
-    line-height: 130px;
+    width: 100%;
 }
 
 .greyed-icon {
