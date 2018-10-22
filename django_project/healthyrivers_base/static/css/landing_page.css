@@ -282,8 +282,8 @@ html, body {
 
 .donut-chart {
     position: absolute !important;
-    top: -20px;
-    left: -20px;
+    left: 55%;
+    transform: translate(-52%, 0);
 }
 
 .btn-account {
