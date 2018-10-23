@@ -1,17 +1,9 @@
 $(document).ready(function () {
     $.ajax({
-        url: '/api/location-site/',
-        dataType: 'json',
-        success: function (data) {
-            var total_sites = Object.keys(data).length;
-            $('#fish-total-sites').html(total_sites);
-        }
-    });
-    $.ajax({
         url: '/api/fish-summary/',
         dataType: 'json',
         success: function (data) {
-            $('#chart-fish').parent().empty().append('<canvas id="chart-fish" width="250px" height="250px"></canvas>');
+            $('#chart-fish').parent().empty().append('<canvas id="chart-fish" width="210px" height="210px"></canvas>');
             var native = 0;
             var non_native = 0;
             var translocated = 0;
@@ -20,18 +12,16 @@ $(document).ready(function () {
                 $('#fish-total-records').html(data['total_fish']);
             }
 
+            if(data.hasOwnProperty('total_fish_site')) {
+                $('#fish-total-sites').html(data['total_fish_site']);
+            }
+
             if(data.hasOwnProperty('category')) {
                 if (data['category']['indigenous']) {
                     native += data['category']['indigenous'];
                 }
-                if (data['category']['native']) {
-                    native += data['category']['native'];
-                }
                 if (data['category']['alien']) {
                     non_native += data['category']['alien'];
-                }
-                if (data['category']['non-native']) {
-                    non_native += data['category']['non-native'];
                 }
                 if (data['category']['translocated']) {
                     translocated += data['category']['translocated'];
@@ -61,7 +51,7 @@ function createDonutGraph(container, data) {
         type: 'doughnut',
         data: data,
         options: {
-            cutoutPercentage: 60,
+            cutoutPercentage: 70,
             legend: {
                 display: false
             }
