@@ -1,0 +1,4 @@
+[submodule "django_project/fish"]
+	path = django_project/fish
+	url = https://github.com/kartoza/kbims-fish.git
+    branch = apps
