@@ -684,8 +684,8 @@
            html2canvas(canvas, {
               onrendered: function(canvas) {
                  var link = document.createElement('a');
-                 link.href = canvas.toDataURL('image/jpeg');
-                 link.download = title + '.jpeg';
+                 link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                 link.download = title + '.png';
                  link.click();
               }
            })
