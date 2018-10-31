@@ -686,7 +686,9 @@
                  var link = document.createElement('a');
                  link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
                  link.download = title + '.png';
+                 document.body.appendChild(link);
                  link.click();
+                 document.body.removeChild(link);
               }
            })
         }
