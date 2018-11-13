@@ -160,7 +160,6 @@ all necessary servicing, repair or correction.
 
 Thank you to the individual contributors who have helped to build HealthyRivers:
 
-* Christian Christelis (Lead developer): christian@kartoza.com
 * Tim Sutton (Lead developer): tim@kartoza.com
 * Dimas Ciptura: dimas@kartoza.com
 * Irwan Fathurrahman: irwan@kartoza.com
