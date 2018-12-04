@@ -95,6 +95,7 @@
 
 .healthyrivers-site-detail table, .healthyrivers-site-detail tr, .healthyrivers-site-detail td {
     border: 1px solid lightgrey;
+    font-size: 11pt;
 }
 
 .healthyrivers-site-detail table {
@@ -126,7 +127,7 @@
     line-height: 60px;
 }
 
-#detailed-taxa-dashboard, #detailed-dashboard {
+#detailed-taxa-dashboard, #detailed-dashboard, .loading-dashboard {
     position: fixed;
     top: 0;
     left: 0;
@@ -136,6 +137,35 @@
     z-index: 10000;
     background: white;
     border: 3px solid black;
+}
+
+.detailed-dashboard-title {
+    padding: 15px;
+    font-size: 15pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.loading-dashboard {
+    margin-top: 60px;
+    text-align: center;
+    border: 0;
+}
+
+.loading-dashboard img {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    position: absolute;
+}
+
+.loading-dashboard-subtitle {
+    font-size: 12pt;
+    color: grey;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    position: absolute;
 }
 
 .dashboard-wrapper {
@@ -186,4 +216,26 @@
 #occurence-table, #records-table, #records-area-table {
     max-height: 300px;
     overflow-y: auto;
+}
+
+.dd-title {
+    font-size: 13pt;
+    padding-top: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.dd-sub-title {
+    margin-top: 20px;
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+.dd-status-item {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.dd-status-list {
+    padding-left: 15px;
 }

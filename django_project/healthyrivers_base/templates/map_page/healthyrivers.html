@@ -14,6 +14,16 @@
 {% endblock %}
 
 {% block additional_template %}
+
+    <script type="text/template" id="dashboard-loading-screen">
+        <div class="loading-dashboard">
+            <img src="/static/img/small-loading.svg" width="250" alt="Loading view">
+            <div class="loading-dashboard-subtitle">
+                Loading...
+            </div>
+        </div>
+    </script>
+
     <div id="detailed-dashboard" style="display: none">
     <button class="btn btn-primary btn-dashboard" style="float: right" onclick="$('#detailed-dashboard').hide('slide', {direction: 'right'}, 300)"><i class="fa fa-times pull-right"></i></button>
     <div class="container dashboard-wrapper">
@@ -90,35 +100,62 @@
     </div>
 
     <div id="detailed-taxa-dashboard" style="display: none">
-    <button class="btn btn-primary btn-dashboard" style="float: right" onclick="$('#detailed-taxa-dashboard').hide('slide', {direction: 'right'}, 300)"><i class="fa fa-times pull-right"></i></button>
+    <div class="detailed-dashboard-title">&nbsp;</div>
+    <button class="btn btn-primary btn-dashboard" style="float: right" onclick="hideDetailedTaxaDashboard()"><i class="fa fa-times pull-right"></i></button>
     <div class="container dashboard-wrapper">
         <div class="container row">
             <div class="col-lg-4">
-                <h5 style="float: left">Distribution</h5><button id="export-taxasite-map" style="float: right" class="btn btn-default btn-element-download"><i class="fa fa-download"></i></button>
+                <h5 class="dd-title" style="float: left">Distribution</h5><button id="export-taxasite-map" style="float: right" class="btn btn-default btn-element-download"><i class="fa fa-download"></i></button>
                 <div id="taxasite-map" class="map" style="height: 300px; width: 100%; border: 1px solid black"></div>
-                <h5 style="margin-top: 15px">Overview</h5>
+                <h5 class="dd-title" style="margin-top: 15px">Overview</h5>
                 <div id="overview-taxa-table" class="dashboard-table" style="margin-top: 10px; margin-bottom: 10px"></div>
-                <h5>Names & Taxonomy</h5>
+                <h5 class="dd-title">Names & Taxonomy</h5>
                 <div id="overview-name-taxonomy-table" class="dashboard-table" style="margin-top: 10px; margin-bottom: 10px"></div>
             </div>
             <div class="col-lg-8" id="dashboard-graph-wrapper">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <h5>Records overtime</h5>
+                    <div class="col-lg-6">
+                        <h5 class="dd-title">Records overtime</h5>
                         <div id="records-table" class="dashboard-table"></div>
                     </div>
-                    <div class="col-lg-4">
-                        <h5>Records per area</h5>
+                    <div class="col-lg-6">
+                        <h5 class="dd-title">Records per area</h5>
                         <div id="records-area-table" class="dashboard-table"></div>
                     </div>
                 </div>
                 <div class="row" style="margin: 0 !important; margin-top: 15px !important;">
-                    <div id="taxa-record-timeline-wrapper" class="chart-wrapper" style="border: 1px solid black; width: 90%; height: 200px">
+                    <div id="taxa-record-timeline-wrapper" class="chart-wrapper" style="border: 1px solid black; width: 95%; height: 200px">
                         <canvas id="taxa-records-timeline-graph" width="150px" height="150px"></canvas>
                     </div>
-                    <div style="width: 10%;">
-                        <button class="btn btn-default btn-element-download pull-right" onclick="download(document.getElementById('taxa-records-timeline-graph'), 'taxa-record-timeline')"><i class="fa fa-download"></i></button>
+                    <div style="width: 5%; ">
+                        <button class="btn btn-default btn-element-download pull-right" style="float: left" onclick="download(document.getElementById('taxa-records-timeline-graph'), 'taxa-record-timeline')">
+                            <i class="fa fa-download"></i>
+                        </button>
                     </div>
+                </div>
+                <div class="row dd-sub-title">CONSERVATION STATUS</div>
+                <div class="row dd-status-list conservation-status-list">
+                    <span class="dd-status-item" data-value="EX">Extinct (EX)</span>
+                    <span class="dd-status-item" data-value="EW">Extinct in the wild (EW)</span>
+                    <span class="dd-status-item" data-value="CR">Critically endangered (CR)</span>
+                    <span class="dd-status-item" data-value="EN">Endangered (EN)</span>
+                    <span class="dd-status-item" data-value="VU">Vulnerable (VU)</span>
+                    <span class="dd-status-item" data-value="NT">Near threatened (NT)</span>
+                    <span class="dd-status-item" data-value="LC">Least concern (LC)</span>
+                    <span class="dd-status-item" data-value="DD">Data deficient (DD)</span>
+                    <span class="dd-status-item" data-value="NE">Not evaluated (NE)</span>
+                </div>
+                <div class="row dd-sub-title">ORIGIN</div>
+                <div class="row dd-status-list origin-info-list">
+                    <span class="dd-status-item" data-value="indigenous">Native</span>
+                    <span class="dd-status-item" data-value="alien">Non-native</span>
+                    <span class="dd-status-item" data-value="translocated">Translocated</span>
+                </div>
+                <div class="row dd-sub-title">ENDEMISM</div>
+                <div class="row dd-status-list endemic-info-list">
+                    <span class="dd-status-item" data-value="widespread">Widespread</span>
+                    <span class="dd-status-item" data-value="regional endemic">Regional endemic</span>
+                    <span class="dd-status-item" data-value="micro-endemic">Micro-endemic</span>
                 </div>
             </div>
         </div>
@@ -174,7 +211,7 @@
             </tr>
             <tr>
                 <td>Records</td>
-                <td><%= count %> <a href="/download-csv-taxa-records/<%= id %>/" style="text-decoration: underline; font-size: 11pt !important;">Download as CSV</a></td>
+                <td><%= count %> <a href='/download-csv-taxa-records/<%= id %>' style="text-decoration: underline; font-size: 11pt !important;">Download as CSV</a></td>
             </tr>
         </table>
     </script>
@@ -198,6 +235,26 @@
                 <i class="fa fa-arrow-down"></i><br>
                 <%= species %>
             </div>
+            <div class="origin-info">
+                <div class="row">
+                    <div class="col-lg-5">
+                        ORIGIN
+                    </div>
+                    <div class="col-lg-7">
+                        : <%= origin %>
+                    </div>
+                </div>
+            </div>
+            <div class="endemism-info">
+                <div class="row">
+                    <div class="col-lg-5">
+                        ENDEMISM
+                    </div>
+                    <div class="col-lg-7">
+                        : <%= endemism %>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row healthyrivers-side-panel-footer">
             <div class="col-lg-3"></div>
@@ -215,9 +272,18 @@
                 <div class="col-lg-12" style="padding: 0">
                     <table>
                         <tr>
-                            <td><img src="{% static 'img/fish-2.svg' %}" height="100px"><br/><span id="fish-occurence-count">0</span></td>
-                            <td><img src="{% static 'img/invertebras-2.svg' %}" height="100px"><br/><span id="invertebra-occurence-count">0</span></td>
-                            <td><img src="{% static 'img/algae-2.svg' %}" height="100px"><br/><span id="algae-occurence-count">0</span></td>
+                            <td><img src="{% static 'img/fish-2.svg' %}" height="100px"><br/>
+                                <span id="fish-taxa-count">0</span> Taxa <br/>
+                                <span id="fish-occurence-count">0</span> Occurrences
+                            </td>
+                            <td><img src="{% static 'img/invertebras-2.svg' %}" height="100px"><br/>
+                                <span id="invertebra-taxa-count">0</span> Taxa <br/>
+                                <span id="invertebra-occurence-count">0</span> Occurrences
+                            </td>
+                            <td><img src="{% static 'img/algae-2.svg' %}" height="100px"><br/>
+                                <span id="algae-taxa-count">0</span> Taxa <br/>
+                                <span id="algae-occurence-count">0</span> Occurrences
+                            </td>
                         </tr>
                         <tr>
                             <td width="33%">
@@ -287,6 +353,13 @@
     <script>
         var taxaId = null;
         var locationSitePk = null;
+        function hideDetailedTaxaDashboard() {
+            $('#detailed-taxa-dashboard').hide('slide', {direction: 'right'}, 300, function () {
+                $("#detailed-taxa-dashboard").find('.loading-dashboard').remove();
+                $("#detailed-taxa-dashboard").find('.detailed-dashboard-title').html('&nbsp;');
+            });
+        }
+
         function renderDetailedDashboard() {
             $('#detailed-dashboard').show('slide', {direction: 'right'}, 300);
             renderLocationSiteMap();
@@ -526,20 +599,19 @@
                 cutoutPercentage: 0,
                 maintainAspectRatio: false
             };
-
             var recordOccurrence = data['records_occurrence'];
             var speciesRichness = 0;
             fishNumber = 0;
             locationSiteData = data;
             $.each(recordOccurrence, function (index, object) {
                 speciesRichness += Object.keys(object).length;
-                $.each(object, function (key, value) {
-                    fishNumber += value['count']
-                })
             });
+            fishNumber = speciesRichness;
 
             var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
-            fishOccurenceCount.html(fishNumber);
+            var fishTaxaCount = $(dashboardDiv.find('#fish-taxa-count').get(0));
+            fishOccurenceCount.html(data['modules_info']['fish']['count']);
+            fishTaxaCount.html(speciesRichness);
 
             var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
             var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
@@ -612,9 +684,11 @@
            html2canvas(canvas, {
               onrendered: function(canvas) {
                  var link = document.createElement('a');
-                 link.href = canvas.toDataURL('image/jpeg');
-                 link.download = title + '.jpeg';
+                 link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                 link.download = title + '.png';
+                 document.body.appendChild(link);
                  link.click();
+                 document.body.removeChild(link);
               }
            })
         }

@@ -15,35 +15,20 @@
 {% block body_content %}
     <div id="section-wrapper">
         <header class="masthead text-center text-white d-flex" id="header">
-            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
-                </ol>
+            <div id="carouselIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="carousel-title">
-                            Human needs, conservation, and water resources collide in South Africa where threats
-                            to freshwater biodiversity and ecosystem services will only increase in the years ahead.
-                        </div>
-                        <img class="d-block w-100" src="{% static 'img/Banner1.jpg' %}" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-title">
-                            Freshwater ecosystems including rivers, lakes and wetlands not only support
-                            a wealth of biodiversity, but they are also fundamental to our economic, social
-                            and spiritual well-being.
-                        </div>
-                        <img class="d-block w-100" src="{% static 'img/Banner2.jpg' %}" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-title">
-                            Water is the most critical resource issue of our lifetime and our children's lifetime.
-                            The health of our rivers is the principal measure of how we live on the land.
-                        </div>
-                        <img class="d-block w-100" src="{% static 'img/Banner3.jpg' %}" alt="Third slide">
-                    </div>
+                    {% for header in headers %}
+                        {% if forloop.counter == 1 %}
+                            <div class="carousel-item active">
+                        {% else %}
+                            <div class="carousel-item">
+                        {% endif %}
+                                <div class="carousel-title">
+                                    {{ header.description|safe }}
+                                </div>
+                                <img class="d-block w-100" src="uploaded/{{ header.file }}" alt="slide">
+                            </div>
+                    {% endfor %}
                 </div>
             </div>
             <div id="title-header">
@@ -61,7 +46,7 @@
 
         <section id="fish-data">
             <div class="container" style="margin-bottom: 25px">
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px;">
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="section-heading">BIODIVERSITY RECORDS</h2>
                     </div>
@@ -69,20 +54,25 @@
                 <div class="row">
                     <div class="col-lg-3 ml-auto text-center" id="total-fish">
                         <div class="chart-icon-wrapper">
-                            <p class="total-data green">123</p>
-                            <p class="total-data-desc green">Fish Species</p>
                             <img src="{% static 'img/fish-2.svg' %}" class="fish-icon fish">
+                            <div class="module-info-wrapper">
+                                <span id="fish-total-records" class="total-data green">-</span>
+                                <span class="total-data-desc green">&nbsp;records</span><br/>
+                                <span id="fish-total-sites" class="total-data green">-</span>
+                                <span class="total-data-desc green">&nbsp;sites</span>
+                            </div>
                             <span class="bullet"></span>
                             <div class="donut-chart">
-                                <canvas id="chart-fish" width="170" height="170"></canvas>
+                                <canvas id="chart-fish" width="250" height="250"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 text-center" id="total-invertebra" c>
+                    <div class="col-lg-3 text-center" id="total-invertebra">
                         <div class="chart-icon-wrapper">
-                            <p class="total-data green">456</p>
-                            <p class="total-data-desc green">Aquatic Invertebrates</p>
-                            <img src="{% static 'img/invertebras-2.svg' %}" class="fish-icon crab">
+                            <img src="{% static 'img/invertebras-2.svg' %}" class="fish-icon crab greyed-icon">
+                            <div class="module-info-wrapper">
+                                <span class="total-data-desc green">coming soon</span>
+                            </div>
                             <span class="bullet"></span>
                             <div class="donut-chart">
                                 <canvas id="chart-crab" width="170" height="170"></canvas>
@@ -91,9 +81,10 @@
                     </div>
                     <div class="col-lg-3 mr-auto text-center" id="total-algae">
                         <div class="chart-icon-wrapper">
-                            <p class="total-data green">789</p>
-                            <p class="total-data-desc green">Algae</p>
-                            <img src="{% static 'img/algae-2.svg' %}" class="fish-icon algae">
+                            <img src="{% static 'img/algae-2.svg' %}" class="fish-icon algae greyed-icon">
+                            <div class="module-info-wrapper">
+                                <span class="total-data-desc green">coming soon</span>
+                            </div>
                             <span class="bullet"></span>
                             <div class="donut-chart">
                                 <canvas id="chart-algae" width="170" height="170"></canvas>
@@ -181,7 +172,7 @@
                 <div class="row">
                     <div class="col-lg-4 pull-left fbis-icon">
                         <a href="#" class="pull-left">
-                            <img src="{% static 'img/fbis-text.png' %}" width="300px">
+                            <img src="{% static 'img/fbis-text-2.png' %}" width="300px">
                         </a>
                     </div>
                     <div class="col-lg-4 about-links">
@@ -218,8 +209,8 @@
     <script src="{% static "js/libs/jquery-easing/jquery.easing.min.js" %}"></script>
     <script src="{% static "js/libs/scrollreveal/scrollreveal.min.js" %}"></script>
     <script src="{% static "js/libs/magnific-popup/jquery.magnific-popup.min.js" %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="{% static "js/libs/chart/Chart-2.7.2.js" %}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="{% static "js/creative.js" %}"></script>
+    <script src="{% static "js/views/landing-page.js" %}"></script>
 {% endblock %}
