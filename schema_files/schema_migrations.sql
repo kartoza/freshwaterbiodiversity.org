@@ -862,7 +862,8 @@ drop table sitevisitcrosssectionpoint;
 drop table sitevisitfishhabitatcover;
 drop table sitevisitfishhabitatsample;
 drop table sitevisitfishhabitatsampledetail;
-drop table sitevisitformulacriterionentry;
+-- This is the only way to link formulas for site visits marked for deletion - do we really want to do that?
+-- drop table sitevisitformulacriterionentry;
 drop table sitevisithabitattype;
 drop table sitevisitlanduse;
 drop table sitevisitripvegchannelimpact;
@@ -949,12 +950,9 @@ drop table photoarea;
 drop table Sitephoto;
 drop table Sitevisitstreamdimension;
 drop table Sitevisitchem;
-drop table Sitevisitsassbiotope;
-drop table Sitevisittaxon;
 drop table SpatialData;
 drop table Streamdimension;
 drop table Streamdimensioncategory;
-drop table Taxon;
 drop table Userrole;
 drop table Usersassvalidation;
 drop table Vegetation;
@@ -973,3 +971,11 @@ drop table Regionwq;
 drop table Spatialdata;
 drop table Vegetation;
 drop table Watermanagementarea;
+
+
+-- These are tables that were empty in intial migration which we need to load up from 
+-- a CSV export I did
+
+-- Sitevisitsassbiotope;
+-- Sitevisittaxon;
+-- Taxon
