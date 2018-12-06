@@ -239,3 +239,7 @@
 .dd-status-list {
     padding-left: 15px;
 }
+
+.ol-attribution {
+    bottom: 4.7em !important;
+}

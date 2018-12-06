@@ -10,7 +10,7 @@ def create_fish_taxon_group(apps, schema_editor):
         return
 
     taxon_group, status = TaxonGroup.objects.get_or_create(
-        name='FishModule',
+        name='Fish',
         category=TaxonomicGroupCategory.SPECIES_MODULE.name
     )
 
