@@ -199,70 +199,6 @@
         </table>
     </script>
 
-    <script type="text/template" id="taxon-overview-table">
-        <table>
-            <tr>
-                <td>Taxon</td>
-                <td><%= taxon_class %></td>
-            </tr>
-            <tr>
-                <td>GBIF ID</td>
-                <td><%= gbif_id %></td>
-            </tr>
-            <tr>
-                <td>Records</td>
-                <td><%= count %> <a href='/download-csv-taxa-records/<%= id %>' style="text-decoration: underline; font-size: 11pt !important;">Download as CSV</a></td>
-            </tr>
-        </table>
-    </script>
-
-    <script type="text/template" id="species-template">
-        <div class="content" id="species-content" data-taxon-id="<%= id %>">
-            <div class="iucn-status"><span class="name"><%= iucn_status_name %></span><span class="full-name"><%= iucn_status_full_name %></span></div>
-            <div class="species-count"><b><%= count %></b><br> <span class="records-link"> <a href="#">records</a></span></div>
-            <div class="taxonomy-system">
-                <%= kingdom %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= phylum %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= taxon_class %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= order %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= family %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= genus %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= species %>
-            </div>
-            <div class="origin-info">
-                <div class="row">
-                    <div class="col-lg-5">
-                        ORIGIN
-                    </div>
-                    <div class="col-lg-7">
-                        : <%= origin %>
-                    </div>
-                </div>
-            </div>
-            <div class="endemism-info">
-                <div class="row">
-                    <div class="col-lg-5">
-                        ENDEMISM
-                    </div>
-                    <div class="col-lg-7">
-                        : <%= endemism %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row healthyrivers-side-panel-footer">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-7" style="line-height: 60px"><span style="text-decoration: underline">Detailed dashboard</span></div>
-            <div class="col-lg-2"><a onclick="renderTaxaDetailedDashboard()"><i class="fa fa-arrow-right"></i></a></div>
-        </div>
-    </script>
-
     <script type='text/html' id='site-dashboard-template'>
         <div id="healthyrivers-side-panel" class="right-panel-header-healthyrivers">
             <div class="row healthyrivers-site-detail">
@@ -342,11 +278,6 @@
 {#                        </tr>#}
                     </table>
                 </div>
-            </div>
-            <div class="row healthyrivers-side-panel-footer">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-7" style="line-height: 60px"><span style="text-decoration: underline">Detailed dashboard</span></div>
-                <div class="col-lg-2"><a onclick="renderDetailedDashboard()"><i class="fa fa-arrow-right"></i></a></div>
             </div>
         </div>
     </script>
@@ -481,6 +412,7 @@
         }
 
         function calculateChart(dashboardDiv, data) {
+            console.log('chartData', data);
             var barOptions = {
                 title: {
                   display: true,
