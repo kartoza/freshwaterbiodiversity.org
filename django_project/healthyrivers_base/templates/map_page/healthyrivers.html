@@ -162,107 +162,6 @@
     </div>
     </div>
 
-    <script type="text/template" id="taxon-detail-table">
-        <table>
-            <tr>
-                <td>Kingdom</td>
-                <td><%= kingdom %></td>
-            </tr>
-            <tr>
-                <td>Phylum</td>
-                <td><%= phylum %></td>
-            </tr>
-            <tr>
-                <td>Order</td>
-                <td><%= order %></td>
-            </tr>
-            <tr>
-                <td>Family</td>
-                <td><%= family %></td>
-            </tr>
-            <tr>
-                <td>Genus</td>
-                <td><%= genus %></td>
-            </tr>
-            <tr>
-                <td>Species</td>
-                <td><%= species %></td>
-            </tr>
-            <tr>
-                <td>Common name</td>
-                <td><%= common_name %></td>
-            </tr>
-            <tr>
-                <td>Scientific name</td>
-                <td><%= scientific_name %></td>
-            </tr>
-        </table>
-    </script>
-
-    <script type="text/template" id="taxon-overview-table">
-        <table>
-            <tr>
-                <td>Taxon</td>
-                <td><%= taxon_class %></td>
-            </tr>
-            <tr>
-                <td>GBIF ID</td>
-                <td><%= gbif_id %></td>
-            </tr>
-            <tr>
-                <td>Records</td>
-                <td><%= count %> <a href='/download-csv-taxa-records/<%= id %>' style="text-decoration: underline; font-size: 11pt !important;">Download as CSV</a></td>
-            </tr>
-        </table>
-    </script>
-
-    <script type="text/template" id="species-template">
-        <div class="content" id="species-content" data-taxon-id="<%= id %>">
-            <div class="iucn-status"><span class="name"><%= iucn_status_name %></span><span class="full-name"><%= iucn_status_full_name %></span></div>
-            <div class="species-count"><b><%= count %></b><br> <span class="records-link"> <a href="#">records</a></span></div>
-            <div class="taxonomy-system">
-                <%= kingdom %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= phylum %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= taxon_class %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= order %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= family %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= genus %><br>
-                <i class="fa fa-arrow-down"></i><br>
-                <%= species %>
-            </div>
-            <div class="origin-info">
-                <div class="row">
-                    <div class="col-lg-5">
-                        ORIGIN
-                    </div>
-                    <div class="col-lg-7">
-                        : <%= origin %>
-                    </div>
-                </div>
-            </div>
-            <div class="endemism-info">
-                <div class="row">
-                    <div class="col-lg-5">
-                        ENDEMISM
-                    </div>
-                    <div class="col-lg-7">
-                        : <%= endemism %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row healthyrivers-side-panel-footer">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-7" style="line-height: 60px"><span style="text-decoration: underline">Detailed dashboard</span></div>
-            <div class="col-lg-2"><a onclick="renderTaxaDetailedDashboard()"><i class="fa fa-arrow-right"></i></a></div>
-        </div>
-    </script>
-
     <script type='text/html' id='site-dashboard-template'>
         <div id="healthyrivers-side-panel" class="right-panel-header-healthyrivers">
             <div class="row healthyrivers-site-detail">
@@ -342,11 +241,6 @@
 {#                        </tr>#}
                     </table>
                 </div>
-            </div>
-            <div class="row healthyrivers-side-panel-footer">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-7" style="line-height: 60px"><span style="text-decoration: underline">Detailed dashboard</span></div>
-                <div class="col-lg-2"><a onclick="renderDetailedDashboard()"><i class="fa fa-arrow-right"></i></a></div>
             </div>
         </div>
     </script>
@@ -607,11 +501,11 @@
                 speciesRichness += Object.keys(object).length;
             });
             fishNumber = speciesRichness;
+            var fishTaxaCount = dashboardDiv.find('#fish-taxa-count');
+            fishTaxaCount.html(fishNumber);
 
-            var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
-            var fishTaxaCount = $(dashboardDiv.find('#fish-taxa-count').get(0));
-            fishOccurenceCount.html(data['modules_info']['fish']['count']);
-            fishTaxaCount.html(speciesRichness);
+            var fishOccurenceCount = dashboardDiv.find('#fish-occurence-count');
+            fishOccurenceCount.html(data['modules_info']['base']['count']);
 
             var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
             var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
@@ -622,7 +516,7 @@
                 var fishCalculationGraph = dashboardDiv.find('#fish-calculation-graph').get(0).getContext('2d');
                 {#var fishPieChartMajor = dashboardDiv.find('#fish-pie-chart-major').get(0).getContext('2d');#}
 
-                var categories = data['modules_info']['fish']['categories'];
+                var categories = data['modules_info']['base']['categories'];
                 var native = 0;
                 var nonNative = 0;
                 var translocated = 0;
