@@ -501,11 +501,11 @@
                 speciesRichness += Object.keys(object).length;
             });
             fishNumber = speciesRichness;
+            var fishTaxaCount = dashboardDiv.find('#fish-taxa-count');
+            fishTaxaCount.html(fishNumber);
 
-            var fishOccurenceCount = $(dashboardDiv.find('#fish-occurence-count').get(0));
-            var fishTaxaCount = $(dashboardDiv.find('#fish-taxa-count').get(0));
-            fishOccurenceCount.html(data['modules_info']['fish']['count']);
-            fishTaxaCount.html(speciesRichness);
+            var fishOccurenceCount = dashboardDiv.find('#fish-occurence-count');
+            fishOccurenceCount.html(data['modules_info']['base']['count']);
 
             var shannonDiversity = countShannonDiversity(recordOccurrence, fishNumber);
             var simpsonDiversity = countSimpsonDiversity(recordOccurrence, fishNumber);
@@ -516,7 +516,7 @@
                 var fishCalculationGraph = dashboardDiv.find('#fish-calculation-graph').get(0).getContext('2d');
                 {#var fishPieChartMajor = dashboardDiv.find('#fish-pie-chart-major').get(0).getContext('2d');#}
 
-                var categories = data['modules_info']['fish']['categories'];
+                var categories = data['modules_info']['base']['categories'];
                 var native = 0;
                 var nonNative = 0;
                 var translocated = 0;
