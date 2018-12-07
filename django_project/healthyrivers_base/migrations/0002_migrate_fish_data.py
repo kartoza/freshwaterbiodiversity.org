@@ -28,27 +28,29 @@ def move_fish_data(apps, schema_editor):
         )
 
         additional_data = {}
-
-        if fish.depth_cm:
-            additional_data['depth_cm'] = fish.depth_cm
-        if fish.near_bed_velocity:
-            additional_data['near_bed_velocity'] = fish.near_bed_velocity
-        if fish.substrate:
-            additional_data['substrate'] = fish.substrate
-        if fish.ec:
-            additional_data['substrate'] = fish.ec
-        if fish.ph:
-            additional_data['ph'] = fish.ph
-        if fish.do:
-            additional_data['do'] = fish.do
-        if fish.temp:
-            additional_data['temp'] = fish.temp
-        if fish.turbidity:
-            additional_data['turbidity'] = fish.turbidity
-        if fish.hydraulic_biotope:
-            additional_data['hydraulic_biotope'] = fish.hydraulic_biotope
-        if fish.fbis_site_code:
-            additional_data['fbis_site_code'] = fish.fbis_site_code
+        try:
+            if fish.depth_cm:
+                additional_data['depth_cm'] = fish.depth_cm
+            if fish.near_bed_velocity:
+                additional_data['near_bed_velocity'] = fish.near_bed_velocity
+            if fish.substrate:
+                additional_data['substrate'] = fish.substrate
+            if fish.ec:
+                additional_data['substrate'] = fish.ec
+            if fish.ph:
+                additional_data['ph'] = fish.ph
+            if fish.do:
+                additional_data['do'] = fish.do
+            if fish.temp:
+                additional_data['temp'] = fish.temp
+            if fish.turbidity:
+                additional_data['turbidity'] = fish.turbidity
+            if fish.hydraulic_biotope:
+                additional_data['hydraulic_biotope'] = fish.hydraulic_biotope
+            if fish.fbis_site_code:
+                additional_data['fbis_site_code'] = fish.fbis_site_code
+        except AttributeError:
+            continue
 
         if additional_data:
             print("Found additional data for %s" % fish.id)
