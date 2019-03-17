@@ -30,7 +30,7 @@
             <a class="p-2" href="/accounts/signup">SIGN UP</a>
         {% else %}
             <a class="p-2" href="/profile">PROFILE</a>
-            <a class="p-2" href="/fish/upload">UPLOAD DATA</a>
+            <a class="p-2" href="/upload">UPLOAD DATA</a>
             {% if user.is_staff or user.is_superuser %}
                 <a class="p-2" href="/admin/">ADMINISTRATION</a>
             {% endif %}
