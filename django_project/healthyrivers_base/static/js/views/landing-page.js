@@ -13,7 +13,7 @@ $(document).ready(function () {
                 return;
             }
 
-            $('#chart-fish').parent().empty().append('<canvas id="chart-fish" width="210px" height="210px"></canvas>');
+            $('#chart-fish').parent().empty().append('<canvas id="chart-fish" width="150px" height="150px"></canvas>');
             var native = 0;
             var non_native = 0;
             var translocated = 0;

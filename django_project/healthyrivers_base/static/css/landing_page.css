@@ -38,22 +38,24 @@ section {
 #fish-data {
     position: relative;
     padding-top: 20px;
-    height: 325px;
+    background-color: #f8f7f4;
 }
 
 #about {
-    background-color: #759763;
-    color: white;
+    background-color: #ffffff;
+    color: #00697d;
     width: 100%;
-    padding: 18px 0;
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .fbis-icon {
-    padding-top: 12px;
+    padding-left: 30px;
+    padding-top: 15px;
 }
 
 .footer-shrink {
@@ -83,6 +85,10 @@ img::-moz-selection {
     background: transparent;
 }
 
+#header {
+    background-image: url('/static/img/Underwater_preview.png');
+}
+
 header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
@@ -92,7 +98,7 @@ header.masthead {
     -o-background-size: cover;
     background-size: cover;
     background-color: black;
-    height: 400px !important;
+    height: 700px !important;
     min-height: auto !important;
 }
 
@@ -133,18 +139,26 @@ header.masthead p {
 }
 
 #title-header {
+    display: table;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
+    height: 700px;
+    text-align: left;
+}
+
+.title-header-text {
+    padding-left: 10px;
+    width: 650px;
+    font-size: 47px;
+    font-weight: 700;
 }
 
 .title-header-buttons {
-    height: 100%;
-    width: 100%;
-}
-
-.title-header-buttons .btn {
-    margin-top: 250px;
+    padding-left: 40px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #carouselIndicators {
@@ -164,7 +178,7 @@ header.masthead p {
 .chart-icon-wrapper {
     position: relative;
     width: 200px;
-    height: 200px;
+    height: 150px;
     margin: 0 auto;
 }
 
@@ -287,26 +301,27 @@ html, body {
 }
 
 .btn-account {
-    background-color: white;
-    border-radius: 0;
+    border-radius: 2px;
     margin: 10px;
-    font-weight: normal;
-    color: #436461;
-    padding: 3px 20px;
-    font-size: 13pt;
+    color: #d7cd47;
+    padding: 10px 40px;
+    font-size: 14px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease 0s;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 2px solid #d7cd47;
 }
 
 .btn-account:hover {
     color: white;
-    background-color: #436461;
+    background-color: #d7cd47;
 }
 
 .section-heading {
-    color: black;
+    color: #525351;
     font-weight: normal !important;
-    font-size: 2.4em !important;
+    font-size: 32px;
 }
 
 .total-data {
@@ -328,6 +343,7 @@ html, body {
 }
 
 .about-links {
+    padding-top: 10px;
     text-align: center;
 }
 
@@ -338,7 +354,7 @@ html, body {
 }
 
 .about-links a {
-    color: white;
+    color: #00697d;
     text-decoration: none;
 }
 
@@ -366,8 +382,8 @@ html, body {
 }
 
 #partners-section {
-    padding-bottom: 80px;
-    height: 850px;
+    padding-top: 40px;
+    height: 550px;
 }
 
 #partners-section img {
@@ -376,16 +392,16 @@ html, body {
 }
 
 .section-partners-heading {
-    color: black;
+    color: #525351;
     font-weight: normal !important;
-    font-size: 2.4em !important;
+    font-size: 32px;
     margin-bottom: 30px;
 }
 
 .partner-icon {
     width: 100%;
     height: 100%;
-    padding: 0 25px 25px 25px;
+    padding: 0 5px 10px 10px;
 }
 
 .partner-icon-wrapper {
@@ -405,4 +421,33 @@ html, body {
     left: 5px;
     text-align: center;
     width: 100%;
+}
+
+#contact-section {
+    padding-top: 50px;
+    height: 400px;
+    background-color: #3d647d;
+    color: white;
+}
+
+#contact-section a {
+    color: white;
+    text-decoration: underline;
+}
+
+.btn-contact-us {
+    text-decoration: none !important;
+    background-color: #d7cd47;
+    color: white;
+    border-radius: 2px;
+    font-size: 14px;
+    text-transform: capitalize;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.module-information {
+    padding-top: 5px;
+    padding-left: 5px;
+    color: #3d647d;
 }
