@@ -83,6 +83,10 @@ img::-moz-selection {
     background: transparent;
 }
 
+#header {
+    background-image: url('/static/img/Underwater_preview.png');
+}
+
 header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
@@ -92,7 +96,7 @@ header.masthead {
     -o-background-size: cover;
     background-size: cover;
     background-color: black;
-    height: 400px !important;
+    height: 700px !important;
     min-height: auto !important;
 }
 
@@ -133,18 +137,26 @@ header.masthead p {
 }
 
 #title-header {
+    display: table;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
+    height: 700px;
+    text-align: left;
+}
+
+.title-header-text {
+    padding-left: 10px;
+    width: 650px;
+    font-size: 47px;
+    font-weight: 700;
 }
 
 .title-header-buttons {
-    height: 100%;
-    width: 100%;
-}
-
-.title-header-buttons .btn {
-    margin-top: 250px;
+    padding-left: 40px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #carouselIndicators {
@@ -287,20 +299,21 @@ html, body {
 }
 
 .btn-account {
-    background-color: white;
-    border-radius: 0;
+    border-radius: 2px;
     margin: 10px;
-    font-weight: normal;
-    color: #436461;
-    padding: 3px 20px;
-    font-size: 13pt;
+    color: #d7cd47;
+    padding: 10px 40px;
+    font-size: 14px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease 0s;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 2px solid #d7cd47;
 }
 
 .btn-account:hover {
     color: white;
-    background-color: #436461;
+    background-color: #d7cd47;
 }
 
 .section-heading {
@@ -405,4 +418,21 @@ html, body {
     left: 5px;
     text-align: center;
     width: 100%;
+}
+
+.nav-login-button {
+    color: #3d647d !important;
+    border-radius: 2px;
+    background-color: #ffffff;
+    font-weight: bold;
+    padding-right: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 14px !important;
+    border: 2px solid #3d647d;
+}
+
+.nav-login-button:hover {
+    color: white !important;
+    background-color: #3d647d;
 }
