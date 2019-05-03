@@ -178,7 +178,7 @@ header.masthead p {
 .chart-icon-wrapper {
     position: relative;
     width: 200px;
-    height: 200px;
+    height: 150px;
     margin: 0 auto;
 }
 
@@ -444,5 +444,10 @@ html, body {
     text-transform: capitalize;
     padding-left: 20px;
     padding-right: 20px;
+}
 
+.module-information {
+    padding-top: 5px;
+    padding-left: 5px;
+    color: #3d647d;
 }
