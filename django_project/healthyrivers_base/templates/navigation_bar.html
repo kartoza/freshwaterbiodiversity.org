@@ -31,14 +31,15 @@
             <a class="nav-login-button" href="/accounts/login">LOG IN</a>
             <a class="nav-login-button" href="/accounts/signup">SIGN UP</a>
         {% else %}
-            <a class="p-2" href="/profile">PROFILE</a>
-            <a class="p-2" href="/upload">UPLOAD DATA</a>
+            <a class="p-2" href="/profile">Profile</a>
+            <a class="p-2" href="/upload">Upload Data</a>
             {% if user.is_staff or user.is_superuser %}
-                <a class="p-2" href="/admin/">ADMINISTRATION</a>
+                <a class="p-2" href="/admin/">Administration</a>
             {% endif %}
-            <a class="p-2" href="/nonvalidated-list/">VALIDATE RECORDS</a>
-            <a class="p-2" href="/nonvalidated-user-list/">UPDATE RECORDS</a>
-            <a class="p-2" href="/accounts/logout">LOGOUT</a>
+            <a class="p-2" href="/nonvalidated-list/">Validate Records</a>
+            <a class="p-2" href="/nonvalidated-user-list/">Update Records</a>
+            <span class="p-2"></span>
+            <a class="nav-login-button" href="/accounts/logout">LOGOUT</a>
         {% endif %}
     </nav>
 </div>
