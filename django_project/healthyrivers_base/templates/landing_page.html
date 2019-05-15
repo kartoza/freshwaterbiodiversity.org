@@ -61,13 +61,17 @@
                     </div>
                     <div class="col-lg-3 text-center" id="total-invertebra">
                         <div class="chart-icon-wrapper">
-                            <img src="{% static 'img/invertebras-2.svg' %}" class="fish-icon crab greyed-icon">
-                            <div class="module-info-wrapper">
-                                <span class="total-data-desc green">coming soon</span>
-                            </div>
+                            <img src="{% static 'img/invertebras-2.svg' %}" class="fish-icon crab">
                             <div class="donut-chart">
-                                <canvas id="chart-crab" width="170" height="170"></canvas>
+                                <canvas id="chart-invert" width="170" height="170"></canvas>
                             </div>
+                        </div>
+                        <div class="module-information">
+                            <h4>Invertebrate</h4>
+                            <span id="invert-total-records" class="total-data green">-</span>
+                            <span class="total-data-desc green">&nbsp;records</span><br/>
+                            <span id="invert-total-sites" class="total-data green">-</span>
+                            <span class="total-data-desc green">&nbsp;sites</span>
                         </div>
                     </div>
                     <div class="col-lg-3 mr-auto text-center" id="total-algae">
