@@ -66,14 +66,19 @@ function createInvertCharts(invertData) {
     let invertContainer = document.getElementById("chart-invert");
     let totalInvert = 0;
     let totalSite = 0;
+    let totalSass = 0;
     if (invertData.hasOwnProperty('total')) {
         totalInvert += invertData['total'];
     }
     if (invertData.hasOwnProperty('total_site')) {
         totalSite += invertData['total_site'];
     }
+    if (invertData.hasOwnProperty('total_sass')) {
+        totalSass += invertData['total_sass'];
+    }
     $('#invert-total-records').html(totalInvert);
     $('#invert-total-sites').html(totalSite);
+    $('#invert-total-sass').html(totalSass);
     let labels = [];
     let backgroundColors = [];
     let chartData = [];
