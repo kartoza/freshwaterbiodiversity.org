@@ -451,3 +451,7 @@ html, body {
     padding-left: 5px;
     color: #3d647d;
 }
+
+.vertical-spacer {
+    height: 100px;
+}
