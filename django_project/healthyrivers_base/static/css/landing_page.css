@@ -466,3 +466,22 @@ html, body {
 .charcoal {
     color: #525351;
 }
+
+.coming-soon-buttons {
+    position: absolute;
+    width: 500px;
+    height: 68px;
+    margin-top: -65px;
+    margin-left: 0;
+    padding: 20px;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100&0.9+0,0.9+100;Grey+Gloss+%231 */
+    background: -moz-linear-gradient(top,  rgba(226,226,226,0.9) 0%, rgba(219,219,219,0.9) 50%, rgba(209,209,209,0.9) 51%, rgba(254,254,254,0.9) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(226,226,226,0.9) 0%,rgba(219,219,219,0.9) 50%,rgba(209,209,209,0.9) 51%,rgba(254,254,254,0.9) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(226,226,226,0.9) 0%,rgba(219,219,219,0.9) 50%,rgba(209,209,209,0.9) 51%,rgba(254,254,254,0.9) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e2e2e2', endColorstr='#e6fefefe',GradientType=0 ); /* IE6-9 */
+    color: #ad0009;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 1px solid black;
+    border-radius: 5px;
+}
