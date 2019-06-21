@@ -6,12 +6,48 @@
         font-family: "Roboto Condensed", sans-serif;
     }
     .hr-navbar {
-        font-size: 12pt;
+        font-size: 12pt !important;
         padding-left: 32px !important;
         padding-right: 32px !important;
     }
     .p-2 {
         padding-right: 5px !important;
+    }
+
+    .topNav .icon {
+        display: none;
+    }
+    
+    @media screen and (max-width: 1310px) {
+        .topNav a {display: none;}
+        .topNav a.icon {
+            float: right;
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 1310px) {
+        .topNav.responsive {
+            line-height: 1.25 !important;
+                position: absolute;
+    z-index: 9999;
+    right: 0;
+    margin-top: 200px !important;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+        }
+        .topNav.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-right: 5px;
+        }
+        .topNav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
     }
 </style>
 <div class="hr-navbar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom">
@@ -22,7 +58,7 @@
             width="230"/>
         </a>
     </h5>
-    <nav class="my-2 my-md-0 mr-md-3">
+    <nav class="my-2 my-md-0 mr-md-3 topNav" id="myTopNav">
         {% if site_ready %}
             <a class="p-2" href="/pages/about_us/" title="About Us">About</a>
             <a class="p-2" href="/map">Map</a>
@@ -34,7 +70,9 @@
                 <a class="nav-login-button" href="/accounts/signup">SIGN UP</a>
             {% else %}
                 <a class="p-2" href="/profile">Profile</a>
-                <a class="p-2" href="/upload">Upload Data</a>
+                {% if bims_preferences.enable_upload_data %}
+                    <a class="p-2" href="/upload">Upload Data</a>
+                {% endif %}
                 {% if user.is_staff or user.is_superuser %}
                     <a class="p-2" href="/admin/">Administration</a>
                 {% endif %}
@@ -49,5 +87,18 @@
         {% else %}
             <a class="p-2" href="/pages/about_us/" title="About Us">About</a>
         {% endif %}
+        <a href="javascript:void(0);" class="icon" onclick="navBarClicked()">
+            <i class="fa fa-bars"></i>
+        </a>
     </nav>
+    <script type="text/javascript">
+        function navBarClicked() {
+            var el = document.getElementById("myTopNav");
+            if (el.className.includes('responsive')) {
+                el.classList.remove('responsive');
+            } else {
+                el.className += ' responsive';
+            }
+        }
+    </script>
 </div>
