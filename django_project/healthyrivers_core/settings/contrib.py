@@ -51,10 +51,6 @@ INSTALLED_APPS += (
     'haystack',
 )
 
-MIDDLEWARE += (
-    'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
-)
-
 # Defines whether to log model related events,
 # such as when an object is created, updated, or deleted
 DJANGO_EASY_AUDIT_WATCH_MODEL_EVENTS = True
