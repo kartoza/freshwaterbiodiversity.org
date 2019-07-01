@@ -25,6 +25,4 @@ USE_X_FORWARDED_HOST = True
 # Set debug to false for production
 DEBUG = TEMPLATE_DEBUG = False
 
-SERVER_EMAIL = 'dimas@kartoza.com'
 EMAIL_HOST = 'kartoza.com'
-DEFAULT_FROM_EMAIL = 'dimas@kartoza.com'
