@@ -1,6 +1,14 @@
 .zoom-control {
     top: 80px;
-    background-color: #18A090;
+    background-color: #39B2A3;
+}
+
+.sub-control-panel:active {
+    background-color: #39B2A3 !important;
+}
+
+.origin-btn.selected {
+    background-color: #39B2A3 !important;
 }
 
 .right-panel-header .fa-map-marker {
