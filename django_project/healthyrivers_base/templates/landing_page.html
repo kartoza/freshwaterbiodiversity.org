@@ -143,4 +143,9 @@
 
     <!-- Custom scripts for this template -->
     <script src="{% static "js/views/landing-page.js" %}"></script>
+    <script>
+        $(document).ready(function () {
+            showSiteNotice();
+        });
+    </script>
 {% endblock %}
