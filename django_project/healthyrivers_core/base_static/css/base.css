@@ -290,3 +290,11 @@ h6 {
 .fbis-red:active {
     background-color: #641F30 !important;
 }
+
+#siteNoticeModal {
+    line-height: 1.5;
+}
+
+#siteNoticeModal .close span {
+    font-size: 20pt !important;
+}
