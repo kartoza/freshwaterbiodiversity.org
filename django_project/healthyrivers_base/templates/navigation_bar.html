@@ -18,7 +18,7 @@
         display: none;
     }
     
-    @media screen and (max-width: 1310px) {
+    @media screen and (max-width: 1300px) {
         .topNav a {display: none;}
         .topNav a.icon {
             float: right;
@@ -26,7 +26,7 @@
         }
     }
 
-    @media screen and (max-width: 1310px) {
+    @media screen and (max-width: 1300px) {
         .topNav.responsive {
             line-height: 1.25 !important;
                 position: absolute;
@@ -74,7 +74,16 @@
                     <a class="p-2" href="/upload">Upload Data</a>
                 {% endif %}
                 {% if user.is_staff or user.is_superuser %}
-                    <a class="p-2" href="/admin/">Administration</a>
+                    <li class="dropdown dropdown-admin">
+                    <a class="p-2 dropdown-toggle" data-toggle="dropdown" href="#">Administration
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-menu-item"><a href="/layers/?limit=20">GIS Layers</a></li>
+                            <li class="dropdown-menu-item"><a href="/documents/?limit=20&offset=0">Documents</a></li>
+                            <li class="dropdown-menu-item"><a href="/bibliography/">Citations</a></li>
+                            <li class="dropdown-menu-item"><a href="/admin/">Admin Page</a></li>
+                        </ul>
+                    </li>
                 {% endif %}
                 <a class="p-2" href="/nonvalidated-list/">Validate Records</a>
                 <a class="p-2" href="/nonvalidated-user-list/">Update

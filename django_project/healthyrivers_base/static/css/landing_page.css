@@ -365,10 +365,6 @@ html, body {
     text-decoration: none;
 }
 
-.dropdown-toggle {
-    color: transparent !important;
-}
-
 .carousel-title {
     margin-top: -30px;
     height: 100%;

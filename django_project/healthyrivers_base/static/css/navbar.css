@@ -15,6 +15,29 @@
     font-size: 17px;
 }
 
+@media screen and (max-width: 1310px) {
+    .hr-navbar .my-2 a {
+        font-size: 13px;
+    }
+}
+
+.dropdown-admin {
+    display: inline-block;
+}
+
+li.dropdown-menu-item a {
+    padding-right: 25px;
+}
+
+li.dropdown-menu-item {
+    padding: 5px;
+    font-weight: normal;
+}
+
+.dropdown:hover >.dropdown-menu {
+    display: block;
+}
+
 .nav-login-button {
     color: #18A090 !important;
     border-radius: 2px;
