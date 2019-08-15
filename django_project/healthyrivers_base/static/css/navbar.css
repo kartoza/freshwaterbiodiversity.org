@@ -5,6 +5,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom:-1px !important;
     text-transform: capitalize;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 .hr-navbar .my-0, nav#myTopNav {

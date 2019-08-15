@@ -6,6 +6,14 @@ html {
 
 body {
   font-family: 'Alegreya', 'Helvetica Neue', Arial, sans-serif;
+  margin-top: 0 !important;
+  align-items: inherit !important;
+  font-weight: 400!important;
+  letter-spacing: 0 !important;
+}
+
+li {
+    margin-bottom: 0 !important;
 }
 
 hr {
