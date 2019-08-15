@@ -7,6 +7,10 @@
     text-transform: capitalize;
 }
 
+.hr-navbar .my-0, nav#myTopNav {
+    display: inline-block;
+}
+
 .hr-navbar .my-2 a {
     text-transform: capitalize;
     color: #525351;
