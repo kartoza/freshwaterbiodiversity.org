@@ -1,9 +1,13 @@
+body, #wrap {
+    background: transparent;
+}
+
 .hr-navbar {
     background-color: #ffffff;
     height: 47px;
     color: #00697d;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom:-1px !important;
+    margin-bottom: 0 !important;
     text-transform: capitalize;
     font-family: "Roboto Condensed", sans-serif;
 }

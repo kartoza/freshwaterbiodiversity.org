@@ -77,6 +77,7 @@
                 {% if user.is_staff or user.is_superuser %}
                     <li class="dropdown dropdown-admin">
                     <a class="p-2 dropdown-toggle" data-toggle="dropdown" href="#">Administration
+                        </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-menu-item"><a href="/layers/?limit=20">GIS Layers</a></li>
                             <li class="dropdown-menu-item"><a href="/documents/?limit=20&offset=0">Documents</a></li>
