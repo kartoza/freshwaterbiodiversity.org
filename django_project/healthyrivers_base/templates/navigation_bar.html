@@ -57,6 +57,7 @@
             <img id="fbis_logo_home" src="{% static "img/FBIS v2 Logo.png" %}"
             width="230"/>
         </a>
+        </a>
     </h5>
     <nav class="my-2 my-md-0 mr-md-3 topNav" id="myTopNav">
         {% if site_ready %}
@@ -76,7 +77,6 @@
                 {% if user.is_staff or user.is_superuser %}
                     <li class="dropdown dropdown-admin">
                     <a class="p-2 dropdown-toggle" data-toggle="dropdown" href="#">Administration
-                        <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-menu-item"><a href="/layers/?limit=20">GIS Layers</a></li>
                             <li class="dropdown-menu-item"><a href="/documents/?limit=20&offset=0">Documents</a></li>
