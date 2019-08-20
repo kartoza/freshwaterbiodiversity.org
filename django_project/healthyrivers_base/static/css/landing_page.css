@@ -482,22 +482,10 @@ html, body {
     border-radius: 5px;
 }
 
-.ecological-legend-info {
+.ecological-legend-info-wrapper {
+    position: absolute;
+    white-space: nowrap;
     font-size: 8pt;
-    padding: 0 15pt;
-}
-
-.ecological-legend-info .info-left {
     text-align: left;
-    width: 33%;
-}
-
-.ecological-legend-info .info-center {
-    text-align: center;
-    width: 33%;
-}
-
-.ecological-legend-info .info-right {
-    text-align: right;
-    width: 33%;
+    right: -45px;
 }
