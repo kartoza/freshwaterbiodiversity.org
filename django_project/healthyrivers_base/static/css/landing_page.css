@@ -481,11 +481,3 @@ html, body {
     border: 1px solid black;
     border-radius: 5px;
 }
-
-.ecological-legend-info-wrapper {
-    position: absolute;
-    white-space: nowrap;
-    font-size: 8pt;
-    text-align: left;
-    right: -45px;
-}
