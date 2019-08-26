@@ -65,9 +65,9 @@
                         </div>
                     </div>
                     <div class="col-lg-3 text-center" id="total-invertebra">
-                        <div class="chart-icon-wrapper">
+                        <div class="chart-icon-wrapper" data-toggle="tooltip" data-placement="right"  data-html="true" title="A: Natural<br/>B: Good<br/>C: Fair<br/>D: Poor<br/>E/F: Seriously/Critically modified">
                             <img src="{% static 'img/JRSicons_crab.png' %}" class="fish-icon crab">
-                            <div class="row col-xs-5 ecological-legend-info-wrapper">A: Natural<br/>B: Good<br/>C: Fair<br/>D: Poor<br/>E/F: Seriously/<br/>Critically modified</div>
+                            <div class="row col-xs-5 ecological-legend-info-wrapper"></div>
                             <div class="donut-chart">
                                 <canvas id="chart-invert" width="170" height="170"></canvas>
                             </div>
@@ -136,6 +136,7 @@
 
     <!-- Plugin JavaScript -->
     <script src="{% static "js/libs/jquery/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "library/popper.js/1.11.0/popper.min.js" %}" crossorigin="anonymous"></script>
     <script src="{% static "js/libs/bootstrap-4.0.0/js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/libs/jquery-easing/jquery.easing.min.js" %}"></script>
     <script src="{% static "js/libs/scrollreveal/scrollreveal.min.js" %}"></script>
