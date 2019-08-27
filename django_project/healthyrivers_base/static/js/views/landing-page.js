@@ -12,7 +12,8 @@ $(document).ready(function () {
                 createInvertCharts(data['invert']);
             }
         }
-    })
+    });
+    $('[data-toggle="tooltip"]').tooltip()
 });
 
 function createFishCharts(fishData) {
