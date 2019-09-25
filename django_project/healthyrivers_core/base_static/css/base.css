@@ -306,3 +306,9 @@ h6 {
 #siteNoticeModal .close span {
     font-size: 20pt !important;
 }
+
+#siteNoticeModal .modal-body {
+    max-height: 600px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
