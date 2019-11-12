@@ -312,3 +312,33 @@ h6 {
     overflow-x: auto;
     overflow-y: auto;
 }
+
+.git-info {
+    font-size: 10pt;
+    margin-top: 18px;
+    color: darkgrey;
+    float: right;
+}
+
+.git-item {
+    color: whitesmoke;
+    margin-left: 5px;
+}
+
+@keyframes yellowfade {
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
+
+.item-highlight {
+  animation: yellowfade 1.5s;
+}
+
+.carousel-inner {
+    background-color: rgba(110, 110, 110, 0.34);
+    text-align: center;
+}
