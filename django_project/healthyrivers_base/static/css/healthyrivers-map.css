@@ -214,7 +214,7 @@
 }
 
 .panel-wrapper {
-    padding-top: 69px;
+    padding-top: 49px;
 }
 
 .chart-wrapper, #taxa-records-timeline-graph {
@@ -249,5 +249,5 @@
 }
 
 .ol-attribution {
-    bottom: 4.7em !important;
+    bottom: 3.5em !important;
 }
