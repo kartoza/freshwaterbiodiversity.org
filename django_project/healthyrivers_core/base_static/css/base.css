@@ -6,14 +6,6 @@ html {
 
 body {
   font-family: 'Alegreya', 'Helvetica Neue', Arial, sans-serif;
-  margin-top: 0 !important;
-  align-items: inherit !important;
-  font-weight: 400!important;
-  letter-spacing: 0 !important;
-}
-
-li {
-    margin-bottom: 0 !important;
 }
 
 hr {
@@ -47,11 +39,9 @@ h6 {
 }
 
 .btn {
-  font-weight: 700;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 300px;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12pt;
+    text-transform: none;
+    border-radius: 5px;
 }
 
 .btn-xl {
@@ -80,6 +70,11 @@ h6 {
   -moz-transition: all 0.2s;
   transition: all 0.2s;
   padding-top: 15px;
+  pointer-events: auto;
+}
+
+.modal {
+  overflow: auto;
 }
 
 #mainNav .navbar-brand {
@@ -158,24 +153,6 @@ h6 {
   }
 }
 
-.user-icon {
-  border: 5px solid white;
-  font-size: 20px;
-  background-color: transparent;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: lighter;
-  transition: all 0.3s ease 0s;
-}
-
-.user-icon:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #436461;
-  border-color: #436461;
-}
-
 .navbar-shrink {
   background-color: rgba(255, 255, 255, 0.9) !important;
 }
@@ -185,34 +162,14 @@ h6 {
   border-color: #526B43 !important;
 }
 
-.dropdown-menu {
-  min-width: 10px !important;
-  font-weight: bold;
-  background-color: white;
-  color: #404040;
-  border: none;
-}
-
-#navbarResponsive .dropdown-menu {
-  right: 10px !important;
-  left: auto !important;
-}
-
-.dropdown-menu li {
-  padding: 0 10px;
-}
-
-.dropdown-menu li:hover {
-  background-color: #f4f4f4 !important;
-}
-
-.dropdown-menu a {
-  color: #404040 !important;
-  white-space: nowrap;
-}
-
-.dropdown-menu a:hover {
-  color: #323437 !important;
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                   supported by Chrome and Opera */
 }
 
 .fbis-button {
@@ -299,6 +256,13 @@ h6 {
     background-color: #641F30 !important;
 }
 
+.btn-normal {
+    font-size: 10pt;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    text-transform: capitalize;
+}
+
 #siteNoticeModal {
     line-height: 1.5;
 }
@@ -311,6 +275,12 @@ h6 {
     max-height: 600px;
     overflow-x: auto;
     overflow-y: auto;
+}
+
+@media (min-width: 600px) {
+    #siteNoticeModal .modal-dialog {
+        max-width: 550px;
+    }
 }
 
 .git-info {
@@ -341,4 +311,8 @@ h6 {
 .carousel-inner {
     background-color: rgba(110, 110, 110, 0.34);
     text-align: center;
+}
+
+.body-form, .header-wrapper {
+    padding-top: 50px !important;
 }
