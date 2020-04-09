@@ -11,6 +11,9 @@ $(document).ready(function () {
             if (data.hasOwnProperty('invert')) {
                 createInvertCharts(data['invert']);
             }
+            if (data.hasOwnProperty('algae')) {
+                createAlgaeChart(data['algae']);
+            }
         }
     });
     $('[data-toggle="tooltip"]').tooltip()
@@ -97,6 +100,25 @@ function createInvertCharts(invertData) {
         }]
     };
     createDonutGraph(invertContainer, invertChartDataset);
+}
+
+function createAlgaeChart(algaeData) {
+    if (!algaeData) {
+        return;
+    }
+    $('#chart-algae').parent().empty().append('<canvas id="chart-algae" width="150px" height="150px"></canvas>');
+    let algaeContainer = document.getElementById("chart-algae");
+    $('#algae-total-records').html(algaeData['total']);
+    $('#algae-total-sites').html(algaeData['total_site']);
+    let algaeChartDataset = {
+        labels: ['Algae'],
+        datasets: [{
+            data: [algaeData['total']],
+            backgroundColor: ['#18A090'],
+            borderWidth: 1
+        }]
+    };
+    createDonutGraph(algaeContainer, algaeChartDataset);
 }
 
 function createDonutGraph(container, data) {

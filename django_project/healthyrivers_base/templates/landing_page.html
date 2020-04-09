@@ -83,13 +83,20 @@
                     </div>
                     <div class="col-lg-3 mr-auto text-center" id="total-algae">
                         <div class="chart-icon-wrapper">
-                            <img src="{% static 'img/JRSicons_algae.png' %}" class="fish-icon algae greyed-icon">
+                            <img src="{% static 'img/JRSicons_algae.png' %}" class="fish-icon algae">
                             <div class="module-info-wrapper">
-                                <span class="total-data-desc charcoal">coming soon</span>
+                                <span class="total-data-desc charcoal"></span>
                             </div>
                             <div class="donut-chart">
                                 <canvas id="chart-algae" width="170" height="170"></canvas>
                             </div>
+                        </div>
+                         <div class="module-information">
+                            <h4 class="charcoal">Algae</h4>
+                            <span id="algae-total-records" class="total-data">-</span>
+                            <span class="total-data-desc">&nbsp;records</span><br/>
+                            <span id="algae-total-sites" class="total-data">-</span>
+                            <span class="total-data-desc">&nbsp;sites</span>
                         </div>
                     </div>
                 </div>
