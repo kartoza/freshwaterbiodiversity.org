@@ -86,7 +86,7 @@ img::-moz-selection {
 }
 
 #header {
-    background-image: url('/static/img/landing_page_image.jpg');
+    background-image: url('/static/img/landing_page_banner.jpeg');
 }
 
 header.masthead {
@@ -289,6 +289,8 @@ html, body {
 .fish {
     padding: 45px 0;
     padding-left: 10px;
+    margin-top: 6px !important;
+    margin-left: -50px !important;
 }
 
 .crab {
