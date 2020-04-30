@@ -251,3 +251,7 @@
 .ol-attribution {
     bottom: 3.5em !important;
 }
+
+.ol-scale-line {
+    margin-bottom: 30px;
+}
