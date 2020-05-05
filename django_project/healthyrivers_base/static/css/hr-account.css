@@ -2,6 +2,8 @@ body {
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-bottom : 140px;
     background-image: url('../img/Login_Background.jpg');
+    background-size:     cover;
+    background-position: center top;
 }
 
 .align-bottom {
