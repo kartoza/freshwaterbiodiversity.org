@@ -1,8 +1,8 @@
 from django.db import migrations
-from bims.enums.taxonomic_group_category import TaxonomicGroupCategory
 
 
 def create_fish_taxon_group(apps, schema_editor):
+    from bims.enums.taxonomic_group_category import TaxonomicGroupCategory
     try:
         TaxonGroup = apps.get_model('bims', 'TaxonGroup')
         Taxonomy = apps.get_model('bims', 'Taxonomy')
@@ -44,7 +44,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(
-            create_fish_taxon_group
-        ),
     ]

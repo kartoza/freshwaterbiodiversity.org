@@ -1,12 +1,11 @@
 import json
 from django.db import migrations, models
-from bims.models.biological_collection_record import (
-    collection_post_save_handler,
-    collection_post_save_update_cluster
-)
-
 
 def move_fish_data(apps, schema_editor):
+    from bims.models.biological_collection_record import (
+        collection_post_save_handler,
+        collection_post_save_update_cluster
+    )
     try:
         BioCollectionRecords = apps.get_model('bims',
                                               'BiologicalCollectionRecord')
@@ -75,7 +74,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(
-            move_fish_data
-        ),
     ]
