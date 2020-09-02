@@ -251,3 +251,7 @@
 .ol-scale-line {
     margin-bottom: 70px !important;
 }
+
+#map-container {
+    padding-top: 0 !important;
+}

@@ -63,3 +63,7 @@ li.dropdown-menu-item {
     color: white !important;
     background-color: #18A090;
 }
+
+.body-container {
+    padding-top: 50px !important;
+}
