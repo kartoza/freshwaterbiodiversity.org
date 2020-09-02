@@ -2,16 +2,19 @@
 """Settings for when running under docker in development mode."""
 from .dev import *  # noqa
 
-ALLOWED_HOSTS = ['*',
-                 u'0.0.0.0']
+ALLOWED_HOSTS = ['*']
+USE_X_FORWARDED_HOST = True
 
-ADMINS = ()
+ADMINS = (
+    ('Dimas', 'dimas@kartoza.com'),
+)
 
 # Set debug to True for development
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 LOGGING_OUTPUT_ENABLED = DEBUG
 LOGGING_LOG_SQL = DEBUG
+MEDIA_ROOT = '/home/web/media'
 
 DATABASES = {
     'default': {
@@ -21,18 +24,21 @@ DATABASES = {
         'PASSWORD': 'docker',
         'HOST': 'db',
         'PORT': 5432,
-        'TEST_NAME': 'unittests',
+        'TEST': {
+            'NAME': 'gis_test'
+        },
     }
 }
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'bims.search_backends.fuzzy_elastic_search_engine'
-                  '.FuzzyElasticSearchEngine',
-        'URL': 'http://elasticsearch:9200/',
-        'INDEX_NAME': 'haystack',
-    },
-}
+if os.getenv('DEFAULT_BACKEND_DATASTORE'):
+    DATABASES[os.getenv('DEFAULT_BACKEND_DATASTORE')] = {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'geonode_data',
+        'USER': 'docker',
+        'PASSWORD': 'docker',
+        'HOST': 'db',
+        'PORT': 5432
+    }
 
 CACHES = {
     'default': {
