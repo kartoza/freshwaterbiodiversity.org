@@ -32,11 +32,6 @@
                         <a class="btn btn-account btn-l js-scroll-trigger"
                            href="/map">Explore</a>
                     {% endif %}
-                    {% if not site_ready %}
-                    <div class="coming-soon-buttons">
-                        Coming soon!
-                    </div>
-                    {% endif %}
                 </div>
             </div>
         </header>
@@ -79,6 +74,21 @@
                             <span class="total-data-desc">&nbsp;sites</span>
                             <br/><span id="invert-total-sass" class="total-data">-</span>
                             <span class="total-data-desc">&nbsp;SASS assessments</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-center" id="total-odonate">
+                        <div class="chart-icon-wrapper" data-toggle="tooltip" data-placement="right"  data-html="true" title="A: Natural<br/>B: Good<br/>C: Fair<br/>D: Poor<br/>E/F: Seriously/Critically modified">
+                            <img src="{% static 'img/odonate_icon.png' %}" class="fish-icon crab">
+                            <div class="donut-chart">
+                                <canvas id="chart-odonate" width="170" height="170"></canvas>
+                            </div>
+                        </div>
+                        <div class="module-information">
+                            <h4 class="charcoal">Odonate Adult</h4>
+                            <span id="odonate-total-records" class="total-data">-</span>
+                            <span class="total-data-desc">&nbsp;records</span><br/>
+                            <span id="odonate-total-sites" class="total-data">-</span>
+                            <span class="total-data-desc">&nbsp;sites</span>
                         </div>
                     </div>
                     <div class="col-lg-3 mr-auto text-center" id="total-algae">
