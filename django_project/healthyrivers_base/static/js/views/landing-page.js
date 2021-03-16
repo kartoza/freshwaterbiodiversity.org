@@ -14,10 +14,47 @@ $(document).ready(function () {
             if (data.hasOwnProperty('algae')) {
                 createAlgaeChart(data['algae']);
             }
+            if (data.hasOwnProperty('odonate')) {
+                createOdonateChart(data['odonate'])
+            }
         }
     });
     $('[data-toggle="tooltip"]').tooltip()
 });
+
+function createOdonateChart(odonateData) {
+    if (!odonateData) {
+        return;
+    }
+    $('#chart-odonate').parent().empty().append('<canvas id="chart-odonate" width="150px" height="150px"></canvas>');
+    let endemismData = {};
+    let labels = [];
+    let data = [];
+    if (odonateData.hasOwnProperty('endemism')) {
+        for (let key in odonateData['endemism']) {
+            endemismData[key] = odonateData['endemism'][key]
+            data.push(odonateData['endemism'][key])
+            labels.push(key)
+        }
+    }
+
+    $('#odonate-total-records').html(odonateData['total'].toLocaleString());
+    $('#odonate-total-sites').html(odonateData['total_site'].toLocaleString());
+    const chartContainer = document.getElementById("chart-odonate");
+    const chartDataset = {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: [
+                '#a13447',
+                '#00a99d',
+                '#e0d43f'
+            ],
+            borderWidth: 1
+        }]
+    };
+    createDonutGraph(chartContainer, chartDataset)
+}
 
 function createFishCharts(fishData) {
     if (!fishData) {
@@ -46,8 +83,8 @@ function createFishCharts(fishData) {
         totalSite += fishData['total_site'];
     }
 
-    $('#fish-total-records').html(totalFish);
-    $('#fish-total-sites').html(totalSite);
+    $('#fish-total-records').html(totalFish.toLocaleString());
+    $('#fish-total-sites').html(totalSite.toLocaleString());
 
     var fishContainer = document.getElementById("chart-fish");
     var fishChartDataset = {
@@ -80,9 +117,9 @@ function createInvertCharts(invertData) {
     if (invertData.hasOwnProperty('total_sass')) {
         totalSass += invertData['total_sass'];
     }
-    $('#invert-total-records').html(totalInvert);
-    $('#invert-total-sites').html(totalSite);
-    $('#invert-total-sass').html(totalSass);
+    $('#invert-total-records').html(totalInvert.toLocaleString());
+    $('#invert-total-sites').html(totalSite.toLocaleString());
+    $('#invert-total-sass').html(totalSass.toLocaleString());
     let labels = [];
     let backgroundColors = [];
     let chartData = [];
@@ -108,8 +145,8 @@ function createAlgaeChart(algaeData) {
     }
     $('#chart-algae').parent().empty().append('<canvas id="chart-algae" width="150px" height="150px"></canvas>');
     let algaeContainer = document.getElementById("chart-algae");
-    $('#algae-total-records').html(algaeData['total']);
-    $('#algae-total-sites').html(algaeData['total_site']);
+    $('#algae-total-records').html(algaeData['total'].toLocaleString());
+    $('#algae-total-sites').html(algaeData['total_site'].toLocaleString());
     let algaeChartDataset = {
         labels: ['Algae'],
         datasets: [{
