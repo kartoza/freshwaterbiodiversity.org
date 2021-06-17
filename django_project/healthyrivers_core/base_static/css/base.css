@@ -352,8 +352,21 @@ h6 {
     margin-left: 5px;
 }
 .body-form {
-    padding-top: 50px !important;
+    margin-top: 2em !important;
 }
 .header-wrapper {
     padding-top: 50px !important;
+}
+.nav-space {
+    height: 0 !important;
+}
+.taxa-table {
+    max-height: calc(100vh - 280px) !important;
+    max-height: -o-calc(100vh - 280px) !important;
+    max-height: -webkit-calc(100vh - 280px) !important;
+    max-height: -moz-calc(100vh - 280px) !important;
+}
+.summary-container {
+    margin-top: -80px !important;
+    padding-bottom: 80px;
 }

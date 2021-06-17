@@ -83,7 +83,7 @@
                     </a>
                     <ul class="dropdown-menu" style="width: 180px">
                         <li class="dropdown-menu-item"><a href="/profile/">Profile</a></li>
-                        <li class="dropdown-menu-item"><a href="/site-visit/list/?&collectors=%5B51{{ request.user.id }}%5D">Site Visits</a></li>
+                        <li class="dropdown-menu-item"><a href="/site-visit/list/?&collectors=%5B{{ user.id }}%5D">Site Visits</a></li>
                     </ul>
                 </li>
                 {% if bims_preferences.enable_upload_data %}
@@ -95,26 +95,23 @@
                         </a>
                         <ul class="dropdown-menu" style="width: 200px; z-index: 9999">
                             <li class="dropdown-menu-item"><a href="/source-references/">Source References</a></li>
-                            <li class="dropdown-menu-item"><a href="/upload-taxa/">Upload Taxonomic Data</a></li>
-                            <li class="dropdown-menu-item" ><a href="/upload-collections/">Upload Occurrence Data</a></li>
+                            <li class="dropdown-menu-item"><a href="/upload-taxa/" style="font-size: 0.9em">Upload Taxonomic Data</a></li>
+                            <li class="dropdown-menu-item" ><a href="/upload-collections/"  style="font-size: 0.9em">Upload Occurrence Data</a></li>
                             <li class="dropdown-menu-item" ><a href="/taxa-management/">Taxon Management</a></li>
+                            <li class="dropdown-menu-item" ><a class="dropdown-item" href="/download-request/">Download Requests</a></li>
                             <li class="dropdown-menu-item" ><a href="/harvest-collections/">Harvest From GBIF</a></li>
                             <li class="dropdown-menu-item" ><a href="/dashboard-management/">Edit Dashboard</a></li>
+                            <li class="dropdown-menu-item"><a class="p-2" href="/site-visit/list/?&inReview=True">Validate Records</a></li>
                             <div class="dropdown-divider"></div>
                             <li class="dropdown-menu-item"><a href="/admin/">Admin Page</a></li>
                             <li class="dropdown-menu-item"><a href="/cms/">Wagtail Admin</a></li>
                             <div class="dropdown-divider"></div>
                             <li class="dropdown-menu-item"><a href="/backups-management/">Backups</a></li>
+                            <li class="dropdown-menu-item"><a href="/summary-report">Summary Report</a></li>
                             <li class="dropdown-menu-item"><a href="https://analytics.google.com/analytics/web/" target="_blank">Analytics</a></li>
                         </ul>
                     </li>
                 {% endif %}
-                {% if user.is_staff or user.is_superuser %}
-                    <a class="p-2" href="/nonvalidated-list/">Validate Records</a>
-                {% endif %}
-                <a class="p-2" href="/nonvalidated-user-list/">Update
-                    Records</a>
-
                 <a class="p-2" href="/location-site-form/add/">Add Site</a>
                 <span class="p-2"></span>
                 <a class="nav-login-button" href="/accounts/logout">LOGOUT</a>
